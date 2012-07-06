@@ -69,8 +69,6 @@
 
 @interface RecipesTableViewController() 
 
-@property (nonatomic, strong) NSMutableArray *searchResults;
-@property (nonatomic, strong) NSString *savedSearchTerm;
 
 @property (nonatomic, strong) UIViewController *modalViewController;
 
@@ -79,19 +77,14 @@
 @implementation RecipesTableViewController
 
 @synthesize recipeDatabase = _recipeDatabase;
-//@synthesize searchBar = _searchBar;
-
-@synthesize searchResults = _searchResults;
-@synthesize savedSearchTerm = _savedSearchTerm;
 
 @synthesize modalViewController = _modalViewController;
 
-
-- (void)handleSearchForTerm:(NSString *)searchTerm
-{
-    _savedSearchTerm = searchTerm;
-    
+- (void)didReceiveMemoryWarning{
+    [super didReceiveMemoryWarning];
 }
+
+
 
 - (void)cancelCreateRecipeModalViewController
 {

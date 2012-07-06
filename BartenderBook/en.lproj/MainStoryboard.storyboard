@@ -13,21 +13,9 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="jtt-OT-Xng">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <scopeButtonTitles>
-                                <string>Title</string>
-                                <string>Title</string>
-                            </scopeButtonTitles>
-                            <connections>
-                                <outlet property="delegate" destination="i2d-Cl-QeH" id="Oae-z5-7sa"/>
-                            </connections>
-                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="recipe" textLabel="UD6-Jx-qRL" style="IBUITableViewCellStyleDefault" id="KjQ-Ss-yDP">
-                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
@@ -67,7 +55,6 @@
                 <searchDisplayController id="Ekd-SX-TA3">
                     <connections>
                         <outlet property="delegate" destination="i2d-Cl-QeH" id="8fZ-cr-HkB"/>
-                        <outlet property="searchBar" destination="jtt-OT-Xng" id="m5v-gI-g1f"/>
                         <outlet property="searchContentsController" destination="i2d-Cl-QeH" id="13P-mv-kR5"/>
                         <outlet property="searchResultsDataSource" destination="i2d-Cl-QeH" id="tJ2-Sw-5Q0"/>
                         <outlet property="searchResultsDelegate" destination="i2d-Cl-QeH" id="PSH-fd-Ibe"/>
@@ -502,6 +489,57 @@
         <image name="opaqueNone2.png" width="70" height="75"/>
         <image name="smallerCamera.png" width="64" height="64"/>
     </resources>
+    <classes>
+        <class className="CoreDataTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoreDataTableViewController.h"/>
+        </class>
+        <class className="CreateRecipeModalViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateRecipeModalViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addPhoto:"/>
+                <relationship kind="action" name="chooseGarnish:"/>
+                <relationship kind="action" name="chooseGlass:"/>
+                <relationship kind="action" name="chooseIce:"/>
+                <relationship kind="action" name="chooseShakeStir:"/>
+                <relationship kind="action" name="donePressed:"/>
+                <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="firstIngredient" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="garnishButton" candidateClass="PopoverIngredientButton"/>
+                <relationship kind="outlet" name="glassButton" candidateClass="PopoverIngredientButton"/>
+                <relationship kind="outlet" name="iceButton" candidateClass="PopoverIngredientButton"/>
+                <relationship kind="outlet" name="mixButton" candidateClass="PopoverIngredientButton"/>
+                <relationship kind="outlet" name="navigationBar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="notes" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="notesLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="photoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="recipeName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="PopoverIngredientButton" superclassName="ingredientButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PopoverIngredientButton.h"/>
+        </class>
+        <class className="RecipeViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecipeViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="garnishButton" candidateClass="PopoverIngredientButton"/>
+                <relationship kind="outlet" name="glassButton" candidateClass="PopoverIngredientButton"/>
+                <relationship kind="outlet" name="iceButton" candidateClass="PopoverIngredientButton"/>
+                <relationship kind="outlet" name="mixButton" candidateClass="PopoverIngredientButton"/>
+                <relationship kind="outlet" name="notes" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="notesLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="photoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="recipeName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="RecipesTableViewController" superclassName="CoreDataTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RecipesTableViewController.h"/>
+        </class>
+        <class className="ingredientButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ingredientButton.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

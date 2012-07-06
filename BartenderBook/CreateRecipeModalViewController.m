@@ -50,9 +50,14 @@
 @synthesize keyboardIsShown = _keyboardIsShown;
 @synthesize delegate = _delegate;
 
+- (void)didReceiveMemoryWarning{
+    [super didReceiveMemoryWarning];
+}
 
 - (IBAction)cancel:(id)sender {
-    [_delegate cancelCreateRecipeModalViewController];
+    
+    
+    [[self presentingViewController] dismissModalViewControllerAnimated:YES];
 }
 
 - (void)keyboardWasShown:(NSNotification*)aNotification

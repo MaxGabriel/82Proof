@@ -11,7 +11,7 @@
 #import "CreateRecipeModalViewController.h"
 #import "RecipeViewController.h"
 
-@interface RecipesTableViewController : CoreDataTableViewController <CreateRecipeModalViewControllerDelegate, UISearchDisplayDelegate, UISearchBarDelegate>
+@interface RecipesTableViewController : CoreDataTableViewController <CreateRecipeModalViewControllerDelegate>
 
 @property (nonatomic, strong) UIManagedDocument *recipeDatabase;
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="11E53" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Ingredient" representedClassName="Ingredient" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="partOfRecipe" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="hasIngredients" inverseEntity="Recipe" syncable="YES"/>
+    </entity>
+    <entity name="Recipe" representedClassName="Recipe" syncable="YES">
+        <attribute name="garnish" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="glass" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ice" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="method" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="hasIngredients" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Ingredient" inverseName="partOfRecipe" inverseEntity="Ingredient" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Ingredient" positionX="412" positionY="198" width="128" height="90"/>
+        <element name="Recipe" positionX="169" positionY="123" width="128" height="150"/>
+    </elements>
+</model>

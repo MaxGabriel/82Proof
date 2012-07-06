@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Hhb-77-kEd">
+    <dependencies>
+        <development defaultVersion="4200" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
+    </dependencies>
+    <scenes>
+        <scene sceneID="NcS-Km-Jo4">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fer-EI-Jbc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="i2d-Cl-QeH" customClass="RecipesTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Out-9y-sZ9">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="jtt-OT-Xng">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
+                            <connections>
+                                <outlet property="delegate" destination="i2d-Cl-QeH" id="Oae-z5-7sa"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="recipe" textLabel="UD6-Jx-qRL" style="IBUITableViewCellStyleDefault" id="KjQ-Ss-yDP">
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UD6-Jx-qRL">
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <segue destination="InD-S0-XRZ" kind="push" identifier="show recipe" id="aA2-c0-UIk"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="i2d-Cl-QeH" id="FxO-3y-nki"/>
+                            <outlet property="delegate" destination="i2d-Cl-QeH" id="DNA-Yb-GiH"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Recipes" id="qNl-yq-s6G">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="YTh-Ej-2G1">
+                            <connections>
+                                <segue destination="8yL-mE-fO9" kind="modal" identifier="create recipe" id="2OY-I8-dKf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="Ekd-SX-TA3" id="CHO-4o-j7l"/>
+                    </connections>
+                </tableViewController>
+                <searchDisplayController id="Ekd-SX-TA3">
+                    <connections>
+                        <outlet property="delegate" destination="i2d-Cl-QeH" id="8fZ-cr-HkB"/>
+                        <outlet property="searchBar" destination="jtt-OT-Xng" id="m5v-gI-g1f"/>
+                        <outlet property="searchContentsController" destination="i2d-Cl-QeH" id="13P-mv-kR5"/>
+                        <outlet property="searchResultsDataSource" destination="i2d-Cl-QeH" id="tJ2-Sw-5Q0"/>
+                        <outlet property="searchResultsDelegate" destination="i2d-Cl-QeH" id="PSH-fd-Ibe"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="788" y="27"/>
+        </scene>
+        <scene sceneID="9WC-Ff-IsB">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xdL-WD-SLw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="0tt-k2-luX" customClass="NewRecipeModalViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KLk-ll-X96">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="7QT-mY-H9N">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="V9R-hs-le4">
+                                        <rect key="frame" x="188" y="392" width="75" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Submit">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="submitPressed:" destination="0tt-k2-luX" eventType="touchUpInside" id="MLM-LK-QGK"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipe" minimumFontSize="17" id="9g0-Qd-aYp">
+                                        <rect key="frame" x="52" y="29" width="211" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="created by" minimumFontSize="17" id="cd8-za-dtp">
+                                        <rect key="frame" x="20" y="356" width="243" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ice" minimumFontSize="17" id="1bL-QN-RVr">
+                                        <rect key="frame" x="20" y="305" width="211" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="glass" minimumFontSize="17" id="C1x-pK-FnR">
+                                        <rect key="frame" x="20" y="261" width="97" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="method" minimumFontSize="17" id="3Ml-ek-34N">
+                                        <rect key="frame" x="20" y="222" width="97" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ingredient1" minimumFontSize="17" id="RWa-BB-mY3">
+                                        <rect key="frame" x="20" y="88" width="189" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ingredient2" minimumFontSize="17" id="J15-Oc-Cqb">
+                                        <rect key="frame" x="20" y="132" width="189" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="amount1" minimumFontSize="17" id="ji6-Bn-cYW">
+                                        <rect key="frame" x="217" y="88" width="97" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="amount2" minimumFontSize="17" id="Eqn-q8-utM">
+                                        <rect key="frame" x="217" y="132" width="97" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="efh-XC-XYy">
+                                        <rect key="frame" x="197" y="241" width="42" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="bartenderField" destination="cd8-za-dtp" id="NRq-vt-w6z"/>
+                        <outlet property="glassField" destination="C1x-pK-FnR" id="YUP-Ku-5Nk"/>
+                        <outlet property="iceField" destination="1bL-QN-RVr" id="IaL-gV-07V"/>
+                        <outlet property="ingredientAmount1" destination="ji6-Bn-cYW" id="CaK-Qo-BTL"/>
+                        <outlet property="ingredientAmount2" destination="Eqn-q8-utM" id="0Tw-ZB-WSW"/>
+                        <outlet property="ingredientName1" destination="RWa-BB-mY3" id="7er-zh-bAL"/>
+                        <outlet property="ingredientName2" destination="J15-Oc-Cqb" id="pcp-fo-anY"/>
+                        <outlet property="methodField" destination="3Ml-ek-34N" id="YBk-dh-qSw"/>
+                        <outlet property="nameField" destination="9g0-Qd-aYp" id="1VE-zl-3UI"/>
+                        <outlet property="scrollView" destination="7QT-mY-H9N" id="tct-Qt-5Ws"/>
+                        <outlet property="submit" destination="V9R-hs-le4" id="WGf-F5-BW7"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="407" y="1042"/>
+        </scene>
+        <scene sceneID="lZ4-Mh-IDh">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z6J-MZ-LYV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController wantsFullScreenLayout="YES" id="8yL-mE-fO9" customClass="CreateRecipeModalViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Est-mq-QNe">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="AMZ-dD-lBH">
+                                <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" id="cdP-G3-f8t" customClass="PopoverIngredientButton">
+                                        <rect key="frame" x="9" y="92" width="70" height="97"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="opaqueNone2.png" backgroundImage="longerMainButton.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="chooseShakeStir:" destination="8yL-mE-fO9" eventType="touchUpInside" id="eKO-40-Zqx"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" id="pq0-fK-oAK" customClass="PopoverIngredientButton">
+                                        <rect key="frame" x="165" y="92" width="70" height="97"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="opaqueNone2.png" backgroundImage="longerMainButton.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="chooseIce:" destination="8yL-mE-fO9" eventType="touchUpInside" id="J9n-Zl-Lhe"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" id="PH3-6V-01y" customClass="PopoverIngredientButton">
+                                        <rect key="frame" x="87" y="92" width="70" height="97"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="opaqueNone2.png" backgroundImage="longerMainButton.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="chooseGlass:" destination="8yL-mE-fO9" eventType="touchUpInside" id="kBw-mx-mQo"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" id="iQ0-Py-lP0" customClass="PopoverIngredientButton">
+                                        <rect key="frame" x="240" y="92" width="70" height="97"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="opaqueNone2.png" backgroundImage="longerMainButton.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="chooseGarnish:" destination="8yL-mE-fO9" eventType="touchUpInside" id="ZC3-K1-PNo"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="ingredient" minimumFontSize="24" id="OJj-Vp-pCo">
+                                        <rect key="frame" x="38" y="197" width="209" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="23"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3kf-9e-NyA">
+                                        <rect key="frame" x="12" y="20" width="64" height="64"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" backgroundImage="smallerCamera.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addPhoto:" destination="8yL-mE-fO9" eventType="touchUpInside" id="MPK-rR-Ulz"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Recipe Name" minimumFontSize="17" id="uV2-Kz-tie">
+                                        <rect key="frame" x="87" y="20" width="200" height="64"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="WbJ-gL-aHh">
+                                        <rect key="frame" x="20" y="288" width="280" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Notes" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="none" minimumFontSize="10" id="L7D-fi-Bdm">
+                                        <rect key="frame" x="236" y="265" width="64" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </scrollView>
+                            <navigationBar contentMode="scaleToFill" id="Ufw-PH-Vmj">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="New Recipe" id="gat-cZ-I2T">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="HDr-Gy-hKY">
+                                            <connections>
+                                                <action selector="cancel:" destination="8yL-mE-fO9" id="fN0-eA-nqa"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Done" style="done" id="jYp-aP-Nvj">
+                                            <connections>
+                                                <action selector="donePressed:" destination="8yL-mE-fO9" id="dtf-7k-phl"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="iv0-yF-tYg">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="OrJ-1B-1N0"/>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="NON-tY-May"/>
+                    </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="doneButton" destination="jYp-aP-Nvj" id="vpb-a0-517"/>
+                        <outlet property="firstIngredient" destination="OJj-Vp-pCo" id="IWF-QA-J9Q"/>
+                        <outlet property="garnishButton" destination="iQ0-Py-lP0" id="Rvj-lB-hlv"/>
+                        <outlet property="glassButton" destination="PH3-6V-01y" id="C6D-CQ-orw"/>
+                        <outlet property="iceButton" destination="pq0-fK-oAK" id="TGM-qz-Gd1"/>
+                        <outlet property="mixButton" destination="cdP-G3-f8t" id="5gg-Og-J4A"/>
+                        <outlet property="navigationBar" destination="Ufw-PH-Vmj" id="fov-v9-F5U"/>
+                        <outlet property="notes" destination="WbJ-gL-aHh" id="aGK-F7-ymK"/>
+                        <outlet property="notesLabel" destination="L7D-fi-Bdm" id="RTv-xH-oX8"/>
+                        <outlet property="photoButton" destination="3kf-9e-NyA" id="jre-ez-9FZ"/>
+                        <outlet property="recipeName" destination="uV2-Kz-tie" id="zso-ib-FoQ"/>
+                        <outlet property="scrollView" destination="AMZ-dD-lBH" id="AMH-uC-P4d"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="839" y="684"/>
+        </scene>
+        <scene sceneID="BQd-1K-dAe">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lhx-7N-Oaw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="InD-S0-XRZ" customClass="RecipeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="m67-OB-Ffo">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="PQN-Bl-Dpf">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="By9-b6-jpu">
+                                        <rect key="frame" x="88" y="10" width="200" height="64"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="32E-wb-8ne">
+                                        <rect key="frame" x="13" y="10" width="64" height="64"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" backgroundImage="smallerCamera.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="disabled" backgroundImage="smallerCamera.png"/>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" id="3IY-eM-DT6" customClass="PopoverIngredientButton">
+                                        <rect key="frame" x="88" y="82" width="70" height="97"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="opaqueNone2.png" backgroundImage="longerMainButton.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="disabled" image="opaqueNone2.png" backgroundImage="longerMainButton.png"/>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" id="DTV-l0-SKK" customClass="PopoverIngredientButton">
+                                        <rect key="frame" x="166" y="82" width="70" height="97"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="opaqueNone2.png" backgroundImage="longerMainButton.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="disabled" image="opaqueNone2.png" backgroundImage="longerMainButton.png"/>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" id="j3u-Ay-p7q" customClass="PopoverIngredientButton">
+                                        <rect key="frame" x="10" y="82" width="70" height="97"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="opaqueNone2.png" backgroundImage="longerMainButton.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="disabled" image="opaqueNone2.png" backgroundImage="longerMainButton.png"/>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" id="JB1-wP-AxD" customClass="PopoverIngredientButton">
+                                        <rect key="frame" x="244" y="82" width="70" height="97"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" image="opaqueNone2.png" backgroundImage="longerMainButton.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="disabled" image="opaqueNone2.png" backgroundImage="longerMainButton.png"/>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="Wqd-D9-EJL">
+                                        <rect key="frame" x="20" y="268" width="280" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Notes" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="none" minimumFontSize="10" id="YEu-SG-oy8">
+                                        <rect key="frame" x="236" y="240" width="64" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="48G-rf-7sV"/>
+                    <connections>
+                        <outlet property="garnishButton" destination="JB1-wP-AxD" id="FgQ-uI-fFC"/>
+                        <outlet property="glassButton" destination="3IY-eM-DT6" id="OaX-3T-dyI"/>
+                        <outlet property="iceButton" destination="DTV-l0-SKK" id="Afx-RH-W8d"/>
+                        <outlet property="mixButton" destination="j3u-Ay-p7q" id="nyf-Qw-JKo"/>
+                        <outlet property="notes" destination="Wqd-D9-EJL" id="4bV-hi-qZt"/>
+                        <outlet property="notesLabel" destination="YEu-SG-oy8" id="bFe-YZ-BO5"/>
+                        <outlet property="photoButton" destination="32E-wb-8ne" id="Z71-qp-DXr"/>
+                        <outlet property="recipeName" destination="By9-b6-jpu" id="bEb-2Q-x58"/>
+                        <outlet property="scrollView" destination="PQN-Bl-Dpf" id="7Fc-eP-NQ2"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1334" y="33"/>
+        </scene>
+        <scene sceneID="TNC-47-niU">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SaB-Oe-H09" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="Hhb-77-kEd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="C1g-RL-awC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="i2d-Cl-QeH" kind="relationship" relationship="rootViewController" id="7u4-Hl-pYo"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="265" y="47"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="longerMainButton.png" width="70" height="97"/>
+        <image name="opaqueNone2.png" width="70" height="75"/>
+        <image name="smallerCamera.png" width="64" height="64"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

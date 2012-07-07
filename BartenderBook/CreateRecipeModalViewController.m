@@ -599,14 +599,18 @@
     
     ingredientButton *olive = [[ingredientButton alloc] initWithName:@"Olive" andImageName:@"olive.png"];
     
-    ingredientButton *celeryStick = [[ingredientButton alloc] initWithName:@"Celery Stick" andImageName:@"celeryStickBig.png"];
+    ingredientButton *limeWedge = [[ingredientButton alloc] initWithName:@"Lime Wedge" andImageName:@"limeWedge2D.png"];
+    
     ingredientButton *limeWheel = [[ingredientButton alloc] initWithName:@"Lime Wheel" andImageName:@"limeWheel2.png"];
+    
+    ingredientButton *celeryStick = [[ingredientButton alloc] initWithName:@"Celery Stick" andImageName:@"celeryStickBig.png"];
+    
     
     ingredientButton *mint = [[ingredientButton alloc] initWithName:@"Mint" andImageName:@"mint2.png"];
     
     ingredientButton *pineapple = [[ingredientButton alloc] initWithName:@"Pineapple" andImageName:@"bigPineapple.png"];
     
-    contentViewController.buttons = [NSArray arrayWithObjects:cherry, olive, limeWheel, celeryStick, mint, pineapple, nil];
+    contentViewController.buttons = [NSArray arrayWithObjects:cherry, olive, limeWedge, limeWheel, celeryStick, mint, pineapple, nil];
     contentViewController.presentingButton = sender;
     contentViewController.delegate = self;
     

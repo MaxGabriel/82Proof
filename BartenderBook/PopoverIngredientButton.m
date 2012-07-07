@@ -15,6 +15,7 @@
 
 @synthesize ingredientLabel = _ingredientLabel;
 
+// Adds text to near the bottom of the button. 
 - (void)addLabel
 {
     if (!_ingredientLabel) { //Create

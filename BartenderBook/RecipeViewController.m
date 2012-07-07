@@ -10,6 +10,8 @@
 #import "Ingredient.h"
 #import <QuartzCore/QuartzCore.h>
 
+#import "ImageMapping.h"
+
 @interface RecipeViewController() <UIScrollViewDelegate>
 
 
@@ -130,6 +132,16 @@
     } else {
         _mixButton.name = _recipe.method;
         [_mixButton addLabel];
+        
+        NSString *imageName = [[[ImageMapping sharedInstance] methodDictionary] objectForKey:_recipe.method];
+
+        
+        if (!imageName) {
+            // Do nothing because image is already set to X. 
+        } else {
+            [_mixButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateDisabled];
+        }
+        
     }
     
     if (!_recipe.glass) {
@@ -138,6 +150,15 @@
     } else {
         _glassButton.name = _recipe.glass;
         [_glassButton addLabel];
+        
+        NSString *imageName = [[[ImageMapping sharedInstance] glassDictionary] objectForKey:_recipe.glass];
+        
+        
+        if (!imageName) {
+            // Do nothing because image is already set to X. 
+        } else {
+            [_glassButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateDisabled];
+        }
     }
     
     if (!_recipe.ice) {
@@ -146,6 +167,16 @@
     } else {
         _iceButton.name = _recipe.ice;
         [_iceButton addLabel];
+        
+        NSString *imageName = [[[ImageMapping sharedInstance] iceDictionary] objectForKey:_recipe.ice];
+        
+        
+        if (!imageName) {
+            // Do nothing because image is already set to X. 
+        } else {
+            [_iceButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateDisabled];
+        }
+        
     }
     
     if (!_recipe.garnish) {
@@ -154,6 +185,15 @@
     } else {
         _garnishButton.name = _recipe.garnish;
         [_garnishButton addLabel];
+        
+        NSString *imageName = [[[ImageMapping sharedInstance] garnishDictionary] objectForKey:_recipe.garnish];
+        
+        
+        if (!imageName) {
+            // Do nothing because image is already set to X. 
+        } else {
+            [_garnishButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateDisabled];
+        }
     }
     
     if (!_recipe.photo) {

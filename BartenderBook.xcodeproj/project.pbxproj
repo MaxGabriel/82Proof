@@ -14,6 +14,7 @@
 		5060CFB115A7BBCD005C1743 /* whipper2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5060CFAF15A7BBCD005C1743 /* whipper2.png */; };
 		5060CFB215A7BBCD005C1743 /* whipper2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5060CFB015A7BBCD005C1743 /* whipper2@2x.png */; };
 		5060CFBD15A7EC45005C1743 /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 5060CFBC15A7EC45005C1743 /* Recipe.m */; };
+		5060CFC015A7F95D005C1743 /* ImageMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5060CFBF15A7F95C005C1743 /* ImageMapping.m */; };
 		50876219157544F4009EF289 /* Paper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50876218157544F4009EF289 /* Paper@2x.png */; };
 		5087621B15754906009EF289 /* moleskine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5087621A15754906009EF289 /* moleskine@2x.png */; };
 		50886846157803200021A330 /* CreateRecipeModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50886845157803200021A330 /* CreateRecipeModalViewController.m */; };
@@ -129,7 +130,6 @@
 		50D20BBE15700DB100F4463F /* RecipesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D20BBD15700DB100F4463F /* RecipesTableViewController.m */; };
 		50D20BC415700F4000F4463F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D20BC315700F4000F4463F /* CoreData.framework */; };
 		50D20BC715700FC000F4463F /* RecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D20BC615700FC000F4463F /* RecipeViewController.m */; };
-		50D20BD81570222D00F4463F /* DrinkIngredient.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D20BD71570222C00F4463F /* DrinkIngredient.m */; };
 		50D38B3D158FE73B00E4D2CF /* DJOE5CAS.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50D38B3C158FE73B00E4D2CF /* DJOE5CAS.otf */; };
 		50D38B45158FF31400E4D2CF /* noisyPurpleStitched.png in Resources */ = {isa = PBXBuildFile; fileRef = 50D38B43158FF31400E4D2CF /* noisyPurpleStitched.png */; };
 		50D38B46158FF31400E4D2CF /* noisyPurpleStitched@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50D38B44158FF31400E4D2CF /* noisyPurpleStitched@2x.png */; };
@@ -164,6 +164,8 @@
 		5060CFB015A7BBCD005C1743 /* whipper2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whipper2@2x.png"; sourceTree = "<group>"; };
 		5060CFBB15A7EC45005C1743 /* Recipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recipe.h; sourceTree = "<group>"; };
 		5060CFBC15A7EC45005C1743 /* Recipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recipe.m; sourceTree = "<group>"; };
+		5060CFBE15A7F95C005C1743 /* ImageMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageMapping.h; sourceTree = "<group>"; };
+		5060CFBF15A7F95C005C1743 /* ImageMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageMapping.m; sourceTree = "<group>"; };
 		50876218157544F4009EF289 /* Paper@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Paper@2x.png"; sourceTree = "<group>"; };
 		5087621A15754906009EF289 /* moleskine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "moleskine@2x.png"; sourceTree = "<group>"; };
 		50886844157803200021A330 /* CreateRecipeModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateRecipeModalViewController.h; sourceTree = "<group>"; };
@@ -294,8 +296,6 @@
 		50D20BC315700F4000F4463F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		50D20BC515700FC000F4463F /* RecipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeViewController.h; sourceTree = "<group>"; };
 		50D20BC615700FC000F4463F /* RecipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeViewController.m; sourceTree = "<group>"; };
-		50D20BD61570222C00F4463F /* DrinkIngredient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrinkIngredient.h; sourceTree = "<group>"; };
-		50D20BD71570222C00F4463F /* DrinkIngredient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrinkIngredient.m; sourceTree = "<group>"; };
 		50D38B3C158FE73B00E4D2CF /* DJOE5CAS.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DJOE5CAS.otf; sourceTree = "<group>"; };
 		50D38B43158FF31400E4D2CF /* noisyPurpleStitched.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noisyPurpleStitched.png; sourceTree = "<group>"; };
 		50D38B44158FF31400E4D2CF /* noisyPurpleStitched@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noisyPurpleStitched@2x.png"; sourceTree = "<group>"; };
@@ -549,6 +549,8 @@
 			isa = PBXGroup;
 			children = (
 				50D20B9A15700A0600F4463F /* MainStoryboard.storyboard */,
+				5060CFBE15A7F95C005C1743 /* ImageMapping.h */,
+				5060CFBF15A7F95C005C1743 /* ImageMapping.m */,
 				50D20BBC15700DB100F4463F /* RecipesTableViewController.h */,
 				50D20BBD15700DB100F4463F /* RecipesTableViewController.m */,
 				50886844157803200021A330 /* CreateRecipeModalViewController.h */,
@@ -561,8 +563,6 @@
 				50886879157808370021A330 /* popoverOptionsViewController.m */,
 				50D20BC515700FC000F4463F /* RecipeViewController.h */,
 				50D20BC615700FC000F4463F /* RecipeViewController.m */,
-				50D20BD61570222C00F4463F /* DrinkIngredient.h */,
-				50D20BD71570222C00F4463F /* DrinkIngredient.m */,
 				50D20BC81570111A00F4463F /* Recipe Database */,
 				50D20B8F15700A0600F4463F /* Supporting Files */,
 			);
@@ -790,7 +790,6 @@
 				50D20BBB15700D8500F4463F /* CoreDataTableViewController.m in Sources */,
 				50D20BBE15700DB100F4463F /* RecipesTableViewController.m in Sources */,
 				50D20BC715700FC000F4463F /* RecipeViewController.m in Sources */,
-				50D20BD81570222D00F4463F /* DrinkIngredient.m in Sources */,
 				50886846157803200021A330 /* CreateRecipeModalViewController.m in Sources */,
 				50886865157807030021A330 /* UIBarButtonItem+WEPopover.m in Sources */,
 				50886866157807030021A330 /* WEPopoverContainerView.m in Sources */,
@@ -803,6 +802,7 @@
 				50D38B6E15966C8000E4D2CF /* Ingredient+Create.m in Sources */,
 				50D38B71159670BA00E4D2CF /* Recipe+Create.m in Sources */,
 				5060CFBD15A7EC45005C1743 /* Recipe.m in Sources */,
+				5060CFC015A7F95D005C1743 /* ImageMapping.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

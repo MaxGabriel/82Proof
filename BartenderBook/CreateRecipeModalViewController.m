@@ -764,6 +764,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         }
         NSOrderedSet *ingredientsFinal = (NSOrderedSet *)ingredients;
         
+        
+        NSString *notes = _notes.text;
+        
         // POPOVER INGREDIENTS
     
         // This feels like a hack and bad coding practice:
@@ -821,7 +824,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
             
         }
         
-        [self.delegate createRecipeModalViewController:self makeRecipeWithName:_recipeName.text andMethod:method andGlass:glass andIce:ice andGarnish:garnish andPhoto:path andIngredients:ingredientsFinal];
+        [self.delegate createRecipeModalViewController:self makeRecipeWithName:_recipeName.text andMethod:method andGlass:glass andIce:ice andGarnish:garnish andPhoto:path andNotes:notes andIngredients:ingredientsFinal];
         
         
     }

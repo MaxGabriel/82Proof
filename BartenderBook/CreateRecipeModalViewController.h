@@ -23,7 +23,8 @@
                                   andIce:(NSString *)ice
                               andGarnish:(NSString *)garnish
                                 andPhoto:(NSString *)photo
-                          andIngredients:(NSOrderedSet *)ingredients;
+                               andNotes:(NSString *)notes
+                         andIngredients:(NSOrderedSet *)ingredients;
 
 @end
 

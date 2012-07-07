@@ -21,11 +21,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "BartenderBook/RecipesTableViewController.m"
-         timestampString = "363295805.960042"
+         timestampString = "363326864.887852"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "250"
-         endingLineNumber = "250"
+         startingLineNumber = "251"
+         endingLineNumber = "251"
          landmarkName = "-useDocument"
          landmarkType = "5">
       </FileBreakpoint>

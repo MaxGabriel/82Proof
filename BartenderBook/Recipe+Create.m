@@ -17,6 +17,7 @@
                           andIce:(NSString *)ice
                       andGarnish:(NSString *)garnish
                     andPhotoName:(NSString *)photo
+                        andNotes:(NSString *)notes
                   andIngredients:(NSOrderedSet *)ingredients
           inManagedObjectContext:(NSManagedObjectContext *)context
 {
@@ -30,6 +31,7 @@
     recipe.ice = ice;
     recipe.garnish = garnish;
     recipe.photo = photo;
+    recipe.notes = notes;
     
     NSMutableOrderedSet *ingredientsToAdd = [[NSMutableOrderedSet alloc] init];
     for (NSString *ingredient in ingredients) {

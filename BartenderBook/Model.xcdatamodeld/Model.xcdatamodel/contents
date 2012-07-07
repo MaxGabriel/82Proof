@@ -9,7 +9,8 @@
         <attribute name="glass" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ice" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="method" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photo" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="hasIngredients" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Ingredient" inverseName="partOfRecipe" inverseEntity="Ingredient" syncable="YES"/>
     </entity>

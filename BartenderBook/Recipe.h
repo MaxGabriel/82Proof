@@ -1,8 +1,8 @@
-// MAX
+//
 //  Recipe.h
 //  BartenderBook
 //
-//  Created by Maximilian Tagher on 6/23/12.
+//  Created by Maximilian Tagher on 7/7/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -13,12 +13,13 @@
 
 @interface Recipe : NSManagedObject
 
+@property (nonatomic, retain) NSString * garnish;
 @property (nonatomic, retain) NSString * glass;
 @property (nonatomic, retain) NSString * ice;
 @property (nonatomic, retain) NSString * method;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * garnish;
 @property (nonatomic, retain) NSString * photo;
+@property (nonatomic, retain) NSString * notes;
 @property (nonatomic, retain) NSOrderedSet *hasIngredients;
 @end
 

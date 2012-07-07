@@ -24,6 +24,7 @@
                           andIce:(NSString *)ice
                       andGarnish:(NSString *)garnish
                     andPhotoName:(NSString *)photo
+                        andNotes:(NSString *)notes
                   andIngredients:(NSOrderedSet *)ingredients
 inManagedObjectContext:(NSManagedObjectContext *)context;
 

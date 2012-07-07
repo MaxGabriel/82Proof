@@ -159,7 +159,7 @@
     if (!_recipe.photo) {
         _photoButton.hidden = YES;
         
-        _recipeName.frame = CGRectMake(38, _recipeName.frame.origin.y, _recipeName.frame.size.width, _recipeName.frame.size.width);
+        _recipeName.frame = CGRectMake(38, _recipeName.frame.origin.y, _recipeName.frame.size.width, _recipeName.frame.size.height);
         
     } else {
         UIImage *image = [UIImage imageWithContentsOfFile:_recipe.photo];

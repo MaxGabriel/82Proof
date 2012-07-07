@@ -13,6 +13,7 @@
 		5060CFAA15A7AF0D005C1743 /* bigPineapple.png in Resources */ = {isa = PBXBuildFile; fileRef = 5060CFA815A7AF0D005C1743 /* bigPineapple.png */; };
 		5060CFB115A7BBCD005C1743 /* whipper2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5060CFAF15A7BBCD005C1743 /* whipper2.png */; };
 		5060CFB215A7BBCD005C1743 /* whipper2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5060CFB015A7BBCD005C1743 /* whipper2@2x.png */; };
+		5060CFBD15A7EC45005C1743 /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 5060CFBC15A7EC45005C1743 /* Recipe.m */; };
 		50876219157544F4009EF289 /* Paper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50876218157544F4009EF289 /* Paper@2x.png */; };
 		5087621B15754906009EF289 /* moleskine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5087621A15754906009EF289 /* moleskine@2x.png */; };
 		50886846157803200021A330 /* CreateRecipeModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50886845157803200021A330 /* CreateRecipeModalViewController.m */; };
@@ -146,7 +147,6 @@
 		50D38B641595327100E4D2CF /* limeWheel2.png in Resources */ = {isa = PBXBuildFile; fileRef = 50D38B621595327100E4D2CF /* limeWheel2.png */; };
 		50D38B651595327100E4D2CF /* limeWheel2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50D38B631595327100E4D2CF /* limeWheel2@2x.png */; };
 		50D38B6815966C0900E4D2CF /* Ingredient.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38B6715966C0800E4D2CF /* Ingredient.m */; };
-		50D38B6B15966C1600E4D2CF /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38B6A15966C1500E4D2CF /* Recipe.m */; };
 		50D38B6E15966C8000E4D2CF /* Ingredient+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38B6D15966C7E00E4D2CF /* Ingredient+Create.m */; };
 		50D38B71159670BA00E4D2CF /* Recipe+Create.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38B70159670B900E4D2CF /* Recipe+Create.m */; };
 		50D38BAA15991CE400E4D2CF /* cameraWithBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 50D38BA815991CE100E4D2CF /* cameraWithBackground.png */; };
@@ -162,6 +162,8 @@
 		5060CFA815A7AF0D005C1743 /* bigPineapple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigPineapple.png; sourceTree = "<group>"; };
 		5060CFAF15A7BBCD005C1743 /* whipper2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whipper2.png; sourceTree = "<group>"; };
 		5060CFB015A7BBCD005C1743 /* whipper2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whipper2@2x.png"; sourceTree = "<group>"; };
+		5060CFBB15A7EC45005C1743 /* Recipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recipe.h; sourceTree = "<group>"; };
+		5060CFBC15A7EC45005C1743 /* Recipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recipe.m; sourceTree = "<group>"; };
 		50876218157544F4009EF289 /* Paper@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Paper@2x.png"; sourceTree = "<group>"; };
 		5087621A15754906009EF289 /* moleskine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "moleskine@2x.png"; sourceTree = "<group>"; };
 		50886844157803200021A330 /* CreateRecipeModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateRecipeModalViewController.h; sourceTree = "<group>"; };
@@ -313,8 +315,6 @@
 		50D38B631595327100E4D2CF /* limeWheel2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "limeWheel2@2x.png"; sourceTree = "<group>"; };
 		50D38B6615966C0800E4D2CF /* Ingredient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ingredient.h; sourceTree = "<group>"; };
 		50D38B6715966C0800E4D2CF /* Ingredient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ingredient.m; sourceTree = "<group>"; };
-		50D38B6915966C1400E4D2CF /* Recipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Recipe.h; path = ../Recipe.h; sourceTree = "<group>"; };
-		50D38B6A15966C1500E4D2CF /* Recipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Recipe.m; path = ../Recipe.m; sourceTree = "<group>"; };
 		50D38B6C15966C7E00E4D2CF /* Ingredient+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Ingredient+Create.h"; sourceTree = "<group>"; };
 		50D38B6D15966C7E00E4D2CF /* Ingredient+Create.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Ingredient+Create.m"; sourceTree = "<group>"; };
 		50D38B6F159670B900E4D2CF /* Recipe+Create.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Recipe+Create.h"; sourceTree = "<group>"; };
@@ -588,9 +588,9 @@
 		50D20BC81570111A00F4463F /* Recipe Database */ = {
 			isa = PBXGroup;
 			children = (
+				5060CFBB15A7EC45005C1743 /* Recipe.h */,
+				5060CFBC15A7EC45005C1743 /* Recipe.m */,
 				50D20BA915700A1B00F4463F /* Model.xcdatamodeld */,
-				50D38B6915966C1400E4D2CF /* Recipe.h */,
-				50D38B6A15966C1500E4D2CF /* Recipe.m */,
 				50D38B6F159670B900E4D2CF /* Recipe+Create.h */,
 				50D38B70159670B900E4D2CF /* Recipe+Create.m */,
 				50D38B6C15966C7E00E4D2CF /* Ingredient+Create.h */,
@@ -800,9 +800,9 @@
 				508868A9157DB44B0021A330 /* ingredientButton.m in Sources */,
 				50D38B5115933F2000E4D2CF /* PopoverIngredientButton.m in Sources */,
 				50D38B6815966C0900E4D2CF /* Ingredient.m in Sources */,
-				50D38B6B15966C1600E4D2CF /* Recipe.m in Sources */,
 				50D38B6E15966C8000E4D2CF /* Ingredient+Create.m in Sources */,
 				50D38B71159670BA00E4D2CF /* Recipe+Create.m in Sources */,
+				5060CFBD15A7EC45005C1743 /* Recipe.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

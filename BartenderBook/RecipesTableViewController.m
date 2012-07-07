@@ -101,11 +101,12 @@
                                   andIce:(NSString *)ice
                               andGarnish:(NSString *)garnish
                                 andPhoto:(NSString *)photo
+                               andNotes:(NSString *)notes
                           andIngredients:(NSOrderedSet *)ingredients
 {
     NSLog(@"Saving");
     [self.recipeDatabase.managedObjectContext performBlock:^{
-        [Recipe createRecipeWithName:name andMethod:method andGlass:glass andIce:ice andGarnish:garnish andPhotoName:photo andIngredients:ingredients inManagedObjectContext:self.recipeDatabase.managedObjectContext];
+        [Recipe createRecipeWithName:name andMethod:method andGlass:glass andIce:ice andGarnish:garnish andPhotoName:photo andNotes:notes andIngredients:ingredients inManagedObjectContext:self.recipeDatabase.managedObjectContext];
         NSLog(@"Created");
         [self.recipeDatabase saveToURL:self.recipeDatabase.fileURL forSaveOperation:UIDocumentSaveForOverwriting completionHandler:NULL];
         NSLog(@"Saved");

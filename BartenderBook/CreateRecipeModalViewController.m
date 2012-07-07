@@ -455,8 +455,10 @@
     ingredientButton *dryShake = [[ingredientButton alloc] initWithName:@"Dry Shake" andImageName:@"dryShake.png"];
     
     ingredientButton *layer = [[ingredientButton alloc] initWithName:@"Layer" andImageName:@"Layer.png"];
+    
+    ingredientButton *whipper = [[ingredientButton alloc] initWithName:@"Whipper" andImageName:@"whipper2.png"];
         
-    contentViewController.buttons = [NSArray arrayWithObjects:bostonShaker, stir, blender, dryShake, layer, nil];
+    contentViewController.buttons = [NSArray arrayWithObjects:bostonShaker, stir, blender, dryShake, layer, whipper, nil];
     contentViewController.presentingButton = sender;
     contentViewController.delegate = self;
     
@@ -600,7 +602,11 @@
     ingredientButton *celeryStick = [[ingredientButton alloc] initWithName:@"Celery Stick" andImageName:@"celeryStickBig.png"];
     ingredientButton *limeWheel = [[ingredientButton alloc] initWithName:@"Lime Wheel" andImageName:@"limeWheel2.png"];
     
-    contentViewController.buttons = [NSArray arrayWithObjects:cherry, olive, limeWheel, celeryStick, nil];
+    ingredientButton *mint = [[ingredientButton alloc] initWithName:@"Mint" andImageName:@"mint2.png"];
+    
+    ingredientButton *pineapple = [[ingredientButton alloc] initWithName:@"Pineapple" andImageName:@"bigPineapple.png"];
+    
+    contentViewController.buttons = [NSArray arrayWithObjects:cherry, olive, limeWheel, celeryStick, mint, pineapple, nil];
     contentViewController.presentingButton = sender;
     contentViewController.delegate = self;
     

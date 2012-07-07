@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5060CFA115A7827F005C1743 /* mint2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5060CF9F15A7827F005C1743 /* mint2.png */; };
+		5060CFA215A7827F005C1743 /* mint2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5060CFA015A7827F005C1743 /* mint2@2x.png */; };
+		5060CFA915A7AF0D005C1743 /* bigPineapple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5060CFA715A7AF0D005C1743 /* bigPineapple@2x.png */; };
+		5060CFAA15A7AF0D005C1743 /* bigPineapple.png in Resources */ = {isa = PBXBuildFile; fileRef = 5060CFA815A7AF0D005C1743 /* bigPineapple.png */; };
+		5060CFB115A7BBCD005C1743 /* whipper2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5060CFAF15A7BBCD005C1743 /* whipper2.png */; };
+		5060CFB215A7BBCD005C1743 /* whipper2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5060CFB015A7BBCD005C1743 /* whipper2@2x.png */; };
 		50876219157544F4009EF289 /* Paper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50876218157544F4009EF289 /* Paper@2x.png */; };
 		5087621B15754906009EF289 /* moleskine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5087621A15754906009EF289 /* moleskine@2x.png */; };
 		50886846157803200021A330 /* CreateRecipeModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50886845157803200021A330 /* CreateRecipeModalViewController.m */; };
@@ -150,6 +156,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5060CF9F15A7827F005C1743 /* mint2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mint2.png; sourceTree = "<group>"; };
+		5060CFA015A7827F005C1743 /* mint2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mint2@2x.png"; sourceTree = "<group>"; };
+		5060CFA715A7AF0D005C1743 /* bigPineapple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bigPineapple@2x.png"; sourceTree = "<group>"; };
+		5060CFA815A7AF0D005C1743 /* bigPineapple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigPineapple.png; sourceTree = "<group>"; };
+		5060CFAF15A7BBCD005C1743 /* whipper2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whipper2.png; sourceTree = "<group>"; };
+		5060CFB015A7BBCD005C1743 /* whipper2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whipper2@2x.png"; sourceTree = "<group>"; };
 		50876218157544F4009EF289 /* Paper@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Paper@2x.png"; sourceTree = "<group>"; };
 		5087621A15754906009EF289 /* moleskine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "moleskine@2x.png"; sourceTree = "<group>"; };
 		50886844157803200021A330 /* CreateRecipeModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateRecipeModalViewController.h; sourceTree = "<group>"; };
@@ -407,6 +419,8 @@
 		508868B21582B77D0021A330 /* ShakeOptions */ = {
 			isa = PBXGroup;
 			children = (
+				5060CFAF15A7BBCD005C1743 /* whipper2.png */,
+				5060CFB015A7BBCD005C1743 /* whipper2@2x.png */,
 				508869381587EFDF0021A330 /* Layer.png */,
 				508869391587EFDF0021A330 /* Layer@2x.png */,
 				508868EA15844A8A0021A330 /* dryShake.png */,
@@ -454,6 +468,10 @@
 		508868EE158450560021A330 /* Garnishes */ = {
 			isa = PBXGroup;
 			children = (
+				5060CFA715A7AF0D005C1743 /* bigPineapple@2x.png */,
+				5060CFA815A7AF0D005C1743 /* bigPineapple.png */,
+				5060CF9F15A7827F005C1743 /* mint2.png */,
+				5060CFA015A7827F005C1743 /* mint2@2x.png */,
 				50D38B621595327100E4D2CF /* limeWheel2.png */,
 				50D38B631595327100E4D2CF /* limeWheel2@2x.png */,
 				50D38B5E159531F400E4D2CF /* Lime-Wheel.png */,
@@ -750,6 +768,12 @@
 				50D38BAB15991CE400E4D2CF /* cameraWithBackground@2x.png in Resources */,
 				50D38BB215991F3000E4D2CF /* smallerCamera.png in Resources */,
 				50D38BB315991F3000E4D2CF /* smallerCamera@2x.png in Resources */,
+				5060CFA115A7827F005C1743 /* mint2.png in Resources */,
+				5060CFA215A7827F005C1743 /* mint2@2x.png in Resources */,
+				5060CFA915A7AF0D005C1743 /* bigPineapple@2x.png in Resources */,
+				5060CFAA15A7AF0D005C1743 /* bigPineapple.png in Resources */,
+				5060CFB115A7BBCD005C1743 /* whipper2.png in Resources */,
+				5060CFB215A7BBCD005C1743 /* whipper2@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

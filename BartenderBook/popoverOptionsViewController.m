@@ -64,43 +64,59 @@
 {
     [super viewDidLoad];
     
+    
+    // Configure view/scrollView frames based off of the number of buttons to show. 
+    
     double buttons = [_buttons count];
-    int height = ceil((buttons/4))*96;
+    int height = ceil((buttons/4.0))*98;
     
     
     if (height == 0) { // checks for <4 buttons. 
-        height = 96;
+        height = 98;
     }
     
-    
-    
-    self.contentSizeForViewInPopover = CGSizeMake(310, height);
-    self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 310, height)];
-    
-    
-    
-    //Stitching pattern needs to have a bottom stitching because the copy below it will start at the top, so it means the middle sections have really large boxes. 
-    
-    // Also it looks bad. 
-    
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"noisyPurpleStitched.png"]];
-    
-//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"stitchingPattern.png"]];
-    
-    _scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-//    NSLog(@"%@",self.view);
-//    NSLog(@"%@",_scrollView);
-    
-    [self.view addSubview:_scrollView];
-    _scrollView.delegate = self;
-    _scrollView.contentSize = self.view.bounds.size;
-    
-    if (!_scrollEnabled) {
-        _scrollView.scrollEnabled = YES;
+    if (height > 98*2) {
+        self.contentSizeForViewInPopover = CGSizeMake(310,  98*2 + 20);
+        self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 310, 98*2 + 20)];
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 310, 98*2 + 20)];
     } else {
-        _scrollView.scrollEnabled = _scrollEnabled;
+        self.contentSizeForViewInPopover = CGSizeMake(310, height);
+        self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 310, height)];
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 310, height)];
     }
     
+    
+    self.view.clipsToBounds = YES;
+    [self.view addSubview:_scrollView];
+    
+    
+    // Configure the scrollView
+    
+    _scrollView.delegate = self;
+    _scrollView.contentSize = CGSizeMake(310, height);
+
+    
+    UIView *background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 310, height)];
+    background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"noisyPurpleStitched.png"]];
+    [_scrollView addSubview:background];
+
+    [_scrollView sendSubviewToBack:background];
+
+    
+    if (_scrollEnabled == NO) {
+        _scrollView.scrollEnabled = NO;
+    } else {
+        _scrollView.scrollEnabled = YES;
+    }
+    
+         
+    if (_scrollView.scrollEnabled == YES) {
+        _scrollView.canCancelContentTouches = YES;
+    } // Not sure if this actually helps, but the docs say it does. 
+    
+    
+    
+    // Add buttons to the scroll View
     
     int buttonsInRow = 0;
     
@@ -140,6 +156,7 @@
         xPosition += WIDTH_SHIFT;
         buttonsInRow++;
     }
+    
     
     
     

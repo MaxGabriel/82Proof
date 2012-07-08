@@ -497,8 +497,10 @@
         
         popoverOptionsViewController *contentViewController = [[popoverOptionsViewController alloc] init];
         
-        contentViewController.scrollEnabled = NO;
+
+    //contentViewController.scrollEnabled = NO;
     
+    contentViewController.scrollView.scrollEnabled = NO;
     
     ingredientButton *iceOn = [[ingredientButton alloc] initWithName:@"On the Rocks" andImageName:@"ice140x151.png"];
         
@@ -593,15 +595,21 @@
     [self.popoverController dismissPopoverAnimated:YES];
     popoverOptionsViewController *contentViewController = [[popoverOptionsViewController alloc] init];
 
-    contentViewController.scrollEnabled = NO;
+    contentViewController.scrollEnabled = YES;
     
     ingredientButton *cherry = [[ingredientButton alloc] initWithName:@"Cherry" andImageName:@"cherryBig.png"];
     
     ingredientButton *olive = [[ingredientButton alloc] initWithName:@"Olive" andImageName:@"olive.png"];
     
-    ingredientButton *limeWedge = [[ingredientButton alloc] initWithName:@"Lime Wedge" andImageName:@"limeWedge2D.png"];
+    ingredientButton *limeWedge = [[ingredientButton alloc] initWithName:@"Lime" andImageName:@"limeWedge2D.png"];
     
     ingredientButton *limeWheel = [[ingredientButton alloc] initWithName:@"Lime Wheel" andImageName:@"limeWheel2.png"];
+    
+    ingredientButton *lemonWedge = [[ingredientButton alloc] initWithName:@"Lemon" andImageName:@"lemonWedge.png"];
+    
+    ingredientButton *lemonTwist = [[ingredientButton alloc] initWithName:@"Lemon Twist" andImageName:@"bigLemonTwist.png"];
+    
+    ingredientButton *orangeWedge = [[ingredientButton alloc] initWithName:@"Orange" andImageName:@"orangeWedge.png"];
     
     ingredientButton *celeryStick = [[ingredientButton alloc] initWithName:@"Celery Stick" andImageName:@"celeryStickBig.png"];
     
@@ -610,7 +618,7 @@
     
     ingredientButton *pineapple = [[ingredientButton alloc] initWithName:@"Pineapple" andImageName:@"bigPineapple.png"];
     
-    contentViewController.buttons = [NSArray arrayWithObjects:cherry, olive, limeWedge, limeWheel, celeryStick, mint, pineapple, nil];
+    contentViewController.buttons = [NSArray arrayWithObjects:cherry, olive, limeWedge, limeWheel, lemonWedge, lemonTwist, orangeWedge, celeryStick, mint, pineapple, nil];
     contentViewController.presentingButton = sender;
     contentViewController.delegate = self;
     

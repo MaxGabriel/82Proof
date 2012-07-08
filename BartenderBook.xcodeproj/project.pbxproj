@@ -17,6 +17,12 @@
 		5060CFC015A7F95D005C1743 /* ImageMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5060CFBF15A7F95C005C1743 /* ImageMapping.m */; };
 		5060CFCF15A8E5A4005C1743 /* limeWedge2D.png in Resources */ = {isa = PBXBuildFile; fileRef = 5060CFCD15A8E5A4005C1743 /* limeWedge2D.png */; };
 		5060CFD015A8E5A4005C1743 /* limeWedge2D@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5060CFCE15A8E5A4005C1743 /* limeWedge2D@2x.png */; };
+		5060CFD315A8E694005C1743 /* lemonWedge.png in Resources */ = {isa = PBXBuildFile; fileRef = 5060CFD115A8E694005C1743 /* lemonWedge.png */; };
+		5060CFD415A8E694005C1743 /* lemonWedge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5060CFD215A8E694005C1743 /* lemonWedge@2x.png */; };
+		5060CFD715A8E7EE005C1743 /* orangeWedge.png in Resources */ = {isa = PBXBuildFile; fileRef = 5060CFD515A8E7EE005C1743 /* orangeWedge.png */; };
+		5060CFD815A8E7EE005C1743 /* orangeWedge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5060CFD615A8E7EE005C1743 /* orangeWedge@2x.png */; };
+		5060CFDF15A90FB7005C1743 /* bigLemonTwist.png in Resources */ = {isa = PBXBuildFile; fileRef = 5060CFDD15A90FB7005C1743 /* bigLemonTwist.png */; };
+		5060CFE015A90FB7005C1743 /* bigLemonTwist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5060CFDE15A90FB7005C1743 /* bigLemonTwist@2x.png */; };
 		50876219157544F4009EF289 /* Paper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50876218157544F4009EF289 /* Paper@2x.png */; };
 		5087621B15754906009EF289 /* moleskine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5087621A15754906009EF289 /* moleskine@2x.png */; };
 		50886846157803200021A330 /* CreateRecipeModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50886845157803200021A330 /* CreateRecipeModalViewController.m */; };
@@ -170,6 +176,12 @@
 		5060CFBF15A7F95C005C1743 /* ImageMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageMapping.m; sourceTree = "<group>"; };
 		5060CFCD15A8E5A4005C1743 /* limeWedge2D.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = limeWedge2D.png; sourceTree = "<group>"; };
 		5060CFCE15A8E5A4005C1743 /* limeWedge2D@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "limeWedge2D@2x.png"; sourceTree = "<group>"; };
+		5060CFD115A8E694005C1743 /* lemonWedge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lemonWedge.png; sourceTree = "<group>"; };
+		5060CFD215A8E694005C1743 /* lemonWedge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lemonWedge@2x.png"; sourceTree = "<group>"; };
+		5060CFD515A8E7EE005C1743 /* orangeWedge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangeWedge.png; sourceTree = "<group>"; };
+		5060CFD615A8E7EE005C1743 /* orangeWedge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orangeWedge@2x.png"; sourceTree = "<group>"; };
+		5060CFDD15A90FB7005C1743 /* bigLemonTwist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigLemonTwist.png; sourceTree = "<group>"; };
+		5060CFDE15A90FB7005C1743 /* bigLemonTwist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bigLemonTwist@2x.png"; sourceTree = "<group>"; };
 		50876218157544F4009EF289 /* Paper@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Paper@2x.png"; sourceTree = "<group>"; };
 		5087621A15754906009EF289 /* moleskine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "moleskine@2x.png"; sourceTree = "<group>"; };
 		50886844157803200021A330 /* CreateRecipeModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateRecipeModalViewController.h; sourceTree = "<group>"; };
@@ -472,6 +484,12 @@
 		508868EE158450560021A330 /* Garnishes */ = {
 			isa = PBXGroup;
 			children = (
+				5060CFDD15A90FB7005C1743 /* bigLemonTwist.png */,
+				5060CFDE15A90FB7005C1743 /* bigLemonTwist@2x.png */,
+				5060CFD515A8E7EE005C1743 /* orangeWedge.png */,
+				5060CFD615A8E7EE005C1743 /* orangeWedge@2x.png */,
+				5060CFD115A8E694005C1743 /* lemonWedge.png */,
+				5060CFD215A8E694005C1743 /* lemonWedge@2x.png */,
 				5060CFCD15A8E5A4005C1743 /* limeWedge2D.png */,
 				5060CFCE15A8E5A4005C1743 /* limeWedge2D@2x.png */,
 				5060CFA715A7AF0D005C1743 /* bigPineapple@2x.png */,
@@ -782,6 +800,12 @@
 				5060CFB215A7BBCD005C1743 /* whipper2@2x.png in Resources */,
 				5060CFCF15A8E5A4005C1743 /* limeWedge2D.png in Resources */,
 				5060CFD015A8E5A4005C1743 /* limeWedge2D@2x.png in Resources */,
+				5060CFD315A8E694005C1743 /* lemonWedge.png in Resources */,
+				5060CFD415A8E694005C1743 /* lemonWedge@2x.png in Resources */,
+				5060CFD715A8E7EE005C1743 /* orangeWedge.png in Resources */,
+				5060CFD815A8E7EE005C1743 /* orangeWedge@2x.png in Resources */,
+				5060CFDF15A90FB7005C1743 /* bigLemonTwist.png in Resources */,
+				5060CFE015A90FB7005C1743 /* bigLemonTwist@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

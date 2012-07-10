@@ -433,6 +433,8 @@
     [self.popoverController dismissPopoverAnimated:YES];
 }
 
+#warning this code isn't yet set up to use the ImageMapping class as its data source. 
+
 - (IBAction)chooseShakeStir:(PopoverIngredientButton *)sender 
 {
     [_activeField resignFirstResponder];
@@ -445,20 +447,17 @@
         popoverOptionsViewController *contentViewController = [[popoverOptionsViewController alloc] init];
         
     contentViewController.scrollEnabled = NO;
-    
-    ingredientButton *bostonShaker = [[ingredientButton alloc] initWithName:@"Shake" andImageName:@"cobblerShaker.png"];
-    
-    ingredientButton *blender = [[ingredientButton alloc] initWithName:@"Blend" andImageName:@"blender.png"];
-    
-    ingredientButton *stir = [[ingredientButton alloc] initWithName:@"Stir" andImageName:@"spoons4.png"];
-    
-    ingredientButton *dryShake = [[ingredientButton alloc] initWithName:@"Dry Shake" andImageName:@"dryShake.png"];
-    
-    ingredientButton *layer = [[ingredientButton alloc] initWithName:@"Layer" andImageName:@"Layer.png"];
-    
-    ingredientButton *whipper = [[ingredientButton alloc] initWithName:@"Whipper" andImageName:@"whipper2.png"];
         
-    contentViewController.buttons = [NSArray arrayWithObjects:bostonShaker, stir, blender, dryShake, layer, whipper, nil];
+    
+    NSMutableArray *mutableButtons = [[NSMutableArray alloc] init];
+    for (NSString *key in [[ImageMapping sharedInstance] methodDictionary]) {
+        
+        ingredientButton *button = [[ingredientButton alloc] initWithName:key andImageName:[[[ImageMapping sharedInstance] methodDictionary] objectForKey:key]];
+        [mutableButtons addObject:button];
+        
+    }
+        
+    contentViewController.buttons = [NSArray arrayWithArray:mutableButtons];
     contentViewController.presentingButton = sender;
     contentViewController.delegate = self;
     
@@ -493,25 +492,36 @@
     [_activeField resignFirstResponder];
     [_notes resignFirstResponder];
     [self.popoverController dismissPopoverAnimated:YES];
-//    if (!self.popoverController) {
-        
-        popoverOptionsViewController *contentViewController = [[popoverOptionsViewController alloc] init];
-        
-
-    //contentViewController.scrollEnabled = NO;
     
+    popoverOptionsViewController *contentViewController = [[popoverOptionsViewController alloc] init];
     contentViewController.scrollView.scrollEnabled = NO;
     
-    ingredientButton *iceOn = [[ingredientButton alloc] initWithName:@"On the Rocks" andImageName:@"ice140x151.png"];
-        
-    ingredientButton *iceOff = [[ingredientButton alloc] initWithName:@"No Ice" andImageName:@"no-Ice140x151.png"];
-        
-        
-    ingredientButton *crackedIce = [[ingredientButton alloc] initWithName:@"Cracked" andImageName:@"malletWithCracked2.png"];
     
-    ingredientButton *crushedIce = [[ingredientButton alloc] initWithName:@"Shaved" andImageName:@"tallSnowCone.png"];
+    
+    
+    // Using ImageMapping as a data source, get keys (ingredient button names) and their values (image names). 
+    
+    NSMutableArray *mutableIceButtons = [[NSMutableArray alloc] init];
+    for (NSString *key in [[ImageMapping sharedInstance] iceDictionary]) {
         
-    NSArray *iceButtons = [[NSArray alloc] initWithObjects:iceOn, crackedIce, crushedIce, iceOff, nil];
+        ingredientButton *button = [[ingredientButton alloc] initWithName:key andImageName:[[[ImageMapping sharedInstance] iceDictionary] objectForKey:key]];
+        [mutableIceButtons addObject:button];
+        
+    }
+    
+    NSArray *iceButtons = [[NSArray alloc] initWithArray:mutableIceButtons];
+    
+//    ingredientButton *iceOn = [[ingredientButton alloc] initWithName:@"On the Rocks" andImageName:@"ice140x151.png"];
+//        
+//    ingredientButton *iceOff = [[ingredientButton alloc] initWithName:@"No Ice" andImageName:@"no-Ice140x151.png"];
+//        
+//        
+//    ingredientButton *crackedIce = [[ingredientButton alloc] initWithName:@"Cracked" andImageName:@"malletWithCracked2.png"];
+//    
+//    ingredientButton *crushedIce = [[ingredientButton alloc] initWithName:@"Shaved" andImageName:@"tallSnowCone.png"];
+        
+    //NSArray *iceButtons = [[NSArray alloc] initWithObjects:iceOn, crackedIce, crushedIce, iceOff, nil];
+    
     
     
     contentViewController.buttons = iceButtons;
@@ -551,23 +561,16 @@
     
     contentViewController.scrollEnabled = NO;
     
-    ingredientButton *collinsGlass = [[ingredientButton alloc] initWithName:@"Collins" andImageName:@"collins.png"];
     
-    ingredientButton *martiniGlass = [[ingredientButton alloc] initWithName:@"Cocktail" andImageName:@"Martini2.png"];
+    NSMutableArray *mutableButtons = [[NSMutableArray alloc] init];
+    for (NSString *key in [[ImageMapping sharedInstance] glassDictionary]) {
+        
+        ingredientButton *button = [[ingredientButton alloc] initWithName:key andImageName:[[[ImageMapping sharedInstance] glassDictionary] objectForKey:key]];
+        [mutableButtons addObject:button];
+        
+    }
     
-    ingredientButton *rocksGlass = [[ingredientButton alloc] initWithName:@"Rocks" andImageName:@"rocksGlass.png"];
-    
-    ingredientButton *shotGlass = [[ingredientButton alloc] initWithName:@"Shot" andImageName:@"straightShotGlass.png"];
-    
-    ingredientButton *margaritaGlass = [[ingredientButton alloc] initWithName:@"Margarita" andImageName:@"margarita.png"];
-    
-    ingredientButton *snifter = [[ingredientButton alloc] initWithName:@"Snifter" andImageName:@"snifter.png"];
-    
-    ingredientButton *pousseCafe = [[ingredientButton alloc] initWithName:@"Pousse-Café" andImageName:@"PousseCafe.png"];
-    
-    ingredientButton *hurricaneGlass = [[ingredientButton alloc] initWithName:@"Hurricane" andImageName:@"hurricaneWhite.png"];
-    
-    contentViewController.buttons = [NSArray arrayWithObjects:collinsGlass, martiniGlass, shotGlass, rocksGlass, margaritaGlass, snifter, pousseCafe, hurricaneGlass, nil];
+    contentViewController.buttons = [NSArray arrayWithArray:mutableButtons];
     
     contentViewController.presentingButton = sender;
     contentViewController.delegate = self;
@@ -596,29 +599,37 @@
     popoverOptionsViewController *contentViewController = [[popoverOptionsViewController alloc] init];
 
     contentViewController.scrollEnabled = YES;
+//    
+//    ingredientButton *cherry = [[ingredientButton alloc] initWithName:@"Cherry" andImageName:@"cherryBig.png"];
+//    
+//    ingredientButton *olive = [[ingredientButton alloc] initWithName:@"Olive" andImageName:@"olive.png"];
+//    
+//    ingredientButton *limeWedge = [[ingredientButton alloc] initWithName:@"Lime" andImageName:@"limeWedge2D.png"];
+//    
+//    ingredientButton *limeWheel = [[ingredientButton alloc] initWithName:@"Lime Wheel" andImageName:@"limeWheel2.png"];
+//    
+//    ingredientButton *lemonWedge = [[ingredientButton alloc] initWithName:@"Lemon" andImageName:@"lemonWedge.png"];
+//    
+//    ingredientButton *lemonTwist = [[ingredientButton alloc] initWithName:@"Lemon Twist" andImageName:@"bigLemonTwist.png"];
+//    
+//    ingredientButton *orangeWedge = [[ingredientButton alloc] initWithName:@"Orange" andImageName:@"orangeWedge.png"];
+//    
+//    ingredientButton *celeryStick = [[ingredientButton alloc] initWithName:@"Celery Stick" andImageName:@"celeryStickBig.png"];
+//    
+//    
+//    ingredientButton *mint = [[ingredientButton alloc] initWithName:@"Mint" andImageName:@"mint2.png"];
+//    
+//    ingredientButton *pineapple = [[ingredientButton alloc] initWithName:@"Pineapple" andImageName:@"bigPineapple.png"];
     
-    ingredientButton *cherry = [[ingredientButton alloc] initWithName:@"Cherry" andImageName:@"cherryBig.png"];
+    NSMutableArray *mutableButtons = [[NSMutableArray alloc] init];
+    for (NSString *key in [[ImageMapping sharedInstance] garnishDictionary]) {
+        
+        ingredientButton *button = [[ingredientButton alloc] initWithName:key andImageName:[[[ImageMapping sharedInstance] garnishDictionary] objectForKey:key]];
+        [mutableButtons addObject:button];
+        
+    }
     
-    ingredientButton *olive = [[ingredientButton alloc] initWithName:@"Olive" andImageName:@"olive.png"];
-    
-    ingredientButton *limeWedge = [[ingredientButton alloc] initWithName:@"Lime" andImageName:@"limeWedge2D.png"];
-    
-    ingredientButton *limeWheel = [[ingredientButton alloc] initWithName:@"Lime Wheel" andImageName:@"limeWheel2.png"];
-    
-    ingredientButton *lemonWedge = [[ingredientButton alloc] initWithName:@"Lemon" andImageName:@"lemonWedge.png"];
-    
-    ingredientButton *lemonTwist = [[ingredientButton alloc] initWithName:@"Lemon Twist" andImageName:@"bigLemonTwist.png"];
-    
-    ingredientButton *orangeWedge = [[ingredientButton alloc] initWithName:@"Orange" andImageName:@"orangeWedge.png"];
-    
-    ingredientButton *celeryStick = [[ingredientButton alloc] initWithName:@"Celery Stick" andImageName:@"celeryStickBig.png"];
-    
-    
-    ingredientButton *mint = [[ingredientButton alloc] initWithName:@"Mint" andImageName:@"mint2.png"];
-    
-    ingredientButton *pineapple = [[ingredientButton alloc] initWithName:@"Pineapple" andImageName:@"bigPineapple.png"];
-    
-    contentViewController.buttons = [NSArray arrayWithObjects:cherry, olive, limeWedge, limeWheel, lemonWedge, lemonTwist, orangeWedge, celeryStick, mint, pineapple, nil];
+    contentViewController.buttons = [NSArray arrayWithArray:mutableButtons];
     contentViewController.presentingButton = sender;
     contentViewController.delegate = self;
     

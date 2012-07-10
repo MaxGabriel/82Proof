@@ -7,14 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OrderedDictionary.h"
 
 @interface ImageMapping : NSObject
 
 
-@property (nonatomic, strong) NSDictionary *methodDictionary;
-@property (nonatomic, strong) NSDictionary *glassDictionary;
-@property (nonatomic, strong) NSDictionary *iceDictionary;
-@property (nonatomic, strong) NSDictionary *garnishDictionary;
+@property (nonatomic, strong) OrderedDictionary *methodDictionary;
+@property (nonatomic, strong) OrderedDictionary *glassDictionary;
+@property (nonatomic, strong) OrderedDictionary *iceDictionary;
+@property (nonatomic, strong) OrderedDictionary *garnishDictionary;
 
 + (ImageMapping *)sharedInstance;
 

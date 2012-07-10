@@ -11,6 +11,9 @@
 #import "ingredientButton.h"
 #import "PopoverIngredientButton.h"
 
+
+#import "ImageMapping.h"
+
 @class CreateRecipeModalViewController;
 @protocol CreateRecipeModalViewControllerDelegate <NSObject>
 

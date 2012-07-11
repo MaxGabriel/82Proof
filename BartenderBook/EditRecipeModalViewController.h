@@ -10,6 +10,8 @@
 #import "PopoverIngredientButton.h"
 #import "Recipe.h"
 #import "Ingredient.h"
+#import "WEPopoverController.h"
+#import "popoverOptionsViewController.h"
 
 @interface EditRecipeModalViewController : UIViewController <UIScrollViewDelegate>
 
@@ -22,12 +24,14 @@
 @property (strong, nonatomic) IBOutlet UIButton *photoButton;
 
 @property (strong, nonatomic) IBOutlet PopoverIngredientButton *methodButton;
-
 @property (strong, nonatomic) IBOutlet PopoverIngredientButton *glassButton;
 @property (strong, nonatomic) IBOutlet PopoverIngredientButton *iceButton;
 @property (strong, nonatomic) IBOutlet PopoverIngredientButton *garnishButton;
 @property (strong, nonatomic) IBOutlet UITextField *recipeName;
 @property (strong, nonatomic) IBOutlet UINavigationBar *navigationBar;
+
+
+@property (nonatomic, strong) WEPopoverController *popoverController;
 
 - (IBAction)cancel:(id)sender;
 - (IBAction)done:(id)sender;
@@ -40,7 +44,7 @@
 
 
 
-@property (strong, nonatomic) IBOutlet UITextField *firstIngredient;
+
 
 
 @property (strong, nonatomic) IBOutlet UILabel *notesLabel;

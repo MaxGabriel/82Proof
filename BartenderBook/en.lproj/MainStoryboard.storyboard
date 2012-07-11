@@ -560,12 +560,6 @@
                                                     <action selector="chooseGarnish:" destination="ojD-nU-Kfj" eventType="touchUpInside" id="fCn-vh-2vf"/>
                                                 </connections>
                                             </button>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" placeholder="ingredient" minimumFontSize="24" id="tKc-7T-TWp">
-                                                <rect key="frame" x="38" y="197" width="262" height="35"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="23"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
-                                            </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="P2V-L4-ycd">
                                                 <rect key="frame" x="12" y="20" width="64" height="64"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -625,7 +619,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="firstIngredient" destination="tKc-7T-TWp" id="8wg-c8-ObK"/>
                         <outlet property="garnishButton" destination="B2N-nT-zHg" id="Itv-pH-o8r"/>
                         <outlet property="glassButton" destination="iLA-HD-3wN" id="hec-1D-KOU"/>
                         <outlet property="iceButton" destination="hc0-sg-8hn" id="hIX-Lm-7Mh"/>

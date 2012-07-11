@@ -35,7 +35,7 @@
 @interface CreateRecipeModalViewController : UIViewController
 
 
-@property (nonatomic, retain) WEPopoverController *popoverController;
+@property (nonatomic, strong) WEPopoverController *popoverController;
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet PopoverIngredientButton *mixButton;

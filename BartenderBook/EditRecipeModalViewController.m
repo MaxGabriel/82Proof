@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ImageMapping.h"
 
-@interface EditRecipeModalViewController() <UITextFieldDelegate>
+@interface EditRecipeModalViewController() <UITextFieldDelegate,popoverOptionsViewControllerDelegate>
 
 @property (nonatomic) int currentTag;
 @property (nonatomic, weak) UITextField *activeField;
@@ -18,7 +18,7 @@
 @end
 
 @implementation EditRecipeModalViewController
-@synthesize firstIngredient = _firstIngredient;
+
 @synthesize notesLabel = _notesLabel;
 @synthesize notes = _notes;
 @synthesize scrollView = _scrollView;
@@ -33,6 +33,8 @@
 
 @synthesize currentTag = _currentTag;
 @synthesize activeField = _activeField;
+
+@synthesize popoverController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -64,6 +66,13 @@
 #define textFieldWidth 262
 #define textFieldHeight 35
 
+#define LAST_ITEM 114
+
+- (void)addNewUITextField:(CGFloat)lastTextField
+{
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -74,20 +83,17 @@
     
     _navigationBar.tintColor = [UIColor colorWithRed:123/255.0f green:160/255.0f blue:179/255.0f alpha:1]; 
     
+    
+    _scrollView.delegate = self;
+    _scrollView.scrollEnabled = YES;
+    _scrollView.contentSize = CGSizeMake(320, 480 + ([_recipe.hasIngredients count]*textFieldHeight));
+    
 # warning set this later based on size of scroll view, right? Also, set view to this background to prevent white on scrollView bounce. But I think (can't see) this solves the red pixel crap. 
     UIView *background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"moleskine.png"]];
     [_scrollView addSubview:background];
     
     [_scrollView sendSubviewToBack:background];
-    
-    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"moleskine.png"]];
-    [self.view addSubview:backgroundView];
-    [self.view sendSubviewToBack:backgroundView];
-    
-    _scrollView.delegate = self;
-    _scrollView.scrollEnabled = YES;
-    _scrollView.contentSize = CGSizeMake(320, 480);  // can delete this and set it later. 
     
     _recipeName.font = [UIFont fontWithName:@"dearJoe 5 CASUAL" size:28];
     _recipeName.delegate = self;
@@ -127,15 +133,6 @@
     // STEP 1.5 : set up ingredients
     
     _currentTag = 100;
-    _firstIngredient.delegate = self;
-    _firstIngredient.tag = _currentTag;
-    _currentTag++;
-    _firstIngredient.font = [UIFont fontWithName:@"dearJoe 5 CASUAL" size:20];
-    _firstIngredient.adjustsFontSizeToFitWidth = YES;
-    _firstIngredient.minimumFontSize = 15;
-    
-    
-
     CGFloat yPosition = 197;
     
     for (Ingredient *ingredient in _recipe.hasIngredients) {
@@ -167,12 +164,22 @@
         bullet.tag = -_currentTag;
         [self.scrollView addSubview:bullet];
         
-        
+        // modify values for next one.
         yPosition += textField.frame.size.height;
         _currentTag++;
+        
     }
     
+    if (_currentTag <= LAST_ITEM) {
+        [self addNewUITextField:yPosition];
+    }
+    
+    _notes.frame = CGRectMake(_notes.frame.origin.x, _notes.frame.origin.y + ([_recipe.hasIngredients count]*textFieldHeight), _notes.frame.size.width, _notes.frame.size.height);
+    _notesLabel.frame = CGRectMake(_notesLabel.frame.origin.x, _notesLabel.frame.origin.y + ([_recipe.hasIngredients count]*textFieldHeight), _notesLabel.frame.size.width, _notesLabel.frame.size.height);
+    
     // STEP 2
+    
+    
     
     _recipeName.text = _recipe.name;
     _notes.text = _recipe.notes;
@@ -282,21 +289,153 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+
+
 - (IBAction)cancel:(id)sender {
+    [[self presentingViewController] dismissModalViewControllerAnimated:YES];
 }
 
 - (IBAction)done:(id)sender {
 }
 
-- (IBAction)chooseMethod:(id)sender {
+- (void)buttonChosen
+{
+    [self.popoverController dismissPopoverAnimated:YES];
 }
 
-- (IBAction)chooseGlass:(id)sender {
+- (IBAction)chooseMethod:(PopoverIngredientButton *)sender {
+    
+    [_activeField resignFirstResponder];
+    [_notes resignFirstResponder];
+    
+    [self.popoverController dismissPopoverAnimated:YES];
+    
+    
+    popoverOptionsViewController *contentViewController = [[popoverOptionsViewController alloc] init];
+    
+    contentViewController.scrollEnabled = YES;
+    
+    
+    NSMutableArray *mutableButtons = [[NSMutableArray alloc] init];
+    for (NSString *key in [[ImageMapping sharedInstance] methodDictionary]) {
+        
+        ingredientButton *button = [[ingredientButton alloc] initWithName:key andImageName:[[[ImageMapping sharedInstance] methodDictionary] objectForKey:key]];
+        [mutableButtons addObject:button];
+        
+    }
+    
+    contentViewController.buttons = [NSArray arrayWithArray:mutableButtons];
+    contentViewController.presentingButton = sender;
+    contentViewController.delegate = self;
+    
+    
+    self.popoverController = nil;
+    self.popoverController = [[WEPopoverController alloc] initWithContentViewController:contentViewController];
+    self.popoverController.passthroughViews = [NSArray arrayWithObjects: _glassButton, _iceButton, _garnishButton, nil];
+    
+    
+    [self.popoverController presentPopoverFromRect:sender.frame inView:self.scrollView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
-- (IBAction)chooseIce:(id)sender {
+- (IBAction)chooseGlass:(PopoverIngredientButton *)sender {
+    [_activeField resignFirstResponder];
+    [_notes resignFirstResponder];
+    [self.popoverController dismissPopoverAnimated:YES];
+    
+    popoverOptionsViewController *contentViewController = [[popoverOptionsViewController alloc] init];
+    contentViewController.scrollView.scrollEnabled = YES;
+    
+    
+    
+    
+    // Using ImageMapping as a data source, get keys (ingredient button names) and their values (image names). 
+    
+    NSMutableArray *mutableIceButtons = [[NSMutableArray alloc] init];
+    for (NSString *key in [[ImageMapping sharedInstance] iceDictionary]) {
+        
+        ingredientButton *button = [[ingredientButton alloc] initWithName:key andImageName:[[[ImageMapping sharedInstance] iceDictionary] objectForKey:key]];
+        [mutableIceButtons addObject:button];
+        
+    }
+    
+    NSArray *iceButtons = [[NSArray alloc] initWithArray:mutableIceButtons];
+    
+    
+    
+    
+    contentViewController.buttons = iceButtons;
+    contentViewController.presentingButton = sender;
+    contentViewController.delegate = self;
+    
+    
+    self.popoverController = [[WEPopoverController alloc] initWithContentViewController:contentViewController];
+    self.popoverController.passthroughViews = [NSArray arrayWithObjects: _iceButton, _methodButton, _garnishButton, nil];
+    
+    
+    
+    
+    [self.popoverController presentPopoverFromRect:sender.frame inView:self.scrollView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
-- (IBAction)chooseGarnish:(id)sender {
+- (IBAction)chooseIce:(PopoverIngredientButton *)sender {
+    [_activeField resignFirstResponder];
+    [_notes resignFirstResponder];
+    [self.popoverController dismissPopoverAnimated:YES];
+    popoverOptionsViewController *contentViewController = [[popoverOptionsViewController alloc] init];
+    
+    contentViewController.scrollEnabled = YES;
+    
+    
+    NSMutableArray *mutableButtons = [[NSMutableArray alloc] init];
+    for (NSString *key in [[ImageMapping sharedInstance] glassDictionary]) {
+        
+        ingredientButton *button = [[ingredientButton alloc] initWithName:key andImageName:[[[ImageMapping sharedInstance] glassDictionary] objectForKey:key]];
+        [mutableButtons addObject:button];
+        
+    }
+    
+    contentViewController.buttons = [NSArray arrayWithArray:mutableButtons];
+    contentViewController.presentingButton = sender;
+    contentViewController.delegate = self;
+    
+    //    contentViewController.buttons = [contentViewController.buttons sortedArrayUsingComparator:^(ingredientButton *a, ingredientButton *b){
+    //        NSString *first =  [NSString stringWithString: a.name];
+    //        NSString *second =  [NSString stringWithString: b.name];
+    //        return [first compare:second];
+    //    }];
+    
+    self.popoverController = [[WEPopoverController alloc] initWithContentViewController:contentViewController];
+    self.popoverController.passthroughViews = [NSArray arrayWithObjects: _methodButton ,_glassButton, _garnishButton, nil];
+    
+    
+    
+    [self.popoverController presentPopoverFromRect:sender.frame inView:self.scrollView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+}
+
+- (IBAction)chooseGarnish:(PopoverIngredientButton *)sender {
+    [_activeField resignFirstResponder];
+    [_notes resignFirstResponder];
+    [self.popoverController dismissPopoverAnimated:YES];
+    popoverOptionsViewController *contentViewController = [[popoverOptionsViewController alloc] init];
+    
+    contentViewController.scrollEnabled = YES;
+    
+    
+    NSMutableArray *mutableButtons = [[NSMutableArray alloc] init];
+    for (NSString *key in [[ImageMapping sharedInstance] garnishDictionary]) {
+        
+        ingredientButton *button = [[ingredientButton alloc] initWithName:key andImageName:[[[ImageMapping sharedInstance] garnishDictionary] objectForKey:key]];
+        [mutableButtons addObject:button];
+        
+    }
+    
+    contentViewController.buttons = [NSArray arrayWithArray:mutableButtons];
+    contentViewController.presentingButton = sender;
+    contentViewController.delegate = self;
+    
+    self.popoverController = [[WEPopoverController alloc] initWithContentViewController:contentViewController];
+    self.popoverController.passthroughViews = [NSArray arrayWithObjects: _iceButton ,_methodButton, _glassButton, nil];
+    
+    [self.popoverController presentPopoverFromRect:sender.frame inView:self.scrollView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 @end

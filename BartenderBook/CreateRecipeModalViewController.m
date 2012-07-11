@@ -436,7 +436,6 @@
     
     [self.popoverController dismissPopoverAnimated:YES];
     
-//    if (!self.popoverController) {
         
         popoverOptionsViewController *contentViewController = [[popoverOptionsViewController alloc] init];
         
@@ -455,29 +454,16 @@
     contentViewController.presentingButton = sender;
     contentViewController.delegate = self;
     
-        //        WEPopoverContainerViewProperties *props = [WEPopoverContainerViewProperties new];
-        //        props.bgImageName = @"first.png";
-        //        props.topBgCapSize = 20.0;
-        //        props.leftBgCapSize = 20.0;
+
     self.popoverController = nil;
         self.popoverController = [[WEPopoverController alloc] initWithContentViewController:contentViewController];
     self.popoverController.passthroughViews = [NSArray arrayWithObjects: _glassButton, _iceButton, _garnishButton, nil];
-        //        self.popoverController.containerViewProperties.bgImageName = @"first.png";
-        //        self.popoverController.containerViewProperties.topBgCapSize = 14.0;
-        //        self.popoverController.containerViewProperties.leftBgCapSize = 14.0;
-        
-        //        self.popoverController.containerViewProperties = props;
+
         
         
         
         [self.popoverController presentPopoverFromRect:sender.frame inView:self.scrollView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
         
-        
-//    } else {
-//        [self.popoverController dismissPopoverAnimated:YES];
-//        self.popoverController = nil;
-//    }
-    
 }
 
 - (IBAction)chooseIce:(PopoverIngredientButton *)sender 
@@ -505,45 +491,22 @@
     
     NSArray *iceButtons = [[NSArray alloc] initWithArray:mutableIceButtons];
     
-//    ingredientButton *iceOn = [[ingredientButton alloc] initWithName:@"On the Rocks" andImageName:@"ice140x151.png"];
-//        
-//    ingredientButton *iceOff = [[ingredientButton alloc] initWithName:@"No Ice" andImageName:@"no-Ice140x151.png"];
-//        
-//        
-//    ingredientButton *crackedIce = [[ingredientButton alloc] initWithName:@"Cracked" andImageName:@"malletWithCracked2.png"];
-//    
-//    ingredientButton *crushedIce = [[ingredientButton alloc] initWithName:@"Shaved" andImageName:@"tallSnowCone.png"];
-        
-    //NSArray *iceButtons = [[NSArray alloc] initWithObjects:iceOn, crackedIce, crushedIce, iceOff, nil];
     
     
     
     contentViewController.buttons = iceButtons;
     contentViewController.presentingButton = sender;
     contentViewController.delegate = self;
-//                WEPopoverContainerViewProperties *props = [WEPopoverContainerViewProperties new];
-//                props.bgImageName = @"purpleRect.png";
-//                props.topBgCapSize = 35.0;
-//                props.leftBgCapSize = 35.0;
+
         
         self.popoverController = [[WEPopoverController alloc] initWithContentViewController:contentViewController];
     self.popoverController.passthroughViews = [NSArray arrayWithObjects: _glassButton, _mixButton, _garnishButton, nil];
-        //        self.popoverController.containerViewProperties.bgImageName = @"first.png";
-        //        self.popoverController.containerViewProperties.topBgCapSize = 14.0;
-        //        self.popoverController.containerViewProperties.leftBgCapSize = 14.0;
         
-//                self.popoverController.containerViewProperties = props;
         
         
         
         [self.popoverController presentPopoverFromRect:sender.frame inView:self.scrollView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-//        NSLog(@"exists dismiss");
-        
-//    } else {
-//        [self.popoverController dismissPopoverAnimated:YES];
-//        self.popoverController = nil;
-//        
-//    }
+
 }
 
 - (IBAction)chooseGlass:(PopoverIngredientButton *)sender 
@@ -592,27 +555,7 @@
     popoverOptionsViewController *contentViewController = [[popoverOptionsViewController alloc] init];
 
     contentViewController.scrollEnabled = YES;
-//    
-//    ingredientButton *cherry = [[ingredientButton alloc] initWithName:@"Cherry" andImageName:@"cherryBig.png"];
-//    
-//    ingredientButton *olive = [[ingredientButton alloc] initWithName:@"Olive" andImageName:@"olive.png"];
-//    
-//    ingredientButton *limeWedge = [[ingredientButton alloc] initWithName:@"Lime" andImageName:@"limeWedge2D.png"];
-//    
-//    ingredientButton *limeWheel = [[ingredientButton alloc] initWithName:@"Lime Wheel" andImageName:@"limeWheel2.png"];
-//    
-//    ingredientButton *lemonWedge = [[ingredientButton alloc] initWithName:@"Lemon" andImageName:@"lemonWedge.png"];
-//    
-//    ingredientButton *lemonTwist = [[ingredientButton alloc] initWithName:@"Lemon Twist" andImageName:@"bigLemonTwist.png"];
-//    
-//    ingredientButton *orangeWedge = [[ingredientButton alloc] initWithName:@"Orange" andImageName:@"orangeWedge.png"];
-//    
-//    ingredientButton *celeryStick = [[ingredientButton alloc] initWithName:@"Celery Stick" andImageName:@"celeryStickBig.png"];
-//    
-//    
-//    ingredientButton *mint = [[ingredientButton alloc] initWithName:@"Mint" andImageName:@"mint2.png"];
-//    
-//    ingredientButton *pineapple = [[ingredientButton alloc] initWithName:@"Pineapple" andImageName:@"bigPineapple.png"];
+
     
     NSMutableArray *mutableButtons = [[NSMutableArray alloc] init];
     for (NSString *key in [[ImageMapping sharedInstance] garnishDictionary]) {

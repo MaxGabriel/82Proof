@@ -106,6 +106,9 @@
 {
     NSLog(@"Saving");
     [self.recipeDatabase.managedObjectContext performBlock:^{
+        
+        
+        
         [Recipe createRecipeWithName:name andMethod:method andGlass:glass andIce:ice andGarnish:garnish andPhotoName:photo andNotes:notes andIngredients:ingredients inManagedObjectContext:self.recipeDatabase.managedObjectContext];
         NSLog(@"Created");
         [self.recipeDatabase saveToURL:self.recipeDatabase.fileURL forSaveOperation:UIDocumentSaveForOverwriting completionHandler:NULL];
@@ -288,6 +291,23 @@
     cell.textLabel.text = recipe.name;
     
     
+    
+    // Set subtitle to ingredients. 
+    NSMutableString *mutableSubtitle = [[NSMutableString alloc] init];
+    
+    int numberIngredients = [recipe.hasIngredients count];
+    int current = 0;
+    for (Ingredient *ingredient in recipe.hasIngredients) {
+        if (numberIngredients == current+1) {
+            [mutableSubtitle appendFormat:@"%@",ingredient.name];
+        } else {
+            [mutableSubtitle appendFormat:@"%@, ",ingredient.name];
+        }
+        current++;
+//        [subtitle stringByAppendingFormat:@"%@, ",ingredient.name];
+    }
+
+    cell.detailTextLabel.text = [NSString stringWithString:mutableSubtitle];
     
 
     return cell;

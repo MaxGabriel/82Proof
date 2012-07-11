@@ -278,6 +278,7 @@
 //    textField.textColor = [UIColor colorWithRed:64/255.0f green:64/255.0f blue:64/255.0f alpha:1];
     
     textField.placeholder = @"ingredient";
+    textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     textField.autocorrectionType = UITextAutocorrectionTypeDefault;
     textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     textField.returnKeyType = UIReturnKeyNext;
@@ -435,7 +436,7 @@
 
 
 
-- (IBAction)chooseShakeStir:(PopoverIngredientButton *)sender 
+- (IBAction)chooseShakeStir:(PopoverIngredientButton *)sender
 {
     [_activeField resignFirstResponder];
     [_notes resignFirstResponder];
@@ -446,7 +447,7 @@
         
         popoverOptionsViewController *contentViewController = [[popoverOptionsViewController alloc] init];
         
-    contentViewController.scrollEnabled = NO;
+    contentViewController.scrollEnabled = YES;
         
     
     NSMutableArray *mutableButtons = [[NSMutableArray alloc] init];
@@ -494,7 +495,7 @@
     [self.popoverController dismissPopoverAnimated:YES];
     
     popoverOptionsViewController *contentViewController = [[popoverOptionsViewController alloc] init];
-    contentViewController.scrollView.scrollEnabled = NO;
+    contentViewController.scrollView.scrollEnabled = YES;
     
     
     
@@ -559,7 +560,7 @@
     [self.popoverController dismissPopoverAnimated:YES];
     popoverOptionsViewController *contentViewController = [[popoverOptionsViewController alloc] init];
     
-    contentViewController.scrollEnabled = NO;
+    contentViewController.scrollEnabled = YES;
     
     
     NSMutableArray *mutableButtons = [[NSMutableArray alloc] init];
@@ -571,15 +572,14 @@
     }
     
     contentViewController.buttons = [NSArray arrayWithArray:mutableButtons];
-    
     contentViewController.presentingButton = sender;
     contentViewController.delegate = self;
-    
-    contentViewController.buttons = [contentViewController.buttons sortedArrayUsingComparator:^(ingredientButton *a, ingredientButton *b){
-        NSString *first =  [NSString stringWithString: a.name];
-        NSString *second =  [NSString stringWithString: b.name];
-        return [first compare:second];
-    }];
+
+//    contentViewController.buttons = [contentViewController.buttons sortedArrayUsingComparator:^(ingredientButton *a, ingredientButton *b){
+//        NSString *first =  [NSString stringWithString: a.name];
+//        NSString *second =  [NSString stringWithString: b.name];
+//        return [first compare:second];
+//    }];
     
     self.popoverController = [[WEPopoverController alloc] initWithContentViewController:contentViewController];
     self.popoverController.passthroughViews = [NSArray arrayWithObjects: _iceButton ,_mixButton, _garnishButton, nil];

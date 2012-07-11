@@ -28,14 +28,14 @@
         
         
         
-        instance.methodDictionary = [OrderedDictionary dictionaryWithObjectsAndKeys:@"cobblerShaker.png",@"Shake",@"spoons4.png",@"Stir",@"blender.png",@"Blend",@"dryShake.png",@"Dry Shake",@"Layer.png",@"Layer",@"whipper2.png",@"Whipper", nil];
+        instance.methodDictionary = [OrderedDictionary dictionaryWithObjectsAndKeys:@"cobblerShaker.png",@"Shake",@"spoons4.png",@"Stir",@"blender.png",@"Blend",@"dryShake.png",@"Dry Shake",@"Layer.png",@"Layer",@"whipper2.png",@"Whipper", @"opaqueNone2.png",@"None", nil];
                 
-        instance.glassDictionary = [OrderedDictionary dictionaryWithObjectsAndKeys:@"collins.png",@"Collins",@"Martini2.png",@"Cocktail",@"rocksGlass.png",@"Rocks",@"straightShotGlass.png",@"Shot",@"margarita.png",@"Margarita",@"snifter.png",@"Snifter",@"PousseCafe.png",@"Pousse-Café",@"hurricaneWhite.png",@"Hurricane", nil];
+        instance.glassDictionary = [OrderedDictionary dictionaryWithObjectsAndKeys:@"Martini2.png",@"Cocktail",@"collins.png",@"Collins",@"hurricaneWhite.png",@"Hurricane",@"margarita.png",@"Margarita",@"PousseCafe.png",@"Pousse-Café",@"rocksGlass.png",@"Rocks",@"straightShotGlass.png",@"Shot",@"snifter.png",@"Snifter", @"opaqueNone2.png",@"None", nil];
         
         
-        instance.iceDictionary = [OrderedDictionary dictionaryWithObjectsAndKeys:@"ice140x151.png",@"On the Rocks",@"malletWithCracked2.png",@"Cracked",@"tallSnowCone.png",@"Shaved",@"no-Ice140x151.png",@"No Ice", nil];
+        instance.iceDictionary = [OrderedDictionary dictionaryWithObjectsAndKeys:@"ice140x151.png",@"On the Rocks",@"malletWithCracked2.png",@"Cracked",@"tallSnowCone.png",@"Shaved",@"no-Ice140x151.png",@"No Ice", @"opaqueNone2.png",@"None", nil];
         
-        instance.garnishDictionary = [OrderedDictionary dictionaryWithObjectsAndKeys:@"cherryBig.png",@"Cherry",@"olive.png",@"Olive",@"limeWedge2D.png",@"Lime",@"limeWheel2.png",@"Lime Wheel",@"lemonWedge.png",@"Lemon",@"bigLemonTwist.png",@"Lemon Twist",@"orangeWedge.png",@"Orange",@"celeryStickBig.png",@"Celery Stick",@"mint2.png",@"Mint",@"bigPineapple.png",@"Pineapple", nil];
+        instance.garnishDictionary = [OrderedDictionary dictionaryWithObjectsAndKeys:@"cherryBig.png",@"Cherry",@"olive.png",@"Olive",@"limeWedge2D.png",@"Lime",@"limeWheel2.png",@"Lime Wheel",@"lemonWedge.png",@"Lemon",@"bigLemonTwist.png",@"Lemon Twist",@"orangeWedge.png",@"Orange",@"celeryStickBig.png",@"Celery Stick",@"mint2.png",@"Mint",@"bigPineapple.png",@"Pineapple", @"opaqueNone2.png",@"None", nil];
     }
     
     return instance;

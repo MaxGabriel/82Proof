@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Recipe.h"
+#import "Ingredient.h"
 #import "PopoverIngredientButton.h"
 
 @interface RecipeViewController : UIViewController

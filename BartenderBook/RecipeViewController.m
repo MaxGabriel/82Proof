@@ -78,7 +78,13 @@
     
     _scrollView.delegate = self;
     _scrollView.scrollEnabled = YES;
-    _scrollView.contentSize = CGSizeMake(320, 480 + ([_recipe.hasIngredients count]*LABEL_HEIGHT));
+    
+    if (_recipe.notes == nil || [_recipe.notes isEqualToString:@""]) {
+        _scrollView.contentSize = CGSizeMake(320, 480 + ([_recipe.hasIngredients count]*LABEL_HEIGHT) - _notes.frame.size.height - _notesLabel.frame.size.height-30);
+    } else {
+        _scrollView.contentSize = CGSizeMake(320, 480 + ([_recipe.hasIngredients count]*LABEL_HEIGHT));
+    }
+    
 
     
     _recipeName.font = [UIFont fontWithName:@"dearJoe 5 CASUAL" size:28];
@@ -220,14 +226,14 @@
 
     
     for (Ingredient *ingredient in _recipe.hasIngredients) {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(38, yPosition, 209, LABEL_HEIGHT)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(38, yPosition, 262, LABEL_HEIGHT)];
         label.font = [UIFont fontWithName:@"dearJoe 5 CASUAL" size:20];
         label.text = ingredient.name;
         label.adjustsFontSizeToFitWidth = YES;
         label.minimumFontSize = 15;
         label.backgroundColor = [UIColor clearColor];
         [_scrollView addSubview:label];
-        
+
         UIImageView *bullet = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bullet.png"]];
         //Make it same height as the text, and then put it in center. 
         bullet.frame = CGRectMake(label.frame.origin.x-10, label.frame.origin.y, 4, label.frame.size.height);
@@ -238,12 +244,22 @@
         yPosition += label.frame.size.height;
         
     }
+   
     
-    
+    if (_recipe.notes == nil || [_recipe.notes isEqualToString:@""]) {
+        _notes.layer.hidden = YES;
+        _notesLabel.layer.hidden = YES;
+        
+    } else {
+        _notes.text = _recipe.notes;
+        
 # warning Test later to see if this is in the same position as the creation screen; seems there's more room on the bottom?
-    
+        
         _notes.frame = CGRectMake(_notes.frame.origin.x, _notes.frame.origin.y + ([_recipe.hasIngredients count]*LABEL_HEIGHT), _notes.frame.size.width, _notes.frame.size.height);
-    _notesLabel.frame = CGRectMake(_notesLabel.frame.origin.x, _notesLabel.frame.origin.y + ([_recipe.hasIngredients count]*LABEL_HEIGHT), _notesLabel.frame.size.width, _notesLabel.frame.size.height);
+        _notesLabel.frame = CGRectMake(_notesLabel.frame.origin.x, _notesLabel.frame.origin.y + ([_recipe.hasIngredients count]*LABEL_HEIGHT), _notesLabel.frame.size.width, _notesLabel.frame.size.height);
+    }
+    
+    
 
     
 //    _recipeName.text = _recipe.name;

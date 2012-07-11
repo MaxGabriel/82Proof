@@ -433,7 +433,7 @@
     [self.popoverController dismissPopoverAnimated:YES];
 }
 
-#warning this code isn't yet set up to use the ImageMapping class as its data source. 
+
 
 - (IBAction)chooseShakeStir:(PopoverIngredientButton *)sender 
 {

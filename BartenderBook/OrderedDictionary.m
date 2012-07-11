@@ -23,7 +23,9 @@
 
 #import "OrderedDictionary.h"
 
-NSString *DescriptionForObject(NSObject *object, id locale, NSUInteger indent)
+// Changed this to static after preliminary StackOverflow search. Have no idea why a method is declared outside of the implementation. 
+
+static NSString *DescriptionForObject(NSObject *object, id locale, NSUInteger indent)
 {
 	NSString *objectString;
 	if ([object isKindOfClass:[NSString class]])

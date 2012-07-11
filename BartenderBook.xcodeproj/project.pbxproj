@@ -129,6 +129,7 @@
 		50A34B2015ACDC0100B57B95 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A34B1F15ACDC0100B57B95 /* OrderedDictionary.m */; };
 		50A34B2215ACE14900B57B95 /* arialBold82@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50A34B2115ACE14900B57B95 /* arialBold82@2x.png */; };
 		50A34B2415ACE14B00B57B95 /* arialBold82.png in Resources */ = {isa = PBXBuildFile; fileRef = 50A34B2315ACE14B00B57B95 /* arialBold82.png */; };
+		50A34B2715AD43FC00B57B95 /* EditRecipeModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A34B2615AD43FB00B57B95 /* EditRecipeModalViewController.m */; };
 		50D20B8915700A0600F4463F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D20B8815700A0600F4463F /* UIKit.framework */; };
 		50D20B8B15700A0600F4463F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D20B8A15700A0600F4463F /* Foundation.framework */; };
 		50D20B8D15700A0600F4463F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D20B8C15700A0600F4463F /* CoreGraphics.framework */; };
@@ -300,6 +301,8 @@
 		50A34B1F15ACDC0100B57B95 /* OrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedDictionary.m; sourceTree = "<group>"; };
 		50A34B2115ACE14900B57B95 /* arialBold82@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arialBold82@2x.png"; sourceTree = "<group>"; };
 		50A34B2315ACE14B00B57B95 /* arialBold82.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arialBold82.png; sourceTree = "<group>"; };
+		50A34B2515AD43FA00B57B95 /* EditRecipeModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditRecipeModalViewController.h; sourceTree = "<group>"; };
+		50A34B2615AD43FB00B57B95 /* EditRecipeModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditRecipeModalViewController.m; sourceTree = "<group>"; };
 		50D20B8415700A0600F4463F /* BartenderBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BartenderBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50D20B8815700A0600F4463F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		50D20B8A15700A0600F4463F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -597,6 +600,8 @@
 				50D20BBD15700DB100F4463F /* RecipesTableViewController.m */,
 				50886844157803200021A330 /* CreateRecipeModalViewController.h */,
 				50886845157803200021A330 /* CreateRecipeModalViewController.m */,
+				50A34B2515AD43FA00B57B95 /* EditRecipeModalViewController.h */,
+				50A34B2615AD43FB00B57B95 /* EditRecipeModalViewController.m */,
 				508868A7157DB4490021A330 /* ingredientButton.h */,
 				508868A8157DB44A0021A330 /* ingredientButton.m */,
 				50D38B4F15933F1F00E4D2CF /* PopoverIngredientButton.h */,
@@ -857,6 +862,7 @@
 				5060CFBD15A7EC45005C1743 /* Recipe.m in Sources */,
 				5060CFC015A7F95D005C1743 /* ImageMapping.m in Sources */,
 				50A34B2015ACDC0100B57B95 /* OrderedDictionary.m in Sources */,
+				50A34B2715AD43FC00B57B95 /* EditRecipeModalViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

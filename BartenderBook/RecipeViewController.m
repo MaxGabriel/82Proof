@@ -12,6 +12,8 @@
 
 #import "ImageMapping.h"
 
+#import "EditRecipeModalViewController.h"
+
 @interface RecipeViewController() <UIScrollViewDelegate>
 
 
@@ -60,6 +62,7 @@
 */
 
 #define LABEL_HEIGHT 35
+#define BULLET_OFFSET 10
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
@@ -67,10 +70,10 @@
     [super viewDidLoad];
     
     // Print ingredients of recipe + name and such
-    NSLog(@"%@",_recipe);
-    for (Ingredient *ingredient in _recipe.hasIngredients) {
-        NSLog(@"%@",ingredient.name);
-    }
+//    NSLog(@"%@",_recipe);
+//    for (Ingredient *ingredient in _recipe.hasIngredients) {
+//        NSLog(@"%@",ingredient.name);
+//    }
     
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"moleskine.png"]];
     [self.view addSubview:backgroundView];
@@ -114,10 +117,6 @@
     
     _notes.layer.masksToBounds = NO;
     _notes.layer.cornerRadius = 5.0f;
-    //    _notes.layer.borderWidth = 1.5f;
-    //    _notes.layer.borderColor = [[UIColor grayColor] CGColor];
-    
-    // Testing shadows.
     
     _notes.layer.shadowOffset = CGSizeMake(0, 1);
     _notes.layer.shadowColor = [[UIColor darkGrayColor] CGColor];
@@ -132,7 +131,7 @@
     
     int popoverButtonsHidden = 0;
     
-    if (!_recipe.method) {
+    if (!_recipe.method || [_recipe.method isEqualToString:@"None"]) {
         _mixButton.hidden = YES;
         popoverButtonsHidden++;
     } else {
@@ -150,7 +149,7 @@
         
     }
     
-    if (!_recipe.glass) {
+    if (!_recipe.glass || [_recipe.glass isEqualToString:@"None"]) {
         _glassButton.hidden = YES;
         popoverButtonsHidden++;
     } else {
@@ -167,7 +166,7 @@
         }
     }
     
-    if (!_recipe.ice) {
+    if (!_recipe.ice || [_recipe.ice isEqualToString:@"None"]) {
         _iceButton.hidden = YES;
         popoverButtonsHidden++;
     } else {
@@ -185,7 +184,7 @@
         
     }
     
-    if (!_recipe.garnish) {
+    if (!_recipe.garnish || [_recipe.garnish isEqualToString:@"None"]) {
         _garnishButton.hidden = YES;
         popoverButtonsHidden++;
     } else {
@@ -205,7 +204,7 @@
     if (!_recipe.photo) {
         _photoButton.hidden = YES;
         
-        _recipeName.frame = CGRectMake(38, _recipeName.frame.origin.y, _recipeName.frame.size.width, _recipeName.frame.size.height);
+        _recipeName.frame = CGRectMake(38-BULLET_OFFSET, _recipeName.frame.origin.y, _recipeName.frame.size.width, _recipeName.frame.size.height);
         
     } else {
         UIImage *image = [UIImage imageWithContentsOfFile:_recipe.photo];
@@ -236,7 +235,7 @@
 
         UIImageView *bullet = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bullet.png"]];
         //Make it same height as the text, and then put it in center. 
-        bullet.frame = CGRectMake(label.frame.origin.x-10, label.frame.origin.y, 4, label.frame.size.height);
+        bullet.frame = CGRectMake(label.frame.origin.x-BULLET_OFFSET, label.frame.origin.y, 4, label.frame.size.height);
         bullet.contentMode = UIViewContentModeCenter;
         
         [_scrollView addSubview:bullet];
@@ -273,27 +272,39 @@
 }
 
 
-- (void)viewDidUnload
-{
+//- (void)viewDidUnload
+//{
+////    [self setRecipeName:nil];
+//    [self setMixButton:nil];
+//    [self setGlassButton:nil];
+//    [self setIceButton:nil];
+//    [self setGarnishButton:nil];
+//    [self setPhotoButton:nil];
 //    [self setRecipeName:nil];
-    [self setMixButton:nil];
-    [self setGlassButton:nil];
-    [self setIceButton:nil];
-    [self setGarnishButton:nil];
-    [self setPhotoButton:nil];
-    [self setRecipeName:nil];
-    [self setNotesLabel:nil];
-    [self setNotes:nil];
-    [self setScrollView:nil];
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
+//    [self setNotesLabel:nil];
+//    [self setNotes:nil];
+//    [self setScrollView:nil];
+//    [super viewDidUnload];
+//    // Release any retained subviews of the main view.
+//    // e.g. self.myOutlet = nil;
+//}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier hasPrefix:@"edit recipe"]) {
+        
+        EditRecipeModalViewController *controller = (EditRecipeModalViewController *)segue.destinationViewController;
+        
+        controller.recipe = _recipe;
+        
+    }
+}
+
 
 @end

@@ -17,7 +17,7 @@
 
 @property (nonatomic) int currentTag;
 @property (nonatomic, weak) UITextField *activeField;
-@property (nonatomic) BOOL keyboardIsShown;
+
 @property (nonatomic, strong) UIActionSheet *actionSheet;
 
 
@@ -47,7 +47,7 @@
 @synthesize navigationBar = _navigationBar;
 @synthesize doneButton = _doneButton;
 @synthesize activeField = _activeField;
-@synthesize keyboardIsShown = _keyboardIsShown;
+
 @synthesize delegate = _delegate;
 
 - (void)didReceiveMemoryWarning{
@@ -250,13 +250,6 @@
 //}
 
 #pragma mark Text Fields
-
-
-
-
-
-
-
 
 
 - (void)addNewUITextField:(UITextField *)lastTextField
@@ -796,27 +789,27 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         
         NSString *method;
         if ([_mixButton.name isEqualToString:DEFAULT_METHOD]) {
-            method = nil;
+            method = @"None";
         } else {
             method = _mixButton.name;
         }
         NSString *glass;
         if ([_glassButton.name isEqualToString:DEFAULT_GLASS]) {
-            glass = nil;
+            glass = @"None";
         } else {
             glass = _glassButton.name;
         }
         
         NSString *ice;
         if ([_iceButton.name isEqualToString:DEFAULT_ICE]) {
-            ice = nil;
+            ice = @"None";
         } else {
             ice = _iceButton.name;
         }
         
         NSString *garnish;
         if ([_garnishButton.name isEqualToString:DEFAULT_GARNISH]) {
-            garnish = nil;
+            garnish = @"None";
         } else {
             garnish = _garnishButton.name;
         }

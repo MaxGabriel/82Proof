@@ -115,11 +115,18 @@
     _scrollView.contentSize = CGSizeMake(320, 480 + ([_recipe.hasIngredients count]*textFieldHeight));
     
 # warning set this later based on size of scroll view, right? Also, set view to this background to prevent white on scrollView bounce. But I think (can't see) this solves the red pixel crap. 
-    UIView *background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-    background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"moleskine.png"]];
-    [_scrollView addSubview:background];
     
-    [_scrollView sendSubviewToBack:background];
+#warning Missing moleskine.png, just have @2x
+    // Set background
+    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"moleskine.png"]];
+    [self.view addSubview:backgroundView];
+    [self.view sendSubviewToBack:backgroundView];
+    
+//    UIView *background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+//    background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"moleskine.png"]];
+//    [_scrollView addSubview:background];
+    
+//    [_scrollView sendSubviewToBack:background];
     
     _recipeName.font = [UIFont fontWithName:@"dearJoe 5 CASUAL" size:28];
     _recipeName.delegate = self;

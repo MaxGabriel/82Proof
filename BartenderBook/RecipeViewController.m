@@ -142,6 +142,10 @@
     
     _notesLabel.font = [UIFont fontWithName:@"dearJoe 5 CASUAL" size:15];
     
+//    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"block.png"]];
+//    imageView.frame = CGRectMake(_mixButton.frame.origin.x, _mixButton.frame.origin.y, 292, 97);
+//    [_scrollView addSubview:imageView];
+//    [_scrollView sendSubviewToBack:imageView];
     int popoverButtonsHidden = 0;
     
     if (!_recipe.method || [_recipe.method isEqualToString:@"None"]) {
@@ -231,6 +235,7 @@
     
     int yPosition = 197;
     
+#warning Should there be logic here ..?
     if (popoverButtonsHidden == 4) { // (All buttons)
         // Change yPosition for hidden buttons
     }

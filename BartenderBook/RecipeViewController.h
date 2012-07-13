@@ -10,8 +10,9 @@
 #import "Recipe.h"
 #import "Ingredient.h"
 #import "PopoverIngredientButton.h"
+#import "EditRecipeModalViewController.h"
 
-@interface RecipeViewController : UIViewController
+@interface RecipeViewController : UIViewController <EditRecipeModalViewControllerDelegate>
 
 
 // MODEL
@@ -28,6 +29,10 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *notesLabel;
 @property (strong, nonatomic) IBOutlet UITextView *notes;
+
+
+
+
 
 
 @end

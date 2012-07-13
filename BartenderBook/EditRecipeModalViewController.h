@@ -13,11 +13,20 @@
 #import "WEPopoverController.h"
 #import "popoverOptionsViewController.h"
 
+@protocol EditRecipeModalViewControllerDelegate <NSObject>
+
+-(void)deletedRecipe;
+-(void)editedRecipe:(Recipe *)recipe;
+
+@end
+
 @interface EditRecipeModalViewController : UIViewController <UIScrollViewDelegate>
 
 // Model
 @property (strong, nonatomic) Recipe *recipe;
 
+// Delegate
+@property (weak, nonatomic) id <EditRecipeModalViewControllerDelegate> delegate;
 
 // User Interface
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;

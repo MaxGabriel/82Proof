@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ImageMapping.h"
 
-@interface EditRecipeModalViewController() <UITextFieldDelegate,popoverOptionsViewControllerDelegate>
+@interface EditRecipeModalViewController() <UITextFieldDelegate,popoverOptionsViewControllerDelegate, UIActionSheetDelegate>
 
 @property (nonatomic) int currentTag;
 @property (nonatomic, weak) UITextField *activeField;
@@ -19,6 +19,7 @@
 
 @implementation EditRecipeModalViewController
 
+@synthesize delegate = _delegate;
 @synthesize notesLabel = _notesLabel;
 @synthesize notes = _notes;
 @synthesize scrollView = _scrollView;
@@ -58,19 +59,44 @@
 
 // 
 // 1. Set up UI for step 2. 
-// 1.5: Set up ingredients and names. 
+// 1.5: Set up ingredients and names.
 // 2. Set up controller based on recipe given (so fill out the recipe name, etc.)
 // 3. Add in delete button. 
 
 #define textFieldXPosition 38
 #define textFieldWidth 262
 #define textFieldHeight 35
+#define DELETE_MARGIN 10
 
 #define LAST_ITEM 114
 
 - (void)addNewUITextField:(CGFloat)lastTextField
 {
     
+}
+
+#define DELETE_ACTION_SHEET_TAG 10
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag == DELETE_ACTION_SHEET_TAG) {
+        switch (buttonIndex) {
+            case 0: // destructive Button
+                
+                [self.delegate deletedRecipe];
+                break;
+            case 1: // cancel
+                break; // do nothing
+        }
+    }
+}
+
+- (void)deleteButtonPressed:(UIButton *)sender
+{
+    NSLog(@"Delete Pressed");
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete Recipe" otherButtonTitles: nil];
+    actionSheet.tag = 10;
+    [actionSheet showInView:self.view];
 }
 
 - (void)viewDidLoad
@@ -261,6 +287,24 @@
         [_photoButton setImage:[UIImage imageNamed:_recipe.photo] forState:UIControlStateNormal];
     }
     
+    UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(_notes.frame.origin.x, _notes.frame.origin.y+_notes.frame.size.height+DELETE_MARGIN, _notes.frame.size.width, 44)];
+    
+    
+    
+    [deleteButton addTarget:self action:@selector(deleteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [deleteButton setTitle:@"Delete Recipe" forState:UIControlStateNormal];
+    deleteButton.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+    deleteButton.titleLabel.shadowOffset = CGSizeMake (0.0, -1.0);
+    
+    UIImage *deleteImage = [UIImage imageNamed:@"deleteButton.png"];
+    
+    UIImage *resizedImage = [deleteImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
+    
+    [deleteButton setBackgroundImage:resizedImage forState:UIControlStateNormal];
+    
+    [_scrollView addSubview:deleteButton];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWasShown:)
                                                  name:UIKeyboardDidShowNotification object:nil];
@@ -291,12 +335,17 @@
 
 
 
+
+#pragma mark NavBar Buttons
+
 - (IBAction)cancel:(id)sender {
     [[self presentingViewController] dismissModalViewControllerAnimated:YES];
 }
 
 - (IBAction)done:(id)sender {
 }
+
+# pragma mark Popover Buttons
 
 - (void)buttonChosen
 {

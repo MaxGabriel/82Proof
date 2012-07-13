@@ -35,6 +35,19 @@
 @synthesize notesLabel = _notesLabel;
 @synthesize notes = _notes;
 
+
+-(void)deletedRecipe
+{
+    [self dismissModalViewControllerAnimated:NO];
+    [_recipe.managedObjectContext deleteObject:_recipe];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)editedRecipe:(Recipe *)recipe
+{
+    
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -302,9 +315,9 @@
         EditRecipeModalViewController *controller = (EditRecipeModalViewController *)segue.destinationViewController;
         
         controller.recipe = _recipe;
+        controller.delegate = self;
         
     }
 }
-
 
 @end

@@ -25,7 +25,7 @@
         int height = self.frame.size.height;
         int width = self.frame.size.width;
         
-        _ingredientLabel.frame = CGRectMake(0, height-14, width, 10);
+        _ingredientLabel.frame = CGRectMake(0, height-14, width, 12);
         
         
         

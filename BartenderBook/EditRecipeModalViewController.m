@@ -14,6 +14,8 @@
 
 @property (nonatomic) int currentTag;
 @property (nonatomic, weak) UITextField *activeField;
+@property (nonatomic, strong) UIButton *deleteButton;
+@property (nonatomic) BOOL imageChanged;
     
 @end
 
@@ -30,10 +32,13 @@
 @synthesize garnishButton = _garnishButton;
 @synthesize recipeName = _recipeName;
 @synthesize navigationBar = _navigationBar;
+@synthesize doneButton = _doneButton;
 @synthesize recipe = _recipe;
 
 @synthesize currentTag = _currentTag;
 @synthesize activeField = _activeField;
+@synthesize deleteButton = _deleteButton;
+@synthesize imageChanged = _imageChanged;
 
 @synthesize popoverController;
 
@@ -54,6 +59,39 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+#pragma mark Keyboard Methods
+
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    _scrollView.contentInset = contentInsets;
+    _scrollView.scrollIndicatorInsets = contentInsets;
+    
+    //CODE FROM STACK OVERFLOW corrects apple's http://stackoverflow.com/a/4837510/1176156
+    
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= kbSize.height;
+    CGPoint origin = _activeField.frame.origin;
+    origin.y -= _scrollView.contentOffset.y;
+    if (!CGRectContainsPoint(aRect, origin) ) {
+        CGPoint scrollPoint = CGPointMake(0.0, _activeField.frame.origin.y-(aRect.size.height)); 
+        [_scrollView setContentOffset:scrollPoint animated:YES];
+    }
+    
+    
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    _scrollView.contentInset = contentInsets;
+    _scrollView.scrollIndicatorInsets = contentInsets;
+}
+
 #pragma mark - View lifecycle
 
 
@@ -70,10 +108,6 @@
 
 #define LAST_ITEM 114
 
-- (void)addNewUITextField:(CGFloat)lastTextField
-{
-    
-}
 
 #define DELETE_ACTION_SHEET_TAG 10
 
@@ -114,7 +148,7 @@
     _scrollView.scrollEnabled = YES;
     _scrollView.contentSize = CGSizeMake(320, 480 + ([_recipe.hasIngredients count]*textFieldHeight));
     
-# warning set this later based on size of scroll view, right? Also, set view to this background to prevent white on scrollView bounce. But I think (can't see) this solves the red pixel crap. 
+
     
 #warning Missing moleskine.png, just have @2x
     // Set background
@@ -167,7 +201,7 @@
     
     _currentTag = 100;
     CGFloat yPosition = 197;
-    
+    int count = 0;
     for (Ingredient *ingredient in _recipe.hasIngredients) {
         
         // SET UP UITextField
@@ -200,11 +234,11 @@
         // modify values for next one.
         yPosition += textField.frame.size.height;
         _currentTag++;
-        
-    }
-    
-    if (_currentTag <= LAST_ITEM) {
-        [self addNewUITextField:yPosition];
+        count++;
+
+        if (count == [_recipe.hasIngredients count] && _currentTag <= LAST_ITEM) {
+            [self addNewUITextField:textField animated:NO];
+        }
     }
     
     _notes.frame = CGRectMake(_notes.frame.origin.x, _notes.frame.origin.y + ([_recipe.hasIngredients count]*textFieldHeight), _notes.frame.size.width, _notes.frame.size.height);
@@ -294,23 +328,23 @@
         [_photoButton setImage:[UIImage imageNamed:_recipe.photo] forState:UIControlStateNormal];
     }
     
-    UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(_notes.frame.origin.x, _notes.frame.origin.y+_notes.frame.size.height+DELETE_MARGIN, _notes.frame.size.width, 44)];
+    _deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(_notes.frame.origin.x, _notes.frame.origin.y+_notes.frame.size.height+DELETE_MARGIN, _notes.frame.size.width, 44)];
     
     
     
-    [deleteButton addTarget:self action:@selector(deleteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [_deleteButton addTarget:self action:@selector(deleteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
-    [deleteButton setTitle:@"Delete Recipe" forState:UIControlStateNormal];
-    deleteButton.titleLabel.font = [UIFont boldSystemFontOfSize:20];
-    deleteButton.titleLabel.shadowOffset = CGSizeMake (0.0, -1.0);
+    [_deleteButton setTitle:@"Delete Recipe" forState:UIControlStateNormal];
+    _deleteButton.titleLabel.font = [UIFont boldSystemFontOfSize:20];
+    _deleteButton.titleLabel.shadowOffset = CGSizeMake (0.0, -1.0);
     
     UIImage *deleteImage = [UIImage imageNamed:@"deleteButton.png"];
     
     UIImage *resizedImage = [deleteImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, 10, 0, 10)];
     
-    [deleteButton setBackgroundImage:resizedImage forState:UIControlStateNormal];
+    [_deleteButton setBackgroundImage:resizedImage forState:UIControlStateNormal];
     
-    [_scrollView addSubview:deleteButton];
+    [_scrollView addSubview:_deleteButton];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWasShown:)
@@ -341,7 +375,175 @@
 }
 
 
+#pragma mark Text Fields
 
+- (void)addNewUITextField:(UITextField *)lastTextField animated:(BOOL)animated
+{
+    double xPosition = lastTextField.frame.origin.x;
+    double yPosition = lastTextField.frame.origin.y;
+    double width = lastTextField.frame.size.width;
+    double height = lastTextField.frame.size.height;
+    
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(xPosition, yPosition+height, width, height)];
+    textField.borderStyle = UITextBorderStyleNone; //UITextBorderStyleRoundedRect;
+    
+    textField.font = [UIFont fontWithName:@"dearJoe 5 CASUAL" size:lastTextField.font.pointSize]; //initially set in viewDidLoad
+    
+    //textField.font = [UIFont systemFontOfSize:15];
+    
+    // This sets the text to 404040, a grey. Based on some testing, I'll stay with black. 
+    // Specifically, black works better at a low brightness, and I've read a little saying grey is hard to read.
+    //    textField.textColor = [UIColor colorWithRed:64/255.0f green:64/255.0f blue:64/255.0f alpha:1];
+    
+    textField.placeholder = @"ingredient";
+    textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    textField.autocorrectionType = UITextAutocorrectionTypeDefault;
+    textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+    textField.returnKeyType = UIReturnKeyNext;
+    textField.clearButtonMode = UITextFieldViewModeNever;
+    textField.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;    
+    textField.backgroundColor = [UIColor clearColor]; // [UIColor lightTextColor];
+    textField.delegate = self;
+    textField.adjustsFontSizeToFitWidth = YES;
+    textField.minimumFontSize = 15;
+    
+    
+    _currentTag++;
+    textField.tag = _currentTag;
+    textField.alpha = 0;
+    [self.scrollView addSubview:textField];
+    
+    UIImageView *bullet = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bullet.png"]];
+    //Make it same height as the text, and then put it in center. 
+    bullet.frame = CGRectMake(xPosition-10, textField.frame.origin.y, 4, textField.frame.size.height);
+    bullet.contentMode = UIViewContentModeCenter;
+    bullet.alpha = 0;
+    bullet.tag = -_currentTag;
+    
+    [self.scrollView addSubview:bullet];
+    
+    
+    
+    //.2 seems like correct alpha for the bullet to match placeholder. 
+    
+    [UIView animateWithDuration:2 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{ bullet.alpha = .2; } completion:NULL];
+    [UIView animateWithDuration:2 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{ textField.alpha = 1; } completion:NULL];
+    
+    if (animated) {
+        [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationCurveEaseIn animations:^{ _notes.frame = CGRectMake(_notes.frame.origin.x, _notes.frame.origin.y+height, _notes.frame.size.width, _notes.frame.size.height); 
+            _notesLabel.frame = CGRectMake(_notesLabel.frame.origin.x, _notesLabel.frame.origin.y+height, _notesLabel.frame.size.width, _notesLabel.frame.size.height); 
+            _deleteButton.frame = CGRectMake(_deleteButton.frame.origin.x, _deleteButton.frame.origin.y+height, _deleteButton.frame.size.width, _deleteButton.frame.size.height);} completion:NULL];
+    } else {
+        _notes.frame = CGRectMake(_notes.frame.origin.x, _notes.frame.origin.y+height, _notes.frame.size.width, _notes.frame.size.height); 
+        _notesLabel.frame = CGRectMake(_notesLabel.frame.origin.x, _notesLabel.frame.origin.y+height, _notesLabel.frame.size.width, _notesLabel.frame.size.height); 
+        _deleteButton.frame = CGRectMake(_deleteButton.frame.origin.x, _deleteButton.frame.origin.y+height, _deleteButton.frame.size.width, _deleteButton.frame.size.height);
+    }
+    
+    
+    
+    _scrollView.contentSize = CGSizeMake(_scrollView.contentSize.width, _scrollView.contentSize.height+height);
+}
+
+
+#define LAST_ITEM 114
+
+// Scroll to appropriate place -- need to use notifications because this isn't taking keyboard into account. 
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    NSLog(@"DID BEGIN1");
+    _activeField = textField;
+    
+    NSArray *subviews = [[NSArray alloc] initWithArray:[_scrollView subviews]];
+    for (UIView *view in subviews) {
+        if (view.tag == -textField.tag) {
+            view.alpha = 1;
+        }
+    }
+    NSLog(@"DID BEGIN2");
+}
+
+- (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    //    NSLog(@"shouldChangeChars..");
+    //    if ([textField.text length] > 0) {
+    //        NSLog(@"if statement");
+    //  
+    
+    
+    //Is 0-indexed. 
+    //    NSLog(@"%@",textField.text);
+    
+    
+    
+    
+    
+    
+    if (textField.tag > 99 && [string isEqualToString:@" "]) {
+        
+        textField.keyboardType = UIKeyboardTypeDefault;
+        [textField resignFirstResponder];
+        [textField becomeFirstResponder];
+    }
+    
+    
+    // This isn't ideal because you can select all and delete all the text. I just saw UITextFieldTextDidChangeNotification, maybe that would work? 
+    if (textField.tag == 99) {  
+        if (([textField.text length] ==1) && [string isEqualToString:@""]) {
+            _doneButton.enabled = NO;
+        } else {
+            _doneButton.enabled = YES;
+        }
+    }
+    
+    //    unichar lastChar = [textField.text characterAtIndex:[textField.text length]];
+    //    
+    //    NSString *lastString = [NSString stringWithFormat:@"%C",lastChar];
+    //    if ([lastString isEqualToString:@" "]) {
+    //        textField.keyboardType = UIKeyboardTypeDefault;
+    //    }
+    if (textField.tag == _currentTag && textField.tag != LAST_ITEM && textField.tag != 99) {
+        [self addNewUITextField:textField animated:YES];
+    }
+    //    }
+    
+    
+    return YES;
+}
+
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    //    NSLog(@"TEXT FIELD DID END EDITING");
+    _activeField = nil;
+    
+    NSArray *subviews = [[NSArray alloc] initWithArray:[_scrollView subviews]];
+    if ([textField.text isEqualToString:@""]) {
+        for (UIView *view in subviews) {
+            if (view.tag == -textField.tag) {
+                view.alpha = .2;
+            }
+        }
+    }
+    
+    [textField resignFirstResponder];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    NSLog(@"textFieldShouldReturn got called");
+    if ([textField.text length] == 0 || textField.tag == LAST_ITEM) {
+        //        NSLog(@"FIRST OPTION");
+        [textField resignFirstResponder];
+        return YES;
+    } else {
+        //        NSLog(@"SHOULD RESIGN FIRST RESPONDER");
+        [[[self view] viewWithTag:textField.tag+1] becomeFirstResponder];
+        return YES;
+        
+        
+        // NOTE: This needs to scroll down so that you can see the next ingredient. 
+    }
+}
 
 #pragma mark NavBar Buttons
 
@@ -349,7 +551,91 @@
     [[self presentingViewController] dismissModalViewControllerAnimated:YES];
 }
 
-- (IBAction)done:(id)sender {
+#define DEFAULT_METHOD @"Method"
+#define DEFAULT_GLASS @"Glass"
+#define DEFAULT_ICE @"Ice"
+#define DEFAULT_GARNISH @"Garnish"
+
+- (IBAction)done:(id)sender 
+{
+    if (_recipeName.text) {
+        
+        
+        // INGREDIENTS 
+        NSMutableOrderedSet *ingredients = [[NSMutableOrderedSet alloc] init];
+        
+        
+        // Tested this, it works fine adding to ingredientsFinal (NSOrderedSet)
+        for (UIView *view in [_scrollView subviews]) {
+            if (view.tag >= 100) {
+                UITextField *textField = (UITextField *)view;
+                if (textField.text) {
+                    if ([textField.text isEqualToString:@""] == NO) {
+                        Ingredient *ingredientToAdd = [Ingredient ingredientWithName:textField.text inManagedObjectContext:_recipe.managedObjectContext];
+                        [ingredients addObject:ingredientToAdd];
+                    }
+                }
+                
+                
+            }
+        }
+        NSOrderedSet *ingredientsFinal = (NSOrderedSet *)ingredients;
+        
+        
+        NSString *notes = _notes.text;
+        
+        // POPOVER INGREDIENTS
+        
+        // This feels like a hack and bad coding practice:
+
+        NSString *method;
+        if ([_methodButton.name isEqualToString:DEFAULT_METHOD]) {
+            method = @"None";
+        } else {
+            method = _methodButton.name;
+        }
+        NSString *glass;
+        if ([_glassButton.name isEqualToString:DEFAULT_GLASS]) {
+            glass = @"None";
+        } else {
+            glass = _glassButton.name;
+        }
+        
+        NSString *ice;
+        if ([_iceButton.name isEqualToString:DEFAULT_ICE]) {
+            ice = @"None";
+        } else {
+            ice = _iceButton.name;
+        }
+        
+        NSString *garnish;
+        if ([_garnishButton.name isEqualToString:DEFAULT_GARNISH]) {
+            garnish = @"None";
+        } else {
+            garnish = _garnishButton.name;
+        }
+        
+#warning I may have to create a new path, not sure. Test this.
+        if (_imageChanged) {
+            NSData *PNGImage = [NSData dataWithData:UIImagePNGRepresentation(_photoButton.imageView.image)];
+            [PNGImage writeToFile:_recipe.photo atomically:YES];
+        }
+        
+        _recipe.name = _recipeName.text;
+        _recipe.method = method;
+        _recipe.glass = glass;
+        _recipe.ice = ice;
+        _recipe.garnish = garnish;
+        _recipe.notes = notes;
+        _recipe.hasIngredients = ingredientsFinal;
+        
+        
+//        [_recipe.managedObjectContext save:NULL];
+        
+
+        [_delegate editedRecipe:_recipe];
+        
+    }
 }
 
 # pragma mark Popover Buttons
@@ -406,20 +692,20 @@
     
     // Using ImageMapping as a data source, get keys (ingredient button names) and their values (image names). 
     
-    NSMutableArray *mutableIceButtons = [[NSMutableArray alloc] init];
-    for (NSString *key in [[ImageMapping sharedInstance] iceDictionary]) {
+    NSMutableArray *mutableGlassButtons = [[NSMutableArray alloc] init];
+    for (NSString *key in [[ImageMapping sharedInstance] glassDictionary]) {
         
-        ingredientButton *button = [[ingredientButton alloc] initWithName:key andImageName:[[[ImageMapping sharedInstance] iceDictionary] objectForKey:key]];
-        [mutableIceButtons addObject:button];
+        ingredientButton *button = [[ingredientButton alloc] initWithName:key andImageName:[[[ImageMapping sharedInstance] glassDictionary] objectForKey:key]];
+        [mutableGlassButtons addObject:button];
         
     }
     
-    NSArray *iceButtons = [[NSArray alloc] initWithArray:mutableIceButtons];
+    NSArray *glassButtons = [[NSArray alloc] initWithArray:mutableGlassButtons];
     
     
     
     
-    contentViewController.buttons = iceButtons;
+    contentViewController.buttons = glassButtons;
     contentViewController.presentingButton = sender;
     contentViewController.delegate = self;
     
@@ -443,9 +729,9 @@
     
     
     NSMutableArray *mutableButtons = [[NSMutableArray alloc] init];
-    for (NSString *key in [[ImageMapping sharedInstance] glassDictionary]) {
+    for (NSString *key in [[ImageMapping sharedInstance] iceDictionary]) {
         
-        ingredientButton *button = [[ingredientButton alloc] initWithName:key andImageName:[[[ImageMapping sharedInstance] glassDictionary] objectForKey:key]];
+        ingredientButton *button = [[ingredientButton alloc] initWithName:key andImageName:[[[ImageMapping sharedInstance] iceDictionary] objectForKey:key]];
         [mutableButtons addObject:button];
         
     }
@@ -494,4 +780,6 @@
     
     [self.popoverController presentPopoverFromRect:sender.frame inView:self.scrollView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
+
+
 @end

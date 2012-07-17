@@ -335,7 +335,7 @@
         RecipeViewController *controller = (RecipeViewController *)segue.destinationViewController;
         
         controller.recipe = recipe;
-        
+        controller.managedDocument = _recipeDatabase;
         
         
     }

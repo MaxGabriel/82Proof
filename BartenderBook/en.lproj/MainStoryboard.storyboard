@@ -502,6 +502,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="doneButton" destination="GjW-Kb-b7g" id="1tv-Sw-jPy"/>
                         <outlet property="garnishButton" destination="B2N-nT-zHg" id="Itv-pH-o8r"/>
                         <outlet property="glassButton" destination="iLA-HD-3wN" id="hec-1D-KOU"/>
                         <outlet property="iceButton" destination="hc0-sg-8hn" id="hIX-Lm-7Mh"/>
@@ -577,6 +578,7 @@
                 <relationship kind="action" name="chooseIce:"/>
                 <relationship kind="action" name="chooseMethod:"/>
                 <relationship kind="action" name="done:"/>
+                <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="garnishButton" candidateClass="PopoverIngredientButton"/>
                 <relationship kind="outlet" name="glassButton" candidateClass="PopoverIngredientButton"/>
                 <relationship kind="outlet" name="iceButton" candidateClass="PopoverIngredientButton"/>

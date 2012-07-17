@@ -69,16 +69,45 @@
     _scrollView.contentInset = contentInsets;
     _scrollView.scrollIndicatorInsets = contentInsets;
     
-    //CODE FROM STACK OVERFLOW corrects apple's http://stackoverflow.com/a/4837510/1176156
-    
+    // If active text field is hidden by keyboard, scroll it so it's visible
+    // Your application might not need or want this behavior.
     CGRect aRect = self.view.frame;
     aRect.size.height -= kbSize.height;
-    CGPoint origin = _activeField.frame.origin;
-    origin.y -= _scrollView.contentOffset.y;
-    if (!CGRectContainsPoint(aRect, origin) ) {
-        CGPoint scrollPoint = CGPointMake(0.0, _activeField.frame.origin.y-(aRect.size.height)); 
+    
+    CGPoint point = CGPointMake(_activeField.frame.origin.x, _activeField.frame.origin.y+_activeField.frame.size.height);
+    
+    
+    if (!CGRectContainsPoint(aRect, point) ) {
+        CGPoint scrollPoint = CGPointMake(0.0, _activeField.frame.origin.y+_activeField.frame.size.height-kbSize.height);
         [_scrollView setContentOffset:scrollPoint animated:YES];
     }
+//    NSDictionary* info = [aNotification userInfo];
+//    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+//    
+//    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+//    _scrollView.contentInset = contentInsets;
+//    _scrollView.scrollIndicatorInsets = contentInsets;
+//    
+//    Old code from StackOverflow, I actually found Apple's worked best after I modified it to take into account height.  http://stackoverflow.com/a/4837510/1176156
+//    
+//    CGRect aRect = self.view.frame;
+//    aRect.size.height -= kbSize.height;
+//    
+//    CGPoint origin;
+//    if (_activeField) {
+//        origin = _activeField.frame.origin;
+//        
+//    } else {
+//        origin = _notes.frame.origin;
+//    }
+//    
+//    origin.y -= _scrollView.contentOffset.y;
+//    
+//    
+//    if (!CGRectContainsPoint(aRect, origin) ) {
+//        CGPoint scrollPoint = CGPointMake(0.0, _activeField.frame.origin.y-(aRect.size.height)); 
+//        [_scrollView setContentOffset:scrollPoint animated:YES];
+//    }
     
     
 }
@@ -178,6 +207,7 @@
     _photoButton.layer.cornerRadius = 5.0f;
     _photoButton.layer.backgroundColor = [[UIColor clearColor] CGColor];
     
+
     _notes.layer.masksToBounds = NO;
     _notes.layer.cornerRadius = 5.0f;
 //    _notes.layer.borderWidth = 1.5f;
@@ -189,7 +219,7 @@
     _notes.layer.shadowColor = [[UIColor darkGrayColor] CGColor];
     _notes.layer.shadowRadius = 3.0f;
     _notes.layer.shadowOpacity = 0.8f;
-    
+
 
     _notesLabel.font = [UIFont fontWithName:@"dearJoe 5 CASUAL" size:15];
     
@@ -280,7 +310,7 @@
     textField.backgroundColor = [UIColor clearColor]; // [UIColor lightTextColor];
     textField.delegate = self;
     textField.adjustsFontSizeToFitWidth = YES;
-    _firstIngredient.minimumFontSize = 15;
+    textField.minimumFontSize = 15;
     
     
     
@@ -578,6 +608,8 @@
 
 #warning Not listening for notification about app being dismissed and responding by dismissing action sheet. 
 
+
+#warning Not displaying an action sheet when you first touch the button. 
 #pragma mark Photo
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -699,7 +731,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 //	[data2 writeToFile:jpegFilePath atomically:YES];
 //    
 //	NSLog(@"saving image done");
-    if (_recipeName.text && _firstIngredient.text) {
+    if (_recipeName.text) {
         
         
         // INGREDIENTS 
@@ -760,7 +792,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         
         NSString *path = nil;
         // PHOTO 
-        if (_photoButton.imageView.image) {
+//        if (_photoButton.imageView.image) {
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
             path = [paths lastObject];
             
@@ -781,7 +813,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
             NSData *PNGImage = [NSData dataWithData:UIImagePNGRepresentation(_photoButton.imageView.image)];
             [PNGImage writeToFile:path atomically:YES];
             
-        }
+//        }
         
         [self.delegate createRecipeModalViewController:self makeRecipeWithName:_recipeName.text andMethod:method andGlass:glass andIce:ice andGarnish:garnish andPhoto:path andNotes:notes andIngredients:ingredientsFinal];
         

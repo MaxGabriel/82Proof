@@ -27,6 +27,11 @@
 		506BDFA315AF6C250075CBF3 /* deleteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 506BDFA115AF6C250075CBF3 /* deleteButton.png */; };
 		506BDFA615AFC27B0075CBF3 /* block.png in Resources */ = {isa = PBXBuildFile; fileRef = 506BDFA415AFC27B0075CBF3 /* block.png */; };
 		506BDFA715AFC27B0075CBF3 /* block@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 506BDFA515AFC27B0075CBF3 /* block@2x.png */; };
+		506BDFB615B11A7C0075CBF3 /* filledZest.png in Resources */ = {isa = PBXBuildFile; fileRef = 506BDFB415B11A7C0075CBF3 /* filledZest.png */; };
+		506BDFB715B11A7C0075CBF3 /* filledZest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 506BDFB515B11A7C0075CBF3 /* filledZest@2x.png */; };
+		506BDFC115B51B0B0075CBF3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 506BDFC015B51B0B0075CBF3 /* Default@2x.png */; };
+		506BDFC315B51B0F0075CBF3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 506BDFC215B51B0F0075CBF3 /* Default.png */; };
+		506BDFC515B51C4A0075CBF3 /* moleskine.png in Resources */ = {isa = PBXBuildFile; fileRef = 506BDFC415B51C490075CBF3 /* moleskine.png */; };
 		50876219157544F4009EF289 /* Paper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50876218157544F4009EF289 /* Paper@2x.png */; };
 		5087621B15754906009EF289 /* moleskine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5087621A15754906009EF289 /* moleskine@2x.png */; };
 		50886846157803200021A330 /* CreateRecipeModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50886845157803200021A330 /* CreateRecipeModalViewController.m */; };
@@ -194,6 +199,11 @@
 		506BDFA115AF6C250075CBF3 /* deleteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteButton.png; sourceTree = "<group>"; };
 		506BDFA415AFC27B0075CBF3 /* block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = block.png; sourceTree = "<group>"; };
 		506BDFA515AFC27B0075CBF3 /* block@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "block@2x.png"; sourceTree = "<group>"; };
+		506BDFB415B11A7C0075CBF3 /* filledZest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = filledZest.png; sourceTree = "<group>"; };
+		506BDFB515B11A7C0075CBF3 /* filledZest@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filledZest@2x.png"; sourceTree = "<group>"; };
+		506BDFC015B51B0B0075CBF3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		506BDFC215B51B0F0075CBF3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		506BDFC415B51C490075CBF3 /* moleskine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moleskine.png; sourceTree = "<group>"; };
 		50876218157544F4009EF289 /* Paper@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Paper@2x.png"; sourceTree = "<group>"; };
 		5087621A15754906009EF289 /* moleskine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "moleskine@2x.png"; sourceTree = "<group>"; };
 		50886844157803200021A330 /* CreateRecipeModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateRecipeModalViewController.h; sourceTree = "<group>"; };
@@ -410,6 +420,7 @@
 				5088688915790BEE0021A330 /* no-Ice140x151@2x.png */,
 				5088687B1578134C0021A330 /* small-ice.png */,
 				5088687D157816CE0021A330 /* small-No-Ice.png */,
+				506BDFC415B51C490075CBF3 /* moleskine.png */,
 				5087621A15754906009EF289 /* moleskine@2x.png */,
 				50876218157544F4009EF289 /* Paper@2x.png */,
 			);
@@ -506,6 +517,8 @@
 		508868EE158450560021A330 /* Garnishes */ = {
 			isa = PBXGroup;
 			children = (
+				506BDFB415B11A7C0075CBF3 /* filledZest.png */,
+				506BDFB515B11A7C0075CBF3 /* filledZest@2x.png */,
 				5060CFDD15A90FB7005C1743 /* bigLemonTwist.png */,
 				5060CFDE15A90FB7005C1743 /* bigLemonTwist@2x.png */,
 				5060CFD515A8E7EE005C1743 /* orangeWedge.png */,
@@ -573,6 +586,8 @@
 		50D20B7915700A0600F4463F = {
 			isa = PBXGroup;
 			children = (
+				506BDFC215B51B0F0075CBF3 /* Default.png */,
+				506BDFC015B51B0B0075CBF3 /* Default@2x.png */,
 				50A34B2315ACE14B00B57B95 /* arialBold82.png */,
 				50A34B2115ACE14900B57B95 /* arialBold82@2x.png */,
 				5088693E158C41710021A330 /* QuartzCore.framework */,
@@ -848,6 +863,11 @@
 				506BDFA315AF6C250075CBF3 /* deleteButton.png in Resources */,
 				506BDFA615AFC27B0075CBF3 /* block.png in Resources */,
 				506BDFA715AFC27B0075CBF3 /* block@2x.png in Resources */,
+				506BDFB615B11A7C0075CBF3 /* filledZest.png in Resources */,
+				506BDFB715B11A7C0075CBF3 /* filledZest@2x.png in Resources */,
+				506BDFC115B51B0B0075CBF3 /* Default@2x.png in Resources */,
+				506BDFC315B51B0F0075CBF3 /* Default.png in Resources */,
+				506BDFC515B51C4A0075CBF3 /* moleskine.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

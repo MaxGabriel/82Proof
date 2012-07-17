@@ -30,6 +30,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *notesLabel;
 @property (strong, nonatomic) IBOutlet UITextView *notes;
 
+@property (weak, nonatomic) UIManagedDocument *managedDocument;
 
 
 

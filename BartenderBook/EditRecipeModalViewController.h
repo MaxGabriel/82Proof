@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PopoverIngredientButton.h"
 #import "Recipe.h"
-#import "Ingredient.h"
+#import "Ingredient+Create.h"
 #import "WEPopoverController.h"
 #import "popoverOptionsViewController.h"
 
@@ -38,6 +38,7 @@
 @property (strong, nonatomic) IBOutlet PopoverIngredientButton *garnishButton;
 @property (strong, nonatomic) IBOutlet UITextField *recipeName;
 @property (strong, nonatomic) IBOutlet UINavigationBar *navigationBar;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 
 
 @property (nonatomic, strong) WEPopoverController *popoverController;

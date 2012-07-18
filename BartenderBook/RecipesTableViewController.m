@@ -125,6 +125,14 @@
 //    }
     
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:123/255.0f green:160/255.0f blue:179/255.0f alpha:1]; 
+    
+//    BOOL firstTime = [[NSUserDefaults standardUserDefaults] boolForKey:@"firstLaunch"];
+//    
+//    if (firstTime) {
+//        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"firstLaunch"];
+//        // Create Sample Recipes
+//        
+//    }
 }
 
 

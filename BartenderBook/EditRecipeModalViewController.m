@@ -150,7 +150,7 @@
     
 
     
-#warning Missing moleskine.png, just have @2x
+
     // Set background
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"moleskine.png"]];
     [self.view addSubview:backgroundView];

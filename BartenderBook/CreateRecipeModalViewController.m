@@ -120,6 +120,16 @@
     _scrollView.scrollIndicatorInsets = contentInsets;
 }
 
+- (void)enteredBackground:(NSNotification *)notification
+{
+    if (_actionSheet.tag == 1) {
+        [_actionSheet dismissWithClickedButtonIndex:3 animated:YES];
+    } else if (_actionSheet.tag == 2) {
+        [_actionSheet dismissWithClickedButtonIndex:2 animated:YES];
+    }
+    
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewWillAppear:(BOOL)animated
@@ -183,10 +193,6 @@
     [self.scrollView addSubview:bullet];
     
 
-
-    
-
-    
     _iceButton.layer.masksToBounds = YES;
     _iceButton.layer.cornerRadius = 5.0f;
     _iceButton.layer.backgroundColor = [[UIColor clearColor] CGColor];
@@ -243,6 +249,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillBeHidden:)
                                                  name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(enteredBackground:) 
+                                                 name:UIApplicationDidEnterBackgroundNotification
+                                               object:nil];
 }
 
 
@@ -256,6 +266,9 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self 
                                                     name:UIKeyboardWillHideNotification 
                                                   object:nil]; 
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIApplicationDidEnterBackgroundNotification 
+                                                  object:nil];
 }
 
 //- (void)viewDidUnload
@@ -606,84 +619,173 @@
     
 }
 
-#warning Not listening for notification about app being dismissed and responding by dismissing action sheet. 
 
 
-#warning Not displaying an action sheet when you first touch the button. 
+
+
 #pragma mark Photo
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    switch (buttonIndex) {
-        case 0: // Destructive Button
-            
-            
-            NSLog(@"Deleting image");
-            [_photoButton setImage:nil forState:UIControlStateNormal];
-            _photoButton.imageView.image = nil;
-            break;
-        case 1: // Take Photo
-            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-                NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
-                if ([mediaTypes containsObject:(NSString *)kUTTypeImage]) {
-                    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-                    picker.delegate = self;
-                    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-                    picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
-                    picker.allowsEditing = YES;
-                    [self presentModalViewController:picker animated:YES];
+    NSLog(@"%i",buttonIndex);
+    
+    if (actionSheet.tag == 1) {
+        switch (buttonIndex) {
+            case 0: // Destructive Button
+                
+                [_photoButton setImage:nil forState:UIControlStateNormal];
+                _photoButton.imageView.image = nil;
+                break;
+            case 1: // Take Photo
+                if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                    NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+                    if ([mediaTypes containsObject:(NSString *)kUTTypeImage]) {
+                        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                        picker.delegate = self;
+                        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                        picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
+                        picker.allowsEditing = YES;
+                        [self presentModalViewController:picker animated:YES];
+                    }
                 }
-            }
-            break;
-        case 2: // Choose Photo // photolibrary versus savedphotoalbums?
-            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-                NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-                if ([mediaTypes containsObject:(NSString *)kUTTypeImage]) {
-                    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-                    picker.delegate = self;
-                    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-                    picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
-                    picker.allowsEditing = YES;
-                    [self presentModalViewController:picker animated:YES];
+                break;
+            case 2: // Choose Photo // photolibrary versus savedphotoalbums?
+                if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+                    NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+                    if ([mediaTypes containsObject:(NSString *)kUTTypeImage]) {
+                        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                        picker.delegate = self;
+                        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                        picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
+                        picker.allowsEditing = YES;
+                        [self presentModalViewController:picker animated:YES];
+                    }
                 }
-            }
-            break;
-        case 3: // Cancel
-            NSLog(@"%i",buttonIndex);
-            break;
-        default:
-            break;
-    }
+                break;
+            case 3: // Cancel
+                NSLog(@"%i",buttonIndex);
+                break;
+            default:
+                break;
+        }
+    } else if (actionSheet.tag ==2) {
+        switch (buttonIndex) {
+            case 0: // Take Photo
+                if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                    NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+                    if ([mediaTypes containsObject:(NSString *)kUTTypeImage]) {
+                        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                        picker.delegate = self;
+                        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                        picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
+                        picker.allowsEditing = YES;
+                        [self presentModalViewController:picker animated:YES];
+                    }
+                }
+                break;
+            case 1: // Choose Photo
+                if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+                    NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+                    if ([mediaTypes containsObject:(NSString *)kUTTypeImage]) {
+                        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                        picker.delegate = self;
+                        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                        picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
+                        picker.allowsEditing = YES;
+                        [self presentModalViewController:picker animated:YES];
+                    }
+                }
+                break;
+            case 2: // Cancel
+                break;
+            default:
+                break;
+        } 
+
+
+        }
+        
+//    switch (buttonIndex) {
+//        case 0: // Destructive Button
+//            
+//            
+//            NSLog(@"Deleting image");
+//            [_photoButton setImage:nil forState:UIControlStateNormal];
+//            _photoButton.imageView.image = nil;
+//            break;
+//        case 1: // Take Photo
+//            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+//                NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+//                if ([mediaTypes containsObject:(NSString *)kUTTypeImage]) {
+//                    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+//                    picker.delegate = self;
+//                    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+//                    picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
+//                    picker.allowsEditing = YES;
+//                    [self presentModalViewController:picker animated:YES];
+//                }
+//            }
+//            break;
+//        case 2: // Choose Photo // photolibrary versus savedphotoalbums?
+//            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+//                NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+//                if ([mediaTypes containsObject:(NSString *)kUTTypeImage]) {
+//                    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+//                    picker.delegate = self;
+//                    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//                    picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
+//                    picker.allowsEditing = YES;
+//                    [self presentModalViewController:picker animated:YES];
+//                }
+//            }
+//            break;
+//        case 3: // Cancel
+//            NSLog(@"%i",buttonIndex);
+//            break;
+//        default:
+//            break;
+//    }
 }
 
 // Need to present action sheet based off of camera availability
 
 - (IBAction)addPhoto:(id)sender
 {
-//    BOOL cameraOK = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
-//    BOOL photoLibOK = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     
     
+    if (_photoButton.imageView.image) {
+        
+            _actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete Photo" otherButtonTitles:@"Take Photo", @"Choose Photo", nil];
+            _actionSheet.tag = 1;
+        
+    } else {
+        
+            _actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Choose Photo", nil];
+            _actionSheet.tag = 2;
+        
+    }
+    
+    [_actionSheet showInView:self.view];
     
     // Note to self: need to change to action sheet to prompt for photos or camera.
     // also check difference between 'albums' and photo library option.
-    if (_photoButton.imageView.image) {
-        NSLog(@"Called");
-        _actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete Photo" otherButtonTitles:@"Take Photo", @"Choose Photo", nil];
-        [_actionSheet showInView:self.view];
-    } else {
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
-            if ([mediaTypes containsObject:(NSString *)kUTTypeImage]) {
-                UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-                picker.delegate = self;
-                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-                picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
-                picker.allowsEditing = YES;
-                [self presentModalViewController:picker animated:YES];
-            }
-        }
-    }
+//    if (_photoButton.imageView.image) {
+//        NSLog(@"Called");
+//        _actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete Photo" otherButtonTitles:@"Take Photo", @"Choose Photo", nil];
+//        [_actionSheet showInView:self.view];
+//    } else {
+//        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+//            NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+//            if ([mediaTypes containsObject:(NSString *)kUTTypeImage]) {
+//                UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+//                picker.delegate = self;
+//                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+//                picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
+//                picker.allowsEditing = YES;
+//                [self presentModalViewController:picker animated:YES];
+//            }
+//        }
+//    }
     
 }
 

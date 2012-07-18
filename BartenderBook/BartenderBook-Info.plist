@@ -10,10 +10,10 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>arialBold82.png</string>
-		<string>arialBold82@2x.png</string>
 		<string>Default@2x.png</string>
 		<string>Default.png</string>
+		<string>colorBurnLess@2x.png</string>
+		<string>colorBurnLess.png</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -21,17 +21,17 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>arialBold82.png</string>
-				<string>arialBold82@2x.png</string>
 				<string>Default@2x.png</string>
 				<string>Default.png</string>
+				<string>colorBurnLess@2x.png</string>
+				<string>colorBurnLess.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
-			<false/>
+			<true/>
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>PaperTagher.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>PaperTagher.82Proof</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -52,6 +52,8 @@
 	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard</string>
+	<key>UIPrerenderedIcon</key>
+	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

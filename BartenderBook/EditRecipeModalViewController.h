@@ -51,6 +51,7 @@
 - (IBAction)chooseIce:(id)sender;
 - (IBAction)chooseGarnish:(id)sender;
 
+- (IBAction)choosePhoto:(UIButton *)sender;
 
 
 

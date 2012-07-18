@@ -16,6 +16,7 @@
 @interface CreateRecipeModalViewController() <UIScrollViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, popoverOptionsViewControllerDelegate, UIActionSheetDelegate> 
 
 @property (nonatomic) int currentTag;
+@property (nonatomic) BOOL ignoreKeyboard;
 @property (nonatomic, weak) UITextField *activeField;
 
 @property (nonatomic, strong) UIActionSheet *actionSheet;
@@ -43,12 +44,15 @@
 @synthesize actionSheet = _actionSheet;
 @synthesize currentTag = _currentTag;
 @synthesize firstIngredient = _firstIngredient;
+@synthesize ignoreKeyboard = _ignoreKeyboard;
 
 @synthesize navigationBar = _navigationBar;
 @synthesize doneButton = _doneButton;
 @synthesize activeField = _activeField;
 
 @synthesize delegate = _delegate;
+
+
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
@@ -62,25 +66,32 @@
 
 - (void)keyboardWasShown:(NSNotification*)aNotification
 {
-    NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
-    _scrollView.contentInset = contentInsets;
-    _scrollView.scrollIndicatorInsets = contentInsets;
-    
-    // If active text field is hidden by keyboard, scroll it so it's visible
-    // Your application might not need or want this behavior.
-    CGRect aRect = self.view.frame;
-    aRect.size.height -= kbSize.height;
-    
-    CGPoint point = CGPointMake(_activeField.frame.origin.x, _activeField.frame.origin.y+_activeField.frame.size.height);
-    
-    
-    if (!CGRectContainsPoint(aRect, point) ) {
-        CGPoint scrollPoint = CGPointMake(0.0, _activeField.frame.origin.y+_activeField.frame.size.height-kbSize.height);
-        [_scrollView setContentOffset:scrollPoint animated:YES];
+
+    if (_ignoreKeyboard == YES) {
+        // do nothing
+    } else {
+        NSDictionary* info = [aNotification userInfo];
+        CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+        
+        UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+        _scrollView.contentInset = contentInsets;
+        _scrollView.scrollIndicatorInsets = contentInsets;
+        
+        // If active text field is hidden by keyboard, scroll it so it's visible
+        // Your application might not need or want this behavior.
+        CGRect aRect = self.view.frame;
+        aRect.size.height -= kbSize.height;
+        
+        CGPoint point = CGPointMake(_activeField.frame.origin.x, _activeField.frame.origin.y+_activeField.frame.size.height);
+        
+        
+        if (!CGRectContainsPoint(aRect, point) ) {
+            CGPoint scrollPoint = CGPointMake(0.0, _activeField.frame.origin.y+_activeField.frame.size.height-kbSize.height);
+            [_scrollView setContentOffset:scrollPoint animated:YES];
+        }
     }
+    _ignoreKeyboard = NO;
+    
 //    NSDictionary* info = [aNotification userInfo];
 //    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
 //    
@@ -115,9 +126,15 @@
 // Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    _scrollView.contentInset = contentInsets;
-    _scrollView.scrollIndicatorInsets = contentInsets;
+  
+    if (_ignoreKeyboard == YES) {
+        // do nothing
+    } else {
+        UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+        _scrollView.contentInset = contentInsets;
+        _scrollView.scrollIndicatorInsets = contentInsets;
+    }
+    
 }
 
 - (void)enteredBackground:(NSNotification *)notification
@@ -389,6 +406,7 @@
     
     
     if (textField.tag > 99 && [string isEqualToString:@" "]) {
+        _ignoreKeyboard = YES;
 
         textField.keyboardType = UIKeyboardTypeDefault;
         [textField resignFirstResponder];
@@ -440,7 +458,8 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    NSLog(@"textFieldShouldReturn got called");
+    _ignoreKeyboard = NO;
+    
     if ([textField.text length] == 0 || textField.tag == LAST_ITEM) {
 //        NSLog(@"FIRST OPTION");
         [textField resignFirstResponder];
@@ -627,7 +646,7 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"%i",buttonIndex);
+
     
     if (actionSheet.tag == 1) {
         switch (buttonIndex) {
@@ -663,7 +682,7 @@
                 }
                 break;
             case 3: // Cancel
-                NSLog(@"%i",buttonIndex);
+
                 break;
             default:
                 break;
@@ -705,49 +724,9 @@
 
         }
         
-//    switch (buttonIndex) {
-//        case 0: // Destructive Button
-//            
-//            
-//            NSLog(@"Deleting image");
-//            [_photoButton setImage:nil forState:UIControlStateNormal];
-//            _photoButton.imageView.image = nil;
-//            break;
-//        case 1: // Take Photo
-//            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-//                NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
-//                if ([mediaTypes containsObject:(NSString *)kUTTypeImage]) {
-//                    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-//                    picker.delegate = self;
-//                    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-//                    picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
-//                    picker.allowsEditing = YES;
-//                    [self presentModalViewController:picker animated:YES];
-//                }
-//            }
-//            break;
-//        case 2: // Choose Photo // photolibrary versus savedphotoalbums?
-//            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
-//                NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-//                if ([mediaTypes containsObject:(NSString *)kUTTypeImage]) {
-//                    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-//                    picker.delegate = self;
-//                    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-//                    picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
-//                    picker.allowsEditing = YES;
-//                    [self presentModalViewController:picker animated:YES];
-//                }
-//            }
-//            break;
-//        case 3: // Cancel
-//            NSLog(@"%i",buttonIndex);
-//            break;
-//        default:
-//            break;
-//    }
 }
 
-// Need to present action sheet based off of camera availability
+
 
 - (IBAction)addPhoto:(id)sender
 {
@@ -847,7 +826,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
                 UITextField *textField = (UITextField *)view;
                 if (textField.text) {
                     if ([textField.text isEqualToString:@""] == NO) {
-                        NSLog(@"%@",textField.text);
+
                         [ingredients addObject:textField.text];
                     }
                 }

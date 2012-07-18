@@ -9,13 +9,17 @@
 #import "EditRecipeModalViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ImageMapping.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 
-@interface EditRecipeModalViewController() <UITextFieldDelegate,popoverOptionsViewControllerDelegate, UIActionSheetDelegate>
+@interface EditRecipeModalViewController() <UITextFieldDelegate,popoverOptionsViewControllerDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate>
 
 @property (nonatomic) int currentTag;
 @property (nonatomic, weak) UITextField *activeField;
 @property (nonatomic, strong) UIButton *deleteButton;
 @property (nonatomic) BOOL imageChanged;
+@property (nonatomic) BOOL ignoreKeyboard;
+
+@property (nonatomic, strong) UIActionSheet *actionSheet;
     
 @end
 
@@ -34,11 +38,13 @@
 @synthesize navigationBar = _navigationBar;
 @synthesize doneButton = _doneButton;
 @synthesize recipe = _recipe;
+@synthesize actionSheet = _actionSheet;
 
 @synthesize currentTag = _currentTag;
 @synthesize activeField = _activeField;
 @synthesize deleteButton = _deleteButton;
 @synthesize imageChanged = _imageChanged;
+@synthesize ignoreKeyboard = _ignoreKeyboard;
 
 @synthesize popoverController;
 
@@ -59,43 +65,75 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark Keyboard Methods
+#pragma mark NSNotifications-- Keyboard & Action Sheet
 
 - (void)keyboardWasShown:(NSNotification*)aNotification
 {
-    NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
-    _scrollView.contentInset = contentInsets;
-    _scrollView.scrollIndicatorInsets = contentInsets;
-    
-    //CODE FROM STACK OVERFLOW corrects apple's http://stackoverflow.com/a/4837510/1176156
-    
-    CGRect aRect = self.view.frame;
-    aRect.size.height -= kbSize.height;
-    CGPoint origin = _activeField.frame.origin;
-    origin.y -= _scrollView.contentOffset.y;
-    if (!CGRectContainsPoint(aRect, origin) ) {
-        CGPoint scrollPoint = CGPointMake(0.0, _activeField.frame.origin.y-(aRect.size.height)); 
-        [_scrollView setContentOffset:scrollPoint animated:YES];
+    if (_ignoreKeyboard == YES) {
+        // do nothing
+    } else {
+        
+        NSDictionary* info = [aNotification userInfo];
+        CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+        
+        UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+        _scrollView.contentInset = contentInsets;
+        _scrollView.scrollIndicatorInsets = contentInsets;
+        
+        // If active text field is hidden by keyboard, scroll it so it's visible
+        // Your application might not need or want this behavior.
+        CGRect aRect = self.view.frame;
+        aRect.size.height -= kbSize.height;
+        
+        CGPoint point = CGPointMake(_activeField.frame.origin.x, _activeField.frame.origin.y+_activeField.frame.size.height);
+//        if (!_activeField) {
+//            point = CGPointMake(_notes.frame.origin.x, _notes.frame.origin.y);
+//        } else {
+//            point = CGPointMake(_activeField.frame.origin.x, _activeField.frame.origin.y+_activeField.frame.size.height);
+//        }
+        
+        
+        
+        UIImageView *bullet = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bullet.png"]];
+        bullet.frame = CGRectMake(point.x, point.y, 10, 10);
+        [_scrollView addSubview:bullet];
+        [_scrollView bringSubviewToFront:bullet];
+        
+        if (!CGRectContainsPoint(aRect, point) ) {
+            CGPoint scrollPoint = CGPointMake(0.0, _activeField.frame.origin.y+_activeField.frame.size.height-kbSize.height);
+            [_scrollView setContentOffset:scrollPoint animated:YES];
+        }
     }
     
+    _ignoreKeyboard = NO;
     
 }
 
 // Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    _scrollView.contentInset = contentInsets;
-    _scrollView.scrollIndicatorInsets = contentInsets;
+    if (_ignoreKeyboard == YES) {
+        // do nothing
+    } else {
+        UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+        _scrollView.contentInset = contentInsets;
+        _scrollView.scrollIndicatorInsets = contentInsets;
+    }
+}
+
+- (void)enteredBackground:(NSNotification *)notification
+{
+    if (_actionSheet.tag == 1) {
+        [_actionSheet dismissWithClickedButtonIndex:3 animated:YES];
+    } else if (_actionSheet.tag == 2) {
+        [_actionSheet dismissWithClickedButtonIndex:2 animated:YES];
+    }
+    
 }
 
 #pragma mark - View lifecycle
 
 
-// 
 // 1. Set up UI for step 2. 
 // 1.5: Set up ingredients and names.
 // 2. Set up controller based on recipe given (so fill out the recipe name, etc.)
@@ -109,21 +147,9 @@
 #define LAST_ITEM 114
 
 
-#define DELETE_ACTION_SHEET_TAG 10
+#define DELETE_ACTION_SHEET_TAG 3
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (actionSheet.tag == DELETE_ACTION_SHEET_TAG) {
-        switch (buttonIndex) {
-            case 0: // destructive Button
-                
-                [self.delegate deletedRecipe];
-                break;
-            case 1: // cancel
-                break; // do nothing
-        }
-    }
-}
+
 
 - (void)deleteButtonPressed:(UIButton *)sender
 {
@@ -324,8 +350,12 @@
         }
     }
     
-    if (_recipe.photo) {
-        [_photoButton setImage:[UIImage imageNamed:_recipe.photo] forState:UIControlStateNormal];
+    UIImage *image = [UIImage imageWithContentsOfFile:_recipe.photo];
+    
+    if (!image) {
+        // Do nothing
+    } else {
+        [_photoButton setImage:image forState:UIControlStateNormal];
     }
     
     _deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(_notes.frame.origin.x, _notes.frame.origin.y+_notes.frame.size.height+DELETE_MARGIN, _notes.frame.size.width, 44)];
@@ -353,6 +383,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillBeHidden:)
                                                  name:UIKeyboardWillHideNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(enteredBackground:) 
+                                                 name:UIApplicationDidEnterBackgroundNotification
+                                               object:nil];
 }
 
 - (void)dealloc
@@ -365,6 +400,9 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self 
                                                     name:UIKeyboardWillHideNotification 
                                                   object:nil]; 
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIApplicationDidEnterBackgroundNotification 
+                                                  object:nil];
 }
 
 
@@ -450,16 +488,14 @@
 // Scroll to appropriate place -- need to use notifications because this isn't taking keyboard into account. 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    NSLog(@"DID BEGIN1");
     _activeField = textField;
-    
+    NSLog(@"Test");
     NSArray *subviews = [[NSArray alloc] initWithArray:[_scrollView subviews]];
     for (UIView *view in subviews) {
         if (view.tag == -textField.tag) {
             view.alpha = 1;
         }
     }
-    NSLog(@"DID BEGIN2");
 }
 
 - (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -479,7 +515,7 @@
     
     
     if (textField.tag > 99 && [string isEqualToString:@" "]) {
-        
+        _ignoreKeyboard = YES;
         textField.keyboardType = UIKeyboardTypeDefault;
         [textField resignFirstResponder];
         [textField becomeFirstResponder];
@@ -780,6 +816,144 @@
     
     [self.popoverController presentPopoverFromRect:sender.frame inView:self.scrollView permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
+
+
+
+#pragma mark Photo and Action Sheet
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"%i",buttonIndex);
+    
+    if (actionSheet.tag == 1) {
+        switch (buttonIndex) {
+            case 0: // Destructive Button
+                _imageChanged = YES;
+                [_photoButton setImage:nil forState:UIControlStateNormal];
+                _photoButton.imageView.image = nil;
+                break;
+            case 1: // Take Photo
+                if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                    NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+                    if ([mediaTypes containsObject:(NSString *)kUTTypeImage]) {
+                        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                        picker.delegate = self;
+                        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                        picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
+                        picker.allowsEditing = YES;
+                        [self presentModalViewController:picker animated:YES];
+                    }
+                }
+                break;
+            case 2: // Choose Photo // photolibrary versus savedphotoalbums?
+                if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+                    NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+                    if ([mediaTypes containsObject:(NSString *)kUTTypeImage]) {
+                        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                        picker.delegate = self;
+                        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                        picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
+                        picker.allowsEditing = YES;
+                        [self presentModalViewController:picker animated:YES];
+                    }
+                }
+                break;
+            case 3: // Cancel
+                NSLog(@"%i",buttonIndex);
+                break;
+            default:
+                break;
+        }
+    } else if (actionSheet.tag ==2) {
+        switch (buttonIndex) {
+            case 0: // Take Photo
+                if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                    NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+                    if ([mediaTypes containsObject:(NSString *)kUTTypeImage]) {
+                        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                        picker.delegate = self;
+                        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                        picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
+                        picker.allowsEditing = YES;
+                        [self presentModalViewController:picker animated:YES];
+                    }
+                }
+                break;
+            case 1: // Choose Photo
+                if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+                    NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+                    if ([mediaTypes containsObject:(NSString *)kUTTypeImage]) {
+                        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                        picker.delegate = self;
+                        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                        picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
+                        picker.allowsEditing = YES;
+                        [self presentModalViewController:picker animated:YES];
+                    }
+                }
+                break;
+            case 2: // Cancel
+                break;
+            default:
+                break;
+        } 
+        
+        
+    } else if (actionSheet.tag == DELETE_ACTION_SHEET_TAG) {
+        switch (buttonIndex) {
+            case 0: // destructive Button
+                
+                [self.delegate deletedRecipe];
+                break;
+            case 1: // cancel
+                break; // do nothing
+        }
+    }
+    
+}
+
+- (IBAction)choosePhoto:(UIButton *)sender 
+{
+    if (_photoButton.imageView.image) {
+        
+        _actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete Photo" otherButtonTitles:@"Take Photo", @"Choose Photo", nil];
+        _actionSheet.tag = 1;
+        
+    } else {
+        
+        _actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Choose Photo", nil];
+        _actionSheet.tag = 2;
+        
+    }
+    
+    [_actionSheet showInView:self.view];
+}
+
+- (void)dismissImagePicker
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissImagePicker];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker
+didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    _imageChanged = YES;
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    if (!image) image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    if (image) {
+        _photoButton.layer.masksToBounds =YES;
+        _photoButton.layer.cornerRadius = 5.0f;
+        _photoButton.layer.backgroundColor = [[UIColor clearColor] CGColor];
+        [self.photoButton setImage:image forState:UIControlStateNormal];
+    }
+    [self dismissImagePicker];
+}
+
 
 
 @end

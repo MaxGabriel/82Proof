@@ -10,6 +10,8 @@
 #import "WEPopoverController.h"
 #import "PopoverIngredientButton.h"
 
+// Controls display of the ingredient buttons in the popover. 
+
 @protocol popoverOptionsViewControllerDelegate <NSObject>
 
 - (void)buttonChosen;

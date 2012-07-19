@@ -25,13 +25,9 @@
     if (!instance) {
         instance = [[ImageMapping alloc] init];
         
-        
-        
-        
         instance.methodDictionary = [OrderedDictionary dictionaryWithObjectsAndKeys:@"cobblerShaker.png",@"Shake",@"spoons4.png",@"Stir",@"blender.png",@"Blend",@"dryShake.png",@"Dry Shake",@"Layer.png",@"Layer",@"whipper2.png",@"Whipper", @"opaqueNone2.png",@"None", nil];
                 
         instance.glassDictionary = [OrderedDictionary dictionaryWithObjectsAndKeys:@"Martini2.png",@"Cocktail",@"collins.png",@"Collins",@"hurricaneWhite.png",@"Hurricane",@"margarita.png",@"Margarita",@"PousseCafe.png",@"Pousse-Café",@"rocksGlass.png",@"Rocks",@"straightShotGlass.png",@"Shot",@"snifter.png",@"Snifter", @"opaqueNone2.png",@"None", nil];
-        
         
         instance.iceDictionary = [OrderedDictionary dictionaryWithObjectsAndKeys:@"ice140x151.png",@"On the Rocks",@"malletWithCracked2.png",@"Cracked",@"tallSnowCone.png",@"Shaved",@"no-Ice140x151.png",@"No Ice", @"opaqueNone2.png",@"None", nil];
         

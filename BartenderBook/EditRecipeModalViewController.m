@@ -500,19 +500,6 @@
 
 - (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    //    NSLog(@"shouldChangeChars..");
-    //    if ([textField.text length] > 0) {
-    //        NSLog(@"if statement");
-    //  
-    
-    
-    //Is 0-indexed. 
-    //    NSLog(@"%@",textField.text);
-    
-    
-    
-    
-    
     
     if (textField.tag > 99 && [string isEqualToString:@" "]) {
         _ignoreKeyboard = YES;
@@ -531,16 +518,10 @@
         }
     }
     
-    //    unichar lastChar = [textField.text characterAtIndex:[textField.text length]];
-    //    
-    //    NSString *lastString = [NSString stringWithFormat:@"%C",lastChar];
-    //    if ([lastString isEqualToString:@" "]) {
-    //        textField.keyboardType = UIKeyboardTypeDefault;
-    //    }
     if (textField.tag == _currentTag && textField.tag != LAST_ITEM && textField.tag != 99) {
         [self addNewUITextField:textField animated:YES];
     }
-    //    }
+    
     
     
     return YES;
@@ -549,7 +530,6 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    //    NSLog(@"TEXT FIELD DID END EDITING");
     _activeField = nil;
     
     NSArray *subviews = [[NSArray alloc] initWithArray:[_scrollView subviews]];
@@ -568,16 +548,13 @@
 {
     NSLog(@"textFieldShouldReturn got called");
     if ([textField.text length] == 0 || textField.tag == LAST_ITEM) {
-        //        NSLog(@"FIRST OPTION");
+
         [textField resignFirstResponder];
         return YES;
     } else {
-        //        NSLog(@"SHOULD RESIGN FIRST RESPONDER");
+
         [[[self view] viewWithTag:textField.tag+1] becomeFirstResponder];
         return YES;
-        
-        
-        // NOTE: This needs to scroll down so that you can see the next ingredient. 
     }
 }
 
@@ -601,7 +578,7 @@
         NSMutableOrderedSet *ingredients = [[NSMutableOrderedSet alloc] init];
         
         
-        // Tested this, it works fine adding to ingredientsFinal (NSOrderedSet)
+
         for (UIView *view in [_scrollView subviews]) {
             if (view.tag >= 100) {
                 UITextField *textField = (UITextField *)view;
@@ -617,6 +594,7 @@
         }
         NSOrderedSet *ingredientsFinal = (NSOrderedSet *)ingredients;
         
+        // NOTES
         
         NSString *notes = _notes.text;
         

@@ -157,83 +157,13 @@
         buttonsInRow++;
     }
     
-    
-    
-    
-    // PREVIOUS CODE: This seperates items, but doesn't take the stitching into account.
-    
-    
-    //self.contentSizeForViewInPopover.width
-//    int heightMargin = 5;
-//    int widthMargin = 5;
-//    int widthAvailableForButtons = self.contentSizeForViewInPopover.width - widthMargin*2;
-//    
-//    int spacing = widthMargin;
-//    int ySpacing = heightMargin;
-//    
-//    
-//    int xPosition = widthMargin;
-//    int yPosition = heightMargin;
-//    int greatestYPosition = 0;
-//    
-//    for (UIButton *button in _buttons) {
-//        
-////        NSLog(@"%g",button.currentImage.size.width);
-//        
-//        if (button.currentImage.size.height > greatestYPosition) {
-//            greatestYPosition = button.currentImage.size.height;
-//        }
-//        
-//        //if the next button would take up too much of the screen, go to next row and reset x/y Position.
-//        if (xPosition + button.currentImage.size.width > widthAvailableForButtons) {
-//            NSLog(@"Going to next row.");
-//            yPosition = greatestYPosition + ySpacing;
-//            xPosition = widthMargin;
-//            greatestYPosition = 0;
-//            if (button.currentImage.size.height > greatestYPosition) {
-//                greatestYPosition = button.currentImage.size.height;
-//            }
-//        }
-//        
-//        
-////        NSLog(@"%g",button.currentImage.size.width);
-//        
-//        button.frame = CGRectMake(xPosition,yPosition, button.currentImage.size.width, button.currentImage.size.height);
-//        [_scrollView addSubview:button];
-//         
-//        xPosition += (spacing + button.currentImage.size.width);
-//        
-//    }
-    
-//    int xOffSet = 10;
-//    int yOffSet = 10;
-//    
-//    int xPosition = xOffSet;
-//    int yPosition = yOffSet;
-//    
-//    for (UIButton *button in _buttons) {
-//        NSLog(@"%@",button);
-//
-//        button.frame = CGRectMake(xPosition, yPosition, button.currentImage.size.width, button.currentImage.size.height);
-//        [_scrollView addSubview:button];
-//        xPosition += button.frame.size.width + 10;
-//        
-//        if (xPosition+button.frame.size.width > _scrollView.bounds.size.width - xOffSet) {
-//            xPosition = xOffSet;
-//            yPosition += yOffSet;
-//        }
-//        
-//        //add selector for button to call method, this method will communicate back to delegate what button was pressed. 
-//    }
 }
 
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
+//- (void)viewDidUnload
+//{
+//    [super viewDidUnload];
+//}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

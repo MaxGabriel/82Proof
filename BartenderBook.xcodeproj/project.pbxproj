@@ -980,10 +980,12 @@
 		50D20BA315700A0600F4463F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Maximilian Tagher (875AA44E4G)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BartenderBook/BartenderBook-Prefix.pch";
 				INFOPLIST_FILE = "BartenderBook/BartenderBook-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "85461CF2-6A21-452E-9B3D-2A9E43B61FE3";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -991,10 +993,12 @@
 		50D20BA415700A0600F4463F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Maximilian Tagher (875AA44E4G)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BartenderBook/BartenderBook-Prefix.pch";
 				INFOPLIST_FILE = "BartenderBook/BartenderBook-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "85461CF2-6A21-452E-9B3D-2A9E43B61FE3";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -310,65 +310,11 @@
     
     [self update];
     
-//    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"block.png"]];
-//    imageView.frame = CGRectMake(_mixButton.frame.origin.x, _mixButton.frame.origin.y, 292, 97);
-//    [_scrollView addSubview:imageView];
-//    [_scrollView sendSubviewToBack:imageView];
-    
-    
-    
-    
-//    if (!_recipe.photo) {
-//        _photoButton.hidden = YES;
-//        
-//        _recipeName.frame = CGRectMake(38-BULLET_OFFSET, _recipeName.frame.origin.y, _recipeName.frame.size.width, _recipeName.frame.size.height);
-//        
-//    } else {
-//        UIImage *image = [UIImage imageWithContentsOfFile:_recipe.photo];
-//        NSLog(@"%@",image);
-//        //_photoButton.imageView.image = [UIImage imageWithContentsOfFile:_recipe.photo];
-//        
-//        [_photoButton setImage:image forState:UIControlStateNormal];
-//        
-//    }
-    
-    
-    
-    
 
-    
-    
-    
-    
-
-    
-//    _recipeName.text = _recipe.name;
-//    CGFloat yPosition = _recipeName.frame.origin.y;
-//    for (Ingredient *ingredient in _recipe.hasIngredients) {
-//        yPosition += 25;
-//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(_recipeName.frame.origin.x, yPosition, 250, 15)];
-//        label.text = ingredient.name;
-//        [self.view addSubview:label];
-//    }
 }
 
 
-//- (void)viewDidUnload
-//{
-////    [self setRecipeName:nil];
-//    [self setMixButton:nil];
-//    [self setGlassButton:nil];
-//    [self setIceButton:nil];
-//    [self setGarnishButton:nil];
-//    [self setPhotoButton:nil];
-//    [self setRecipeName:nil];
-//    [self setNotesLabel:nil];
-//    [self setNotes:nil];
-//    [self setScrollView:nil];
-//    [super viewDidUnload];
-//    // Release any retained subviews of the main view.
-//    // e.g. self.myOutlet = nil;
-//}
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

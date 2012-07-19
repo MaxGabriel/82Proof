@@ -8,6 +8,8 @@
 
 #import "ingredientButton.h"
 
+// The buttons that cause a popover to be displayed. 
+
 @interface PopoverIngredientButton : ingredientButton
 
 @property (nonatomic, strong) UILabel *ingredientLabel;

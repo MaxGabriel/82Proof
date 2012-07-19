@@ -12,6 +12,14 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <QuartzCore/QuartzCore.h>
 
+// View Controller for creating recipes. 4 distinct secions
+// 1. Popover buttons for choosing garnish, ice, etc.
+// 2. Photo button, methods for UIImagePicker and ActionSheet
+// 3. Ingredient text field methods
+// 4. Database delegate method
+
+
+
 
 @interface CreateRecipeModalViewController() <UIScrollViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, popoverOptionsViewControllerDelegate, UIActionSheetDelegate> 
 
@@ -137,6 +145,7 @@
     
 }
 
+
 - (void)enteredBackground:(NSNotification *)notification
 {
     if (_actionSheet.tag == 1) {
@@ -232,12 +241,7 @@
     
 
     _notes.layer.masksToBounds = NO;
-    _notes.layer.cornerRadius = 5.0f;
-//    _notes.layer.borderWidth = 1.5f;
-//    _notes.layer.borderColor = [[UIColor grayColor] CGColor];
-    
-    // Testing shadows.
-    
+    _notes.layer.cornerRadius = 5.0f;    
     _notes.layer.shadowOffset = CGSizeMake(0, 1);
     _notes.layer.shadowColor = [[UIColor darkGrayColor] CGColor];
     _notes.layer.shadowRadius = 3.0f;
@@ -275,11 +279,10 @@
 
 - (void)dealloc
 {
-    // unregister for keyboard notifications while not visible.
     [[NSNotificationCenter defaultCenter] removeObserver:self 
                                                     name:UIKeyboardWillShowNotification 
                                                   object:nil]; 
-    // unregister for keyboard notifications while not visible.
+ 
     [[NSNotificationCenter defaultCenter] removeObserver:self 
                                                     name:UIKeyboardWillHideNotification 
                                                   object:nil]; 
@@ -288,26 +291,6 @@
                                                   object:nil];
 }
 
-//- (void)viewDidUnload
-//{
-//    
-//    
-//    [self setMixButton:nil];
-//    [self setIceButton:nil];
-//    [self setScrollView:nil];
-//    [self setFirstIngredient:nil];
-//    [self setGlassButton:nil];
-//    [self setGarnishButton:nil];
-//    [self setPhotoButton:nil];
-//    [self setRecipeName:nil];
-//    [self setNavigationBar:nil];
-//    [self setNotes:nil];
-//    [self setNotesLabel:nil];
-//    [self setDoneButton:nil];
-//    [super viewDidUnload];
-//    // Release any retained subviews of the main view.
-//    // e.g. self.myOutlet = nil;
-//}
 
 #pragma mark Text Fields
 
@@ -375,11 +358,11 @@
 
 #define LAST_ITEM 114
 
-// Scroll to appropriate place -- need to use notifications because this isn't taking keyboard into account. 
+// _activeField used for dismissing keyboard and scrolling in keyboard methods. 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     _activeField = textField;
-    
+    //Make bullet black. 
     NSArray *subviews = [[NSArray alloc] initWithArray:[_scrollView subviews]];
     for (UIView *view in subviews) {
         if (view.tag == -textField.tag) {
@@ -390,20 +373,7 @@
 }
 
 - (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-//    NSLog(@"shouldChangeChars..");
-//    if ([textField.text length] > 0) {
-//        NSLog(@"if statement");
-//  
-    
-    
-    //Is 0-indexed. 
-//    NSLog(@"%@",textField.text);
-    
-    
-    
-    
-    
+{    
     
     if (textField.tag > 99 && [string isEqualToString:@" "]) {
         _ignoreKeyboard = YES;
@@ -423,16 +393,10 @@
         }
     }
     
-//    unichar lastChar = [textField.text characterAtIndex:[textField.text length]];
-//    
-//    NSString *lastString = [NSString stringWithFormat:@"%C",lastChar];
-//    if ([lastString isEqualToString:@" "]) {
-//        textField.keyboardType = UIKeyboardTypeDefault;
-//    }
-        if (textField.tag == _currentTag && textField.tag != LAST_ITEM && textField.tag != 99) {
+
+    if (textField.tag == _currentTag && textField.tag != LAST_ITEM && textField.tag != 99) {
             [self addNewUITextField:textField];
-        }
-//    }
+    }
     
     
     return YES;
@@ -440,7 +404,7 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-//    NSLog(@"TEXT FIELD DID END EDITING");
+
     _activeField = nil;
     
     NSArray *subviews = [[NSArray alloc] initWithArray:[_scrollView subviews]];
@@ -461,16 +425,14 @@
     _ignoreKeyboard = NO;
     
     if ([textField.text length] == 0 || textField.tag == LAST_ITEM) {
-//        NSLog(@"FIRST OPTION");
+
         [textField resignFirstResponder];
         return YES;
     } else {
-//        NSLog(@"SHOULD RESIGN FIRST RESPONDER");
+
         [[[self view] viewWithTag:textField.tag+1] becomeFirstResponder];
         return YES;
         
-        
-        // NOTE: This needs to scroll down so that you can see the next ingredient. 
     }
 }
 
@@ -746,26 +708,6 @@
     
     [_actionSheet showInView:self.view];
     
-    // Note to self: need to change to action sheet to prompt for photos or camera.
-    // also check difference between 'albums' and photo library option.
-//    if (_photoButton.imageView.image) {
-//        NSLog(@"Called");
-//        _actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete Photo" otherButtonTitles:@"Take Photo", @"Choose Photo", nil];
-//        [_actionSheet showInView:self.view];
-//    } else {
-//        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-//            NSArray *mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
-//            if ([mediaTypes containsObject:(NSString *)kUTTypeImage]) {
-//                UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-//                picker.delegate = self;
-//                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-//                picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
-//                picker.allowsEditing = YES;
-//                [self presentModalViewController:picker animated:YES];
-//            }
-//        }
-//    }
-    
 }
 
 - (void)dismissImagePicker
@@ -801,17 +743,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     
     // BEGIN black magicks I am unfamiliar with. Need to read about bridging, uniqueIDs. 
     
-//    NSLog(@"saving png");
-//	NSString *pngFilePath = [NSString stringWithFormat:@"%@/test.png",docDir];
-//	NSData *data1 = [NSData dataWithData:UIImagePNGRepresentation(image)];
-//	[data1 writeToFile:pngFilePath atomically:YES];
-//    
-//	NSLog(@"saving jpeg");
-//	NSString *jpegFilePath = [NSString stringWithFormat:@"%@/test.jpeg",docDir];
-//	NSData *data2 = [NSData dataWithData:UIImageJPEGRepresentation(image, 1.0f)];//1.0f = 100% quality
-//	[data2 writeToFile:jpegFilePath atomically:YES];
-//    
-//	NSLog(@"saving image done");
     if (_recipeName.text) {
         
         
@@ -820,7 +751,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         [ingredients addObject:_firstIngredient.text];
         
 
-        // Tested this, it works fine adding to ingredientsFinal (NSOrderedSet)
         for (UIView *view in [_scrollView subviews]) {
             if (view.tag > 100) {
                 UITextField *textField = (UITextField *)view;
@@ -836,7 +766,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
         }
         NSOrderedSet *ingredientsFinal = (NSOrderedSet *)ingredients;
         
-        
+        // NOTES
         NSString *notes = _notes.text;
         
         // POPOVER INGREDIENTS
@@ -870,39 +800,30 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
             garnish = _garnishButton.name;
         }
         
-        
+        // PHOTO
+        // Always make a path and keep that path for the given recipe. If there isn't an image, when we call imageFromFile later it will return nil. 
         NSString *path = nil;
-        // PHOTO 
-//        if (_photoButton.imageView.image) {
-            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-            path = [paths lastObject];
+        
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        path = [paths lastObject];
+
             
-            //    CFUUIDRef newUniqueId = CFUUIDCreate(kCFAllocatorDefault);
-            //	CFStringRef newUniqueIdString = CFUUIDCreateString(kCFAllocatorDefault, newUniqueId);
-            //	path = [path stringByAppendingPathComponent:(NSString *)newUniqueIdString];
-            //	path = [path stringByAppendingPathExtension: @"MOV"];
-            //	CFRelease(newUniqueId);
-            //	CFRelease(newUniqueIdString);
+        CFUUIDRef newUniqueID = CFUUIDCreate(kCFAllocatorDefault);
+        CFStringRef newUniqueIDString = CFUUIDCreateString(kCFAllocatorDefault, newUniqueID);
+        
+        // 
+        path = [path stringByAppendingPathComponent:(__bridge_transfer NSString *)newUniqueIDString];
+        path = [path stringByAppendingPathExtension:@"PNG"];
             
-            CFUUIDRef newUniqueID = CFUUIDCreate(kCFAllocatorDefault);
-            CFStringRef newUniqueIDString = CFUUIDCreateString(kCFAllocatorDefault, newUniqueID);
             
-            path = [path stringByAppendingPathComponent:(__bridge_transfer NSString *)newUniqueIDString];
-            path = [path stringByAppendingPathExtension:@"PNG"];
+        NSData *PNGImage = [NSData dataWithData:UIImagePNGRepresentation(_photoButton.imageView.image)];
+        [PNGImage writeToFile:path atomically:YES];
             
-            //    NSString *PNGFilePath = [NSString stringWithFormat:@"%@/test.png",documentsPath];
-            NSData *PNGImage = [NSData dataWithData:UIImagePNGRepresentation(_photoButton.imageView.image)];
-            [PNGImage writeToFile:path atomically:YES];
-            
-//        }
+
         
         [self.delegate createRecipeModalViewController:self makeRecipeWithName:_recipeName.text andMethod:method andGlass:glass andIce:ice andGarnish:garnish andPhoto:path andNotes:notes andIngredients:ingredientsFinal];
         
-        
     }
-    
-    
-    
 }
 
 

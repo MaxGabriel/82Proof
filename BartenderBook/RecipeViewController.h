@@ -12,6 +12,8 @@
 #import "PopoverIngredientButton.h"
 #import "EditRecipeModalViewController.h"
 
+// Displays recipes 
+
 @interface RecipeViewController : UIViewController <EditRecipeModalViewControllerDelegate>
 
 

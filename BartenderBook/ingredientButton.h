@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+// Each of the buttons you can choose in a popover is an ingredient button. 
+
 @interface ingredientButton : UIButton
 @property (nonatomic, strong) NSString *name;
 

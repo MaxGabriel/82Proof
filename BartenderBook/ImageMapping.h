@@ -12,6 +12,9 @@
 @interface ImageMapping : NSObject
 
 
+// Access images used across the app.
+// Key:Value is -> "Orange":"orangeWedge.png"
+
 @property (nonatomic, strong) OrderedDictionary *methodDictionary;
 @property (nonatomic, strong) OrderedDictionary *glassDictionary;
 @property (nonatomic, strong) OrderedDictionary *iceDictionary;

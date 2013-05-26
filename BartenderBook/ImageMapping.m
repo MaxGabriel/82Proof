@@ -29,7 +29,7 @@
                 
         instance.glassDictionary = [OrderedDictionary dictionaryWithObjectsAndKeys:@"Martini2.png",@"Cocktail",@"collins.png",@"Collins",@"hurricaneWhite.png",@"Hurricane",@"margarita.png",@"Margarita",@"PousseCafe.png",@"Pousse-Café",@"rocksGlass.png",@"Rocks",@"straightShotGlass.png",@"Shot",@"snifter.png",@"Snifter", @"opaqueNone2.png",@"None", nil];
         
-        instance.iceDictionary = [OrderedDictionary dictionaryWithObjectsAndKeys:@"ice140x151.png",@"On the Rocks",@"malletWithCracked2.png",@"Cracked",@"tallSnowCone.png",@"Shaved",@"no-Ice140x151.png",@"No Ice", @"opaqueNone2.png",@"None", nil];
+        instance.iceDictionary = [OrderedDictionary dictionaryWithObjectsAndKeys:@"onTheRocks.png",@"On the Rocks",@"malletWithCracked2.png",@"Cracked",@"tallSnowCone.png",@"Shaved",@"no-Ice140x151.png",@"No Ice", @"opaqueNone2.png",@"None", nil];
         
         instance.garnishDictionary = [OrderedDictionary dictionaryWithObjectsAndKeys:@"cherryBig.png",@"Cherry",@"olive.png",@"Olive",@"limeWedge2D.png",@"Lime",@"limeWheel2.png",@"Lime Wheel",@"lemonWedge.png",@"Lemon",@"bigLemonTwist.png",@"Lemon Twist",@"orangeWedge.png",@"Orange",@"filledZest.png",@"Orange Zest",@"celeryStickBig.png",@"Celery Stick",@"mint2.png",@"Mint",@"bigPineapple.png",@"Pineapple", @"opaqueNone2.png",@"None", nil];
     }

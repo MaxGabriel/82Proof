@@ -20,20 +20,6 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "BartenderBook/RecipesTableViewController.m"
-         timestampString = "364269735.310566"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "262"
-         endingLineNumber = "262"
-         landmarkName = "-useDocument"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
          filePath = "BartenderBook/NewRecipeModalViewController.m"
          timestampString = "362183693.000889"
          startingColumnNumber = "9223372036854775807"

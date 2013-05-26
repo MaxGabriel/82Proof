@@ -132,7 +132,6 @@
 		5088693B1587EFDF0021A330 /* Layer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 508869391587EFDF0021A330 /* Layer@2x.png */; };
 		5088693D1588DABD0021A330 /* testRect.png in Resources */ = {isa = PBXBuildFile; fileRef = 5088693C1588DABC0021A330 /* testRect.png */; };
 		5088693F158C41720021A330 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5088693E158C41710021A330 /* QuartzCore.framework */; };
-		50886941158C4A580021A330 /* noisyPurpleTest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50886940158C4A570021A330 /* noisyPurpleTest@2x.png */; };
 		50886944158C4EF20021A330 /* roundedNoisyRect.png in Resources */ = {isa = PBXBuildFile; fileRef = 50886942158C4EF10021A330 /* roundedNoisyRect.png */; };
 		50886945158C4EF20021A330 /* roundedNoisyRect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50886943158C4EF10021A330 /* roundedNoisyRect@2x.png */; };
 		50A34B2015ACDC0100B57B95 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A34B1F15ACDC0100B57B95 /* OrderedDictionary.m */; };
@@ -827,7 +826,6 @@
 				5088693A1587EFDF0021A330 /* Layer.png in Resources */,
 				5088693B1587EFDF0021A330 /* Layer@2x.png in Resources */,
 				5088693D1588DABD0021A330 /* testRect.png in Resources */,
-				50886941158C4A580021A330 /* noisyPurpleTest@2x.png in Resources */,
 				50886944158C4EF20021A330 /* roundedNoisyRect.png in Resources */,
 				50886945158C4EF20021A330 /* roundedNoisyRect@2x.png in Resources */,
 				50D38B3D158FE73B00E4D2CF /* DJOE5CAS.otf in Resources */,

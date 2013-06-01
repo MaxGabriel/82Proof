@@ -49,6 +49,8 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>DJOE5CAS.otf</string>
+		<string>OstrichSansRounded-Medium.otf</string>
+		<string>GoudyBookletter1911.otf</string>
 	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard</string>

@@ -65,14 +65,6 @@
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
 #pragma mark - View lifecycle
 
 /*
@@ -258,9 +250,13 @@
 //        NSLog(@"%@",ingredient.name);
 //    }
     
-    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"moleskine.png"]];
-    [self.view addSubview:backgroundView];
-    [self.view sendSubviewToBack:backgroundView];
+//    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"moleskine.png"]];
+//    [self.view addSubview:backgroundView];
+//    [self.view sendSubviewToBack:backgroundView];
+    
+    
+    
+//    self.view.backgroundColor = [UIColor colorWithRGBHex:0xfff9d0];
     
     _scrollView.delegate = self;
     _scrollView.scrollEnabled = YES;

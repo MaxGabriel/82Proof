@@ -92,13 +92,6 @@
 //            point = CGPointMake(_activeField.frame.origin.x, _activeField.frame.origin.y+_activeField.frame.size.height);
 //        }
         
-        
-        
-        UIImageView *bullet = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bullet.png"]];
-        bullet.frame = CGRectMake(point.x, point.y, 10, 10);
-        [_scrollView addSubview:bullet];
-        [_scrollView bringSubviewToFront:bullet];
-        
         if (!CGRectContainsPoint(aRect, point) ) {
             CGPoint scrollPoint = CGPointMake(0.0, _activeField.frame.origin.y+_activeField.frame.size.height-kbSize.height);
             [_scrollView setContentOffset:scrollPoint animated:YES];
@@ -178,9 +171,9 @@
     
 
     // Set background
-    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"moleskine.png"]];
-    [self.view addSubview:backgroundView];
-    [self.view sendSubviewToBack:backgroundView];
+//    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"moleskine.png"]];
+//    [self.view addSubview:backgroundView];
+//    [self.view sendSubviewToBack:backgroundView];
     
 //    UIView *background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
 //    background.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"moleskine.png"]];
@@ -220,7 +213,12 @@
     _notes.layer.shadowRadius = 3.0f;
     _notes.layer.shadowOpacity = 0.8f;
     
+    _notes.scrollsToTop = NO; // Enables status bar shortcut.
+    
     _notesLabel.font = [UIFont fontWithName:@"dearJoe 5 CASUAL" size:15];
+    
+    _notes.layer.shouldRasterize = YES;
+    _notes.layer.rasterizationScale = [UIScreen mainScreen].scale;
     
     
     // STEP 1.5 : set up ingredients
@@ -241,7 +239,6 @@
         textField.returnKeyType = UIReturnKeyNext;
         textField.clearButtonMode = UITextFieldViewModeNever;
         textField.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;    
-        textField.backgroundColor = [UIColor clearColor]; // [UIColor lightTextColor];
         textField.delegate = self;
         textField.adjustsFontSizeToFitWidth = YES;
         textField.minimumFontSize = 15;
@@ -413,7 +410,7 @@
 }
 
 
-#pragma mark Text Fields
+#pragma mark - Text Fields
 
 - (void)addNewUITextField:(UITextField *)lastTextField animated:(BOOL)animated
 {
@@ -558,7 +555,7 @@
     }
 }
 
-#pragma mark NavBar Buttons
+#pragma mark - NavBar Buttons
 
 - (IBAction)cancel:(id)sender {
     [[self presentingViewController] dismissModalViewControllerAnimated:YES];
@@ -652,7 +649,7 @@
     }
 }
 
-# pragma mark Popover Buttons
+# pragma mark - Popover Buttons
 
 - (void)buttonChosen
 {
@@ -699,7 +696,8 @@
     [self.popoverController dismissPopoverAnimated:YES];
     
     popoverOptionsViewController *contentViewController = [[popoverOptionsViewController alloc] init];
-    contentViewController.scrollView.scrollEnabled = YES;
+//    contentViewController.scrollView.scrollEnabled = YES;
+    contentViewController.scrollEnabled = YES;
     
     
     
@@ -797,7 +795,7 @@
 
 
 
-#pragma mark Photo and Action Sheet
+#pragma mark - Photo and Action Sheet
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {

@@ -18,6 +18,8 @@
     
 //    [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES],@"firstLaunch",nil]];
     
+    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:123/255.0f green:160/255.0f blue:179/255.0f alpha:1]];
+    
     return YES;
 }
 							

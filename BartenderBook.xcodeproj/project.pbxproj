@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5009062A17585C5E003C3993 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508869321587B2B90021A330 /* MobileCoreServices.framework */; };
+		5009062E175860BC003C3993 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5009062D175860BC003C3993 /* UIColor+Hex.m */; };
+		5009063117586358003C3993 /* UIFont+AllFonts.m in Sources */ = {isa = PBXBuildFile; fileRef = 5009063017586357003C3993 /* UIFont+AllFonts.m */; };
 		5060CFA115A7827F005C1743 /* mint2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5060CF9F15A7827F005C1743 /* mint2.png */; };
 		5060CFA215A7827F005C1743 /* mint2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5060CFA015A7827F005C1743 /* mint2@2x.png */; };
 		5060CFA915A7AF0D005C1743 /* bigPineapple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5060CFA715A7AF0D005C1743 /* bigPineapple@2x.png */; };
@@ -125,7 +128,6 @@
 		5088691B1586B22E0021A330 /* celeryStick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 508869191586B22E0021A330 /* celeryStick@2x.png */; };
 		5088691E1586B2BA0021A330 /* celeryStickBig.png in Resources */ = {isa = PBXBuildFile; fileRef = 5088691C1586B2BA0021A330 /* celeryStickBig.png */; };
 		5088691F1586B2BA0021A330 /* celeryStickBig@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5088691D1586B2BA0021A330 /* celeryStickBig@2x.png */; };
-		508869331587B2BA0021A330 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508869321587B2B90021A330 /* MobileCoreServices.framework */; };
 		508869361587EBD30021A330 /* PousseCafe.png in Resources */ = {isa = PBXBuildFile; fileRef = 508869341587EBD30021A330 /* PousseCafe.png */; };
 		508869371587EBD30021A330 /* PousseCafe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 508869351587EBD30021A330 /* PousseCafe@2x.png */; };
 		5088693A1587EFDF0021A330 /* Layer.png in Resources */ = {isa = PBXBuildFile; fileRef = 508869381587EFDF0021A330 /* Layer.png */; };
@@ -134,6 +136,14 @@
 		5088693F158C41720021A330 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5088693E158C41710021A330 /* QuartzCore.framework */; };
 		50886944158C4EF20021A330 /* roundedNoisyRect.png in Resources */ = {isa = PBXBuildFile; fileRef = 50886942158C4EF10021A330 /* roundedNoisyRect.png */; };
 		50886945158C4EF20021A330 /* roundedNoisyRect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50886943158C4EF10021A330 /* roundedNoisyRect@2x.png */; };
+		50970A481752D7FE00292CA0 /* NSString+Range.m in Sources */ = {isa = PBXBuildFile; fileRef = 50970A471752D7FE00292CA0 /* NSString+Range.m */; };
+		50970A4B1752D8E500292CA0 /* NSAttributedString+Range.m in Sources */ = {isa = PBXBuildFile; fileRef = 50970A4A1752D8E500292CA0 /* NSAttributedString+Range.m */; };
+		50970A4F1752DF0600292CA0 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 50970A4E1752DF0600292CA0 /* Theme.m */; };
+		50970A521752DFDE00292CA0 /* ATheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 50970A511752DFDE00292CA0 /* ATheme.m */; };
+		50970A571752E17000292CA0 /* OstrichSansRounded-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50970A561752E17000292CA0 /* OstrichSansRounded-Medium.otf */; };
+		50970A5A1752E78800292CA0 /* UIViewController+StoryboardActions.m in Sources */ = {isa = PBXBuildFile; fileRef = 50970A591752E78800292CA0 /* UIViewController+StoryboardActions.m */; };
+		50970A601752F96C00292CA0 /* GoudyBookletter1911.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50970A5F1752F96C00292CA0 /* GoudyBookletter1911.otf */; };
+		50970A621753DC7000292CA0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50970A611753DC6F00292CA0 /* Default-568h@2x.png */; };
 		50A34B2015ACDC0100B57B95 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A34B1F15ACDC0100B57B95 /* OrderedDictionary.m */; };
 		50A34B2215ACE14900B57B95 /* arialBold82@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50A34B2115ACE14900B57B95 /* arialBold82@2x.png */; };
 		50A34B2415ACE14B00B57B95 /* arialBold82.png in Resources */ = {isa = PBXBuildFile; fileRef = 50A34B2315ACE14B00B57B95 /* arialBold82.png */; };
@@ -178,6 +188,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5009062C175860BB003C3993 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		5009062D175860BC003C3993 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		5009062F17586357003C3993 /* UIFont+AllFonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+AllFonts.h"; sourceTree = "<group>"; };
+		5009063017586357003C3993 /* UIFont+AllFonts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+AllFonts.m"; sourceTree = "<group>"; };
 		5060CF9F15A7827F005C1743 /* mint2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mint2.png; sourceTree = "<group>"; };
 		5060CFA015A7827F005C1743 /* mint2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mint2@2x.png"; sourceTree = "<group>"; };
 		5060CFA715A7AF0D005C1743 /* bigPineapple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bigPineapple@2x.png"; sourceTree = "<group>"; };
@@ -316,6 +330,19 @@
 		50886940158C4A570021A330 /* noisyPurpleTest@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "noisyPurpleTest@2x.png"; path = "../../iOS images/noisyPurpleTest@2x.png"; sourceTree = "<group>"; };
 		50886942158C4EF10021A330 /* roundedNoisyRect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roundedNoisyRect.png; sourceTree = "<group>"; };
 		50886943158C4EF10021A330 /* roundedNoisyRect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roundedNoisyRect@2x.png"; sourceTree = "<group>"; };
+		50970A461752D7FE00292CA0 /* NSString+Range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Range.h"; sourceTree = "<group>"; };
+		50970A471752D7FE00292CA0 /* NSString+Range.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Range.m"; sourceTree = "<group>"; };
+		50970A491752D8E500292CA0 /* NSAttributedString+Range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Range.h"; sourceTree = "<group>"; };
+		50970A4A1752D8E500292CA0 /* NSAttributedString+Range.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Range.m"; sourceTree = "<group>"; };
+		50970A4D1752DF0600292CA0 /* Theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theme.h; sourceTree = "<group>"; };
+		50970A4E1752DF0600292CA0 /* Theme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theme.m; sourceTree = "<group>"; };
+		50970A501752DFDE00292CA0 /* ATheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATheme.h; sourceTree = "<group>"; };
+		50970A511752DFDE00292CA0 /* ATheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATheme.m; sourceTree = "<group>"; };
+		50970A561752E17000292CA0 /* OstrichSansRounded-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OstrichSansRounded-Medium.otf"; sourceTree = "<group>"; };
+		50970A581752E78800292CA0 /* UIViewController+StoryboardActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+StoryboardActions.h"; sourceTree = "<group>"; };
+		50970A591752E78800292CA0 /* UIViewController+StoryboardActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+StoryboardActions.m"; sourceTree = "<group>"; };
+		50970A5F1752F96C00292CA0 /* GoudyBookletter1911.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GoudyBookletter1911.otf; sourceTree = "<group>"; };
+		50970A611753DC6F00292CA0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		50A34B1E15ACDC0100B57B95 /* OrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedDictionary.h; sourceTree = "<group>"; };
 		50A34B1F15ACDC0100B57B95 /* OrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedDictionary.m; sourceTree = "<group>"; };
 		50A34B2115ACE14900B57B95 /* arialBold82@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arialBold82@2x.png"; sourceTree = "<group>"; };
@@ -377,8 +404,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5009062A17585C5E003C3993 /* MobileCoreServices.framework in Frameworks */,
 				5088693F158C41720021A330 /* QuartzCore.framework in Frameworks */,
-				508869331587B2BA0021A330 /* MobileCoreServices.framework in Frameworks */,
 				50D20BC415700F4000F4463F /* CoreData.framework in Frameworks */,
 				50D20B8915700A0600F4463F /* UIKit.framework in Frameworks */,
 				50D20B8B15700A0600F4463F /* Foundation.framework in Frameworks */,
@@ -577,6 +604,43 @@
 			name = Glasses;
 			sourceTree = "<group>";
 		};
+		50970A451752D7EB00292CA0 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				50970A461752D7FE00292CA0 /* NSString+Range.h */,
+				50970A471752D7FE00292CA0 /* NSString+Range.m */,
+				50970A491752D8E500292CA0 /* NSAttributedString+Range.h */,
+				50970A4A1752D8E500292CA0 /* NSAttributedString+Range.m */,
+				50970A581752E78800292CA0 /* UIViewController+StoryboardActions.h */,
+				50970A591752E78800292CA0 /* UIViewController+StoryboardActions.m */,
+				5009062C175860BB003C3993 /* UIColor+Hex.h */,
+				5009062D175860BC003C3993 /* UIColor+Hex.m */,
+				5009062F17586357003C3993 /* UIFont+AllFonts.h */,
+				5009063017586357003C3993 /* UIFont+AllFonts.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		50970A4C1752DEA700292CA0 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				50970A4D1752DF0600292CA0 /* Theme.h */,
+				50970A4E1752DF0600292CA0 /* Theme.m */,
+				50970A501752DFDE00292CA0 /* ATheme.h */,
+				50970A511752DFDE00292CA0 /* ATheme.m */,
+			);
+			name = Theme;
+			sourceTree = "<group>";
+		};
+		50970A531752E15F00292CA0 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				50970A561752E17000292CA0 /* OstrichSansRounded-Medium.otf */,
+				50970A5F1752F96C00292CA0 /* GoudyBookletter1911.otf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		50A34B1D15ACDBE100B57B95 /* Data Structures */ = {
 			isa = PBXGroup;
 			children = (
@@ -589,15 +653,13 @@
 		50D20B7915700A0600F4463F = {
 			isa = PBXGroup;
 			children = (
+				50970A611753DC6F00292CA0 /* Default-568h@2x.png */,
 				50C00B7215B63B37008F8275 /* colorBurnLess.png */,
 				50C00B7015B63B34008F8275 /* colorBurnLess@2x.png */,
 				506BDFC215B51B0F0075CBF3 /* Default.png */,
 				506BDFC015B51B0B0075CBF3 /* Default@2x.png */,
 				50A34B2315ACE14B00B57B95 /* arialBold82.png */,
 				50A34B2115ACE14900B57B95 /* arialBold82@2x.png */,
-				5088693E158C41710021A330 /* QuartzCore.framework */,
-				508869321587B2B90021A330 /* MobileCoreServices.framework */,
-				50D20BC315700F4000F4463F /* CoreData.framework */,
 				50D20B8E15700A0600F4463F /* BartenderBook */,
 				50D20B8715700A0600F4463F /* Frameworks */,
 				50D20B8515700A0600F4463F /* Products */,
@@ -615,6 +677,9 @@
 		50D20B8715700A0600F4463F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5088693E158C41710021A330 /* QuartzCore.framework */,
+				508869321587B2B90021A330 /* MobileCoreServices.framework */,
+				50D20BC315700F4000F4463F /* CoreData.framework */,
 				50D20B8815700A0600F4463F /* UIKit.framework */,
 				50D20B8A15700A0600F4463F /* Foundation.framework */,
 				50D20B8C15700A0600F4463F /* CoreGraphics.framework */,
@@ -625,6 +690,9 @@
 		50D20B8E15700A0600F4463F /* BartenderBook */ = {
 			isa = PBXGroup;
 			children = (
+				50970A531752E15F00292CA0 /* Fonts */,
+				50970A4C1752DEA700292CA0 /* Theme */,
+				50970A451752D7EB00292CA0 /* Categories */,
 				50D20B9A15700A0600F4463F /* MainStoryboard.storyboard */,
 				5060CFBE15A7F95C005C1743 /* ImageMapping.h */,
 				5060CFBF15A7F95C005C1743 /* ImageMapping.m */,
@@ -874,6 +942,9 @@
 				506BDFC515B51C4A0075CBF3 /* moleskine.png in Resources */,
 				50C00B7115B63B34008F8275 /* colorBurnLess@2x.png in Resources */,
 				50C00B7315B63B37008F8275 /* colorBurnLess.png in Resources */,
+				50970A571752E17000292CA0 /* OstrichSansRounded-Medium.otf in Resources */,
+				50970A601752F96C00292CA0 /* GoudyBookletter1911.otf in Resources */,
+				50970A621753DC7000292CA0 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -905,6 +976,13 @@
 				5060CFC015A7F95D005C1743 /* ImageMapping.m in Sources */,
 				50A34B2015ACDC0100B57B95 /* OrderedDictionary.m in Sources */,
 				50A34B2715AD43FC00B57B95 /* EditRecipeModalViewController.m in Sources */,
+				50970A481752D7FE00292CA0 /* NSString+Range.m in Sources */,
+				50970A4B1752D8E500292CA0 /* NSAttributedString+Range.m in Sources */,
+				50970A4F1752DF0600292CA0 /* Theme.m in Sources */,
+				50970A521752DFDE00292CA0 /* ATheme.m in Sources */,
+				50970A5A1752E78800292CA0 /* UIViewController+StoryboardActions.m in Sources */,
+				5009062E175860BC003C3993 /* UIColor+Hex.m in Sources */,
+				5009063117586358003C3993 /* UIFont+AllFonts.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -978,12 +1056,12 @@
 		50D20BA315700A0600F4463F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Maximilian Tagher (875AA44E4G)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BartenderBook/BartenderBook-Prefix.pch";
 				INFOPLIST_FILE = "BartenderBook/BartenderBook-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "85461CF2-6A21-452E-9B3D-2A9E43B61FE3";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -991,12 +1069,12 @@
 		50D20BA415700A0600F4463F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Maximilian Tagher (875AA44E4G)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BartenderBook/BartenderBook-Prefix.pch";
 				INFOPLIST_FILE = "BartenderBook/BartenderBook-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "85461CF2-6A21-452E-9B3D-2A9E43B61FE3";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

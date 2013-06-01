@@ -180,9 +180,9 @@
     
     
     // Set background
-    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"moleskine.png"]];
-    [self.view addSubview:backgroundView];
-    [self.view sendSubviewToBack:backgroundView];
+//    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"moleskine.png"]];
+//    [self.view addSubview:backgroundView];
+//    [self.view sendSubviewToBack:backgroundView];
     
     // ScrollView settings
     _scrollView.delegate = self;
@@ -246,6 +246,11 @@
     _notes.layer.shadowColor = [[UIColor darkGrayColor] CGColor];
     _notes.layer.shadowRadius = 3.0f;
     _notes.layer.shadowOpacity = 0.8f;
+    
+    _notes.scrollsToTop = NO; // Enables status bar shortcut.
+    
+    _notes.layer.shouldRasterize = YES;
+    _notes.layer.rasterizationScale = [UIScreen mainScreen].scale;
 
 
     _notesLabel.font = [UIFont fontWithName:@"dearJoe 5 CASUAL" size:15];
@@ -306,6 +311,7 @@
     textField.borderStyle = UITextBorderStyleNone; //UITextBorderStyleRoundedRect;
     
     textField.font = [UIFont fontWithName:@"dearJoe 5 CASUAL" size:lastTextField.font.pointSize]; //initially set in viewDidLoad
+    
     
     //textField.font = [UIFont systemFontOfSize:15];
     

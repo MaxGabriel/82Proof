@@ -11,4 +11,10 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+
+// Categories
+    #import "NSString+Range.h"
+    #import "NSAttributedString+Range.h"
+    #import "Theme.h"
+    #import "UIColor+Hex.h"
 #endif

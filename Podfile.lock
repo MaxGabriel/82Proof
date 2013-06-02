@@ -1,0 +1,13 @@
+PODS:
+  - Bugsnag (2.2.3):
+    - Reachability (~> 3.1)
+  - Reachability (3.1.0)
+
+DEPENDENCIES:
+  - Bugsnag
+
+SPEC CHECKSUMS:
+  Bugsnag: 91acf0c2f0f5c0a7b729869385597a29488d27ee
+  Reachability: ba94ecd4eaa037be3d0588b38956672588530c5b
+
+COCOAPODS: 0.20.2

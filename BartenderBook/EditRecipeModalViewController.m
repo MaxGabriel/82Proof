@@ -403,13 +403,6 @@
 }
 
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
 #pragma mark - Text Fields
 
 - (void)addNewUITextField:(UITextField *)lastTextField animated:(BOOL)animated
@@ -558,7 +551,7 @@
 #pragma mark - NavBar Buttons
 
 - (IBAction)cancel:(id)sender {
-    [[self presentingViewController] dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #define DEFAULT_METHOD @"Method"
@@ -817,7 +810,7 @@
                         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
                         picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
                         picker.allowsEditing = YES;
-                        [self presentModalViewController:picker animated:YES];
+                        [self dismissViewControllerAnimated:YES completion:nil];
                     }
                 }
                 break;
@@ -830,7 +823,7 @@
                         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                         picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
                         picker.allowsEditing = YES;
-                        [self presentModalViewController:picker animated:YES];
+                        [self presentViewController:picker animated:YES completion:nil];
                     }
                 }
                 break;
@@ -851,7 +844,7 @@
                         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
                         picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
                         picker.allowsEditing = YES;
-                        [self presentModalViewController:picker animated:YES];
+                        [self presentViewController:picker animated:YES completion:nil];
                     }
                 }
                 break;
@@ -864,7 +857,7 @@
                         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                         picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
                         picker.allowsEditing = YES;
-                        [self presentModalViewController:picker animated:YES];
+                        [self presentViewController:picker animated:YES completion:nil];
                     }
                 }
                 break;
@@ -907,7 +900,7 @@
 
 - (void)dismissImagePicker
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

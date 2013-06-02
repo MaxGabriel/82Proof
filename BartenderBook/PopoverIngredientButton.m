@@ -22,8 +22,8 @@
         
         _ingredientLabel = [[UILabel alloc] init];
         
-        int height = self.frame.size.height;
-        int width = self.frame.size.width;
+        CGFloat height = self.frame.size.height;
+        CGFloat width = self.frame.size.width;
         
         _ingredientLabel.frame = CGRectMake(0, height-14, width, 12);
         
@@ -32,7 +32,7 @@
         _ingredientLabel.font = [UIFont fontWithName:@"Futura-Medium" size:(11)];
         _ingredientLabel.backgroundColor = [UIColor clearColor];
         _ingredientLabel.textColor = [UIColor whiteColor];
-        _ingredientLabel.textAlignment = UITextAlignmentCenter;
+        _ingredientLabel.textAlignment = NSTextAlignmentCenter;
         _ingredientLabel.text = self.name;
         
         

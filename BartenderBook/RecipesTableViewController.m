@@ -90,7 +90,7 @@
 {
     
     //[self.modalViewController dismissModalViewControllerAnimated:YES];
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 
 }
 
@@ -115,7 +115,7 @@
         NSLog(@"Saved");
     }];
     
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewDidLoad
@@ -164,13 +164,6 @@
 //    
 //    [self dismissModalViewControllerAnimated:YES];
 //}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 
 
 

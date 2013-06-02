@@ -38,7 +38,7 @@
 
 -(void)deletedRecipe
 {
-    [self dismissModalViewControllerAnimated:NO];
+    [self dismissViewControllerAnimated:NO completion:nil];
     [_recipe.managedObjectContext deleteObject:_recipe];
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -49,7 +49,7 @@
     {
         _recipe = recipe;
         [self update];
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
         NSLog(@"After dismiss");
     } ];
     
@@ -337,13 +337,6 @@
                              @{
                                      NSStrikethroughStyleAttributeName: underlineStyle,
                              }];
-}
-
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

@@ -60,16 +60,10 @@
 
 @synthesize delegate = _delegate;
 
-
-
-- (void)didReceiveMemoryWarning{
-    [super didReceiveMemoryWarning];
-}
-
 - (IBAction)cancel:(id)sender {
     
     
-    [[self presentingViewController] dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)keyboardWasShown:(NSNotification*)aNotification
@@ -302,10 +296,10 @@
 
 - (void)addNewUITextField:(UITextField *)lastTextField
 {
-    double xPosition = lastTextField.frame.origin.x;
-    double yPosition = lastTextField.frame.origin.y;
-    double width = lastTextField.frame.size.width;
-    double height = lastTextField.frame.size.height;
+    CGFloat xPosition = lastTextField.frame.origin.x;
+    CGFloat yPosition = lastTextField.frame.origin.y;
+    CGFloat width = lastTextField.frame.size.width;
+    CGFloat height = lastTextField.frame.size.height;
     
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(xPosition, yPosition+height, width, height)];
     textField.borderStyle = UITextBorderStyleNone; //UITextBorderStyleRoundedRect;
@@ -354,7 +348,7 @@
     [UIView animateWithDuration:2 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{ bullet.alpha = .2; } completion:NULL];
     [UIView animateWithDuration:2 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{ textField.alpha = 1; } completion:NULL];
     
-    [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationCurveEaseIn animations:^{ _notes.frame = CGRectMake(_notes.frame.origin.x, _notes.frame.origin.y+height, _notes.frame.size.width, _notes.frame.size.height); _notesLabel.frame = CGRectMake(_notesLabel.frame.origin.x, _notesLabel.frame.origin.y+height, _notesLabel.frame.size.width, _notesLabel.frame.size.height); } completion:NULL];
+    [UIView animateWithDuration:.5 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{ _notes.frame = CGRectMake(_notes.frame.origin.x, _notes.frame.origin.y+height, _notes.frame.size.width, _notes.frame.size.height); _notesLabel.frame = CGRectMake(_notesLabel.frame.origin.x, _notesLabel.frame.origin.y+height, _notesLabel.frame.size.width, _notesLabel.frame.size.height); } completion:NULL];
 
     
     _scrollView.contentSize = CGSizeMake(_scrollView.contentSize.width, _scrollView.contentSize.height+height);
@@ -440,12 +434,6 @@
         return YES;
         
     }
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 #pragma mark - Popover Buttons
@@ -632,7 +620,7 @@
                         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
                         picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
                         picker.allowsEditing = YES;
-                        [self presentModalViewController:picker animated:YES];
+                        [self presentViewController:picker animated:YES completion:nil];
                     }
                 }
                 break;
@@ -645,7 +633,7 @@
                         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                         picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
                         picker.allowsEditing = YES;
-                        [self presentModalViewController:picker animated:YES];
+                        [self presentViewController:picker animated:YES completion:nil];
                     }
                 }
                 break;
@@ -666,7 +654,7 @@
                         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
                         picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
                         picker.allowsEditing = YES;
-                        [self presentModalViewController:picker animated:YES];
+                        [self presentViewController:picker animated:YES completion:nil];
                     }
                 }
                 break;
@@ -679,7 +667,7 @@
                         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                         picker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
                         picker.allowsEditing = YES;
-                        [self presentModalViewController:picker animated:YES];
+                        [self presentViewController:picker animated:YES completion:nil];
                     }
                 }
                 break;
@@ -718,7 +706,7 @@
 
 - (void)dismissImagePicker
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker

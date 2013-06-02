@@ -148,7 +148,7 @@
         label.backgroundColor = [UIColor clearColor];
         label.textColor = [UIColor whiteColor];
         label.text = button.name;
-        label.textAlignment = UITextAlignmentCenter;
+        label.textAlignment = NSTextAlignmentCenter;
 //        label.frame = CGRectMake(xPosition, yPosition+HEIGHT_SHIFT-21, button.currentImage.size.width, 12);
         label.frame = CGRectMake(xPosition, yPosition+75+1, button.currentImage.size.width, 12);
         [_scrollView addSubview:label];
@@ -164,11 +164,5 @@
 //{
 //    [super viewDidUnload];
 //}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
 
 @end

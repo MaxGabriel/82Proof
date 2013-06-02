@@ -414,10 +414,10 @@
 
 - (void)addNewUITextField:(UITextField *)lastTextField animated:(BOOL)animated
 {
-    double xPosition = lastTextField.frame.origin.x;
-    double yPosition = lastTextField.frame.origin.y;
-    double width = lastTextField.frame.size.width;
-    double height = lastTextField.frame.size.height;
+    CGFloat xPosition = lastTextField.frame.origin.x;
+    CGFloat yPosition = lastTextField.frame.origin.y;
+    CGFloat width = lastTextField.frame.size.width;
+    CGFloat height = lastTextField.frame.size.height;
     
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(xPosition, yPosition+height, width, height)];
     textField.borderStyle = UITextBorderStyleNone; //UITextBorderStyleRoundedRect;

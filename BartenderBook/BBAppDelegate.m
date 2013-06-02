@@ -7,7 +7,7 @@
 //
 
 #import "BBAppDelegate.h"
-
+#import "Bugsnag.h"
 @implementation BBAppDelegate
 
 @synthesize window = _window;
@@ -18,10 +18,20 @@
     
 //    [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES],@"firstLaunch",nil]];
     
-    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:123/255.0f green:160/255.0f blue:179/255.0f alpha:1]];
+#ifndef DEBUG
+    [Bugsnag startBugsnagWithApiKey:@"123ad1ee528c24bb5fcaa8bac15b144b"];
+#endif
+    
+    
+    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:123/255.0f
+                                                               green:160/255.0f
+                                                                blue:179/255.0f
+                                                               alpha:1]];
     
     return YES;
 }
+
+
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {

@@ -74,7 +74,7 @@
 }
 */
 
-#define LABEL_HEIGHT 35
+#define LABEL_HEIGHT 44 // was 35
 #define BULLET_OFFSET 10
 
 //#define ORIGINAL_NOTES_LABEL_X 236
@@ -204,11 +204,17 @@
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(38, yPosition, 262, LABEL_HEIGHT)];
         label.tag = ingredientTag;
 
-        label.font = [UIFont fontWithName:@"dearJoe 5 CASUAL" size:20];
+        label.font = [UIFont fontWithName:kGoudyBookletter size:20];
         label.text = ingredient.name;
         label.adjustsFontSizeToFitWidth = YES;
         label.minimumFontSize = 15;
         label.backgroundColor = [UIColor clearColor];
+        label.userInteractionEnabled = YES;
+        
+        [label addGestureRecognizer:[[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                              action:@selector(toggleStrikethrough:)]];
+        
+        
         [_scrollView addSubview:label];
         
         UIImageView *bullet = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bullet.png"]];
@@ -264,7 +270,7 @@
     
 
     
-    _recipeName.font = [UIFont fontWithName:@"dearJoe 5 CASUAL" size:28];
+    _recipeName.font = [UIFont fontWithName:kGoudyBookletter size:32]; //was 28
     _recipeName.text = _recipe.name;
     
 
@@ -297,11 +303,16 @@
     _notes.layer.shadowRadius = 3.0f;
     _notes.layer.shadowOpacity = 0.8f;
     
-
+    _notes.layer.shouldRasterize = YES;
+    _notes.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    
+    _notes.scrollsToTop = NO; // Enables status bar shortcut.
+    
+    _notes.font = [UIFont fontWithName:kGoudyBookletter size:16]; //unsure of previous font size
     
 
     
-    _notesLabel.font = [UIFont fontWithName:@"dearJoe 5 CASUAL" size:15];
+    _notesLabel.font = [UIFont fontWithName:kGoudyBookletter size:15]; 
     
     
     [self update];
@@ -310,6 +321,23 @@
 }
 
 
+- (void)toggleStrikethrough:(UIGestureRecognizer *)recognizer
+{
+    UILabel * const label = (UILabel *) recognizer.view;
+    NSLog(@"Label.frame = %@",NSStringFromCGRect(label.frame));
+    
+//    label.attributedText = [[NSAttributedString alloc] initWithString:label.text];
+//    return;
+    const BOOL isUnderlined = [label.attributedText containsAttribute:NSStrikethroughStyleAttributeName withValue:@(NSUnderlineStyleSingle)];
+
+    NSNumber * const underlineStyle = isUnderlined ? @(NSUnderlineStyleNone) : @(NSUnderlineStyleSingle);
+    
+    label.attributedText =  [[NSAttributedString alloc] initWithString:label.text
+                                                            attributes:
+                             @{
+                                     NSStrikethroughStyleAttributeName: underlineStyle,
+                             }];
+}
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

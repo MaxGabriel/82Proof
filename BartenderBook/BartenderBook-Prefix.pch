@@ -17,4 +17,5 @@
     #import "NSAttributedString+Range.h"
     #import "Theme.h"
     #import "UIColor+Hex.h"
+    #import "NSString+NSURL.h"
 #endif

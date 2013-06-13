@@ -1,0 +1,1 @@
+* When clicking next button from the last ingredient (w/ no text) it dismisses the keyboard rather than go to the notes.

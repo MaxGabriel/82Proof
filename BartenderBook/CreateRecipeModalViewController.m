@@ -183,8 +183,9 @@
     _scrollView.scrollEnabled = YES;
     _scrollView.contentSize = CGSizeMake(320, 480);
     
+    
     //recipeName
-    _recipeName.font = [UIFont fontWithName:@"dearJoe 5 CASUAL" size:28];
+    _recipeName.font = [[Theme sharedTheme] recipeNameFont];
     _recipeName.delegate = self;
     _recipeName.tag = 99;
     
@@ -192,7 +193,7 @@
     _currentTag = 100;
     _firstIngredient.delegate = self;
     _firstIngredient.tag = _currentTag;
-    _firstIngredient.font = [UIFont fontWithName:@"dearJoe 5 CASUAL" size:20];
+    _firstIngredient.font = [[Theme sharedTheme] ingredientFont];
     _firstIngredient.adjustsFontSizeToFitWidth = YES;
     _firstIngredient.minimumFontSize = 15;
     
@@ -247,7 +248,7 @@
     _notes.layer.rasterizationScale = [UIScreen mainScreen].scale;
 
 
-    _notesLabel.font = [UIFont fontWithName:@"dearJoe 5 CASUAL" size:15];
+    _notesLabel.font = [[Theme sharedTheme] notesLabelFont];
     
     _glassButton.name = DEFAULT_GLASS;
     [_glassButton addLabel];
@@ -304,7 +305,7 @@
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(xPosition, yPosition+height, width, height)];
     textField.borderStyle = UITextBorderStyleNone; //UITextBorderStyleRoundedRect;
     
-    textField.font = [UIFont fontWithName:@"dearJoe 5 CASUAL" size:lastTextField.font.pointSize]; //initially set in viewDidLoad
+    textField.font = [UIFont fontWithName:kGoudyBookletter size:lastTextField.font.pointSize]; //initially set in viewDidLoad
     
     
     //textField.font = [UIFont systemFontOfSize:15];

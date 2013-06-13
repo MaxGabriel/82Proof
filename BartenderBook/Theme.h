@@ -10,9 +10,14 @@
 
 @protocol BBTheme <NSObject>
 
+- (UIFont *)recipeNameFont;
+- (UIFont *)ingredientFont;
+- (UIFont *)notesLabelFont;
+
+
 @end
 
-@interface Theme : NSObject
+@interface Theme : NSObject <BBTheme>
 
 + (instancetype)sharedTheme;
 

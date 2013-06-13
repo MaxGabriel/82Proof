@@ -181,7 +181,7 @@
     
 //    [_scrollView sendSubviewToBack:background];
     
-    _recipeName.font = [UIFont fontWithName:@"dearJoe 5 CASUAL" size:28];
+    _recipeName.font = [[Theme sharedTheme] recipeNameFont];
     _recipeName.delegate = self;
     _recipeName.tag = 99;
     
@@ -215,7 +215,7 @@
     
     _notes.scrollsToTop = NO; // Enables status bar shortcut.
     
-    _notesLabel.font = [UIFont fontWithName:@"dearJoe 5 CASUAL" size:15];
+    _notesLabel.font = [[Theme sharedTheme] notesLabelFont];
     
     _notes.layer.shouldRasterize = YES;
     _notes.layer.rasterizationScale = [UIScreen mainScreen].scale;
@@ -231,7 +231,7 @@
         // SET UP UITextField
         UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(textFieldXPosition, yPosition, textFieldWidth, textFieldHeight)];
         textField.borderStyle = UITextBorderStyleNone;
-        textField.font = [UIFont fontWithName:@"dearJoe 5 CASUAL" size:20];
+        textField.font = [[Theme sharedTheme] ingredientFont];
         textField.placeholder = @"ingredient";
         textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
         textField.autocorrectionType = UITextAutocorrectionTypeDefault;
@@ -415,7 +415,7 @@
     UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(xPosition, yPosition+height, width, height)];
     textField.borderStyle = UITextBorderStyleNone; //UITextBorderStyleRoundedRect;
     
-    textField.font = [UIFont fontWithName:@"dearJoe 5 CASUAL" size:lastTextField.font.pointSize]; //initially set in viewDidLoad
+    textField.font = [[Theme sharedTheme] ingredientFont]; 
     
     //textField.font = [UIFont systemFontOfSize:15];
     

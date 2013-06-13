@@ -74,7 +74,7 @@
 }
 */
 
-#define LABEL_HEIGHT 44 // was 35
+#define LABEL_HEIGHT 44 // was 35. Currently this controls spacing between text as well; I want to make leading its own constant b/c the text is too far apart at higher font sizes.
 #define BULLET_OFFSET 10
 
 //#define ORIGINAL_NOTES_LABEL_X 236
@@ -211,8 +211,8 @@
         label.backgroundColor = [UIColor clearColor];
         label.userInteractionEnabled = YES;
         
-        [label addGestureRecognizer:[[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                                              action:@selector(toggleStrikethrough:)]];
+//        [label addGestureRecognizer:[[UISwipeGestureRecognizer alloc] initWithTarget:self
+//                                                                              action:@selector(toggleStrikethrough:)]];
         
         
         [_scrollView addSubview:label];
@@ -323,6 +323,7 @@
 
 - (void)toggleStrikethrough:(UIGestureRecognizer *)recognizer
 {
+    return;
     UILabel * const label = (UILabel *) recognizer.view;
     NSLog(@"Label.frame = %@",NSStringFromCGRect(label.frame));
     
